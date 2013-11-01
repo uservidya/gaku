@@ -1,0 +1,18 @@
+ul#menu.nav.navbar-nav
+  li = link_to t(:'menu.student.plural'), students_path
+  li = link_to t(:'menu.teacher.plural'), teachers_path
+  li = link_to t(:'menu.class_group.plural'), class_groups_path
+  li.dropdown data-hook="courses_menu"
+    a.dropdown-toggle data-toggle="dropdown" href="#"
+      = t(:'menu.course.plural')
+      b.caret
+    ul.dropdown-menu
+      li data-hook="syllabuses"
+        = link_to t(:'menu.syllabus.plural'), syllabuses_path
+      li data-hook="courses"
+        = link_to t(:'menu.course.plural'), courses_path
+      li data-hook="course_groups"
+        = link_to t(:'menu.course_group.plural'), course_groups_path
+  li = link_to t(:'menu.exam.plural'), exams_path
+  li = link_to t(:'menu.extracurricular_activity.plural'), extracurricular_activities_path
+  = render partial: 'gaku/shared/menu/admin'
