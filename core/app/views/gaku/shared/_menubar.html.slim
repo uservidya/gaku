@@ -1,13 +1,32 @@
 nav.navbar.navbar-inverse.navbar-fixed-top role="navigation"
   .navbar-header
+
+    a.navbar-brand href=root_path = image_tag('gaku-logo.png') 
+    
     button.navbar-toggle type="button" data-toggle="collapse" data-target=".navbar-global-collapse"
       span.sr-only Toggle navigation
       span.icon-bar
       span.icon-bar
       span.icon-bar
-    a.navbar-brand href=root_path = image_tag('gaku-logo.png') 
+
+    /.hidden-md
+      ul.nav
+        - if user_signed_in?
+          li
+            .btn-group.mt-s.mb-s
+              button.btn.btn-sm.btn-default
+                span.glyphicon.glyphicon-user style="color:#EEA236"
+                = "&nbsp;&nbsp;".html_safe + current_user.username
+              button#user_menu_dropdown.btn.btn-sm.btn-warning.dropdown-toggle data-toggle="dropdown"
+                span.caret style="border-top-color:white;border-bottom-color:white;"
+              ul.dropdown-menu
+                li= link_to raw('<span class="glyphicon glyphicon-log-out"></span>' + "&nbsp;&nbsp;".html_safe + t("devise.sessions.sign_out")), destroy_user_session_path, method: :delete
+                li#options
+                  a data-toggle="modal" href="#modal-options"
+                    span.glyphicon.glyphicon-globe
+                    = "&nbsp;&nbsp;".html_safe + t("config.label")
+
   - if user_signed_in?
     .collapse.navbar-collapse.navbar-global-collapse
       = render partial: "gaku/shared/menu/global"
-      = render partial: "gaku/shared/login_widget"
-      /= render partial: "shared/language_bar"
+      = render partial: "gaku/shared/menu/login_widget"
