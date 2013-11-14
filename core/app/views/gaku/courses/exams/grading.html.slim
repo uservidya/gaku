@@ -2,15 +2,7 @@ row
   .span12
     table.main-grading.table.table-bordered.table-condensed
       thead
-        tr
-          th.btn-primary Students
-          th.btn-success colspan='2' = @exam.name
+        = render 'gaku/courses/exams/grading/grading_table_head'
       tbody
-        tbody
-          tr
-            td.grading-students-td
-              = render 'gaku/courses/exams/grading/students', students: @students
-            td.grading-exam-scores-td
-              = render 'gaku/courses/exams/grading/exam_scores'
-            td.grading-calculations-td
-              = render 'gaku/courses/exams/grading/calculations'
+        = render partial: 'gaku/courses/exams/grading/grading_table_student_field', collection: @students, as: :student
+

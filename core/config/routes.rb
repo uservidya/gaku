@@ -35,6 +35,8 @@ Gaku::Core::Engine.routes.draw do
     post :create_admin, to: 'devise/registrations#create_admin'
   end
 
+  get 'realtime/exam_portion_scores', to: 'realtime#exam_portion_scores'
+
   resources :extracurricular_activities do
     member do
       get :student_chooser
