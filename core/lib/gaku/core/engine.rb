@@ -5,8 +5,7 @@ module Gaku
       engine_name 'gaku'
 
       config.autoload_paths += %W(#{config.root}/lib)
-
-
+      config.autoload_paths += Dir["#{config.root}/lib/**/"]
 
       config.generators do |g|
         g.test_framework :rspec, view_specs: false
