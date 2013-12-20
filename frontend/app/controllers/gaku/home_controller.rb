@@ -1,5 +1,6 @@
 module Gaku
   class HomeController < GakuController
+    include GradingMethodsLookup
     layout 'gaku/layouts/home'
 
     skip_authorization_check
@@ -7,8 +8,11 @@ module Gaku
     before_filter :_reload_libs
 
     def index
-      @results = Gaku::GradingMethods::Base.new(:score, 1, ['georgi', 'vassil', 'rei'])
-      # raise result.inspect
+      if Rails.env.development?
+        @exam = Gaku::Exam.find(25)
+        @students = Gaku::Course.find(5).students
+        @results = grading_method(:score).new(@exam, @students)
+      end
       redirect_to new_user_session_path unless user_signed_in?
     end
 

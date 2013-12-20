@@ -8,4 +8,5 @@
 
 .panel.panel-default
  .panel-body
- = raw JSON.pretty_generate(@results.get_grade(1)).gsub(" ","&nbsp;")
+    h6 Grading Results
+    = @results.grade.inspect
