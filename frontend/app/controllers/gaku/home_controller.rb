@@ -5,7 +5,7 @@ module Gaku
 
     skip_authorization_check
 
-    before_filter :_reload_libs
+    before_filter :_reload_libs, if: Rails.env.development?
 
     def index
       if Rails.env.development?
