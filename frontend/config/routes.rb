@@ -38,7 +38,7 @@ Gaku::Core::Engine.routes.draw do
       concerns: %i( enroll_student )
   end
 
-  resources :class_groups, concerns: %i( notes student_chooser ) do
+  resources :class_groups, concerns: %i( notes student_chooser pagination ) do
     resources :semester_class_groups, controller: 'class_groups/semester_class_groups'
     resources :class_group_course_enrollments, controller: 'class_groups/courses', only: %i( new create destroy )
     resources :students, controller: 'class_groups/students', only: %i( new destroy ), concerns: %i( enroll_student )
@@ -99,7 +99,7 @@ Gaku::Core::Engine.routes.draw do
     resources :class_group_enrollments, controller: 'students/class_group_enrollments'
   end
 
-  resources :exams, concerns: %i( notes ) do
+  resources :exams, concerns: %i( notes pagination ) do
     put :create_exam_portion, on: :member
 
     resources :exam_scores

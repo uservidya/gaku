@@ -1,12 +1,12 @@
 module Gaku
   class Student < ActiveRecord::Base
 
-    include Person, Addresses, Contacts, Notes, Picture
+    include Person, Addresses, Contacts, Notes, Picture, Pagination
 
     has_many :course_enrollments, dependent: :destroy
     has_many :courses, through: :course_enrollments
 
-    has_many :class_group_enrollments
+    has_many :class_group_enrollments,  inverse_of: :student
     has_many :class_groups, through: :class_group_enrollments
 
     has_many :extracurricular_activity_enrollments
@@ -33,10 +33,13 @@ module Gaku
     belongs_to :enrollment_status, foreign_key: :enrollment_status_code, primary_key: :code
 
     accepts_nested_attributes_for :guardians, allow_destroy: true
+    accepts_nested_attributes_for :class_group_enrollments,
+        reject_if: proc { |attributes| attributes[:class_group_id].blank? }
+
+
 
     before_create :set_scholarship_status
 
-    paginates_per 25 #Preset.per_page('students')
 
     def make_enrolled
       enrollment_status = EnrollmentStatus.where( code: 'enrolled',
