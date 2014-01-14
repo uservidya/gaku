@@ -1,6 +1,5 @@
 source 'http://production.s3.rubygems.org'
 
-
 unless ENV['TRAVIS']
   group :development do
     gem 'guard'

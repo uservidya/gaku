@@ -1,4 +1,8 @@
 /*
+ * FIXME FIXME can't use gem introjs-rails ...
+ * require introjs
+ *= require gaku/introjs/introjs.min
+
  *= require gaku/bootstrap_and_theme
  *= require bootstrap-datepicker
  * require font-awesome
@@ -9,5 +13,6 @@
  *= require phantom_helpers
  *= require phantom_forms
  *= require gaku/frontend/gaku
+
  *= require_self
 */
