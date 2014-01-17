@@ -20,6 +20,7 @@
 #= require nprogress-turbolinks
 #= require nprogress-ajax
 
+
 #= require bootstrap-datepicker/core
 
 #= require underscore
@@ -32,6 +33,11 @@
 #= require jquery_nested_form
 #= require phantom_forms
 #= require phantom_nested_forms
+
+# FIXME can't use gem introjs-rails ...
+# require introjs
+#= require gaku/introjs/intro.min
+
 
 #= require_tree .
 

@@ -1,3 +1,14 @@
+h1 data-intro="introjs テストだよー" data-step="1"
+  |Intro01
+h1 data-intro="introjs テストだよー" data-step="2"
+  |Intro02
+h1 data-intro="introjs テストだよー" data-step="3"
+  |Intro03
+h1 data-intro="introjs テストだよー" data-step="4"
+  |Intro04
+hr
+
+
 = content_for :title, t(:'student.list')
 
 = content_for :new_form do
@@ -12,3 +23,6 @@
     = render 'gaku/shared/overrides/students/import_link'
 
 = render 'gaku/shared/student_chooser/chooser'
+
+coffee:
+  console.log 11111
