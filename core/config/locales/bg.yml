@@ -103,6 +103,29 @@ bg:
     save: Запази тип на посещаемост
     singular: Тим на посещаемост
   back: Назад
+  badge:
+    add: 
+    edit: 
+    index: 
+    list: 
+    plural: 
+    save: 
+    singular: 
+  badge_type:
+    add: 
+    authority: 
+    badge: 
+    choose: 
+    code: 
+    description: 
+    edit: 
+    issuer: 
+    list: 
+    name: 
+    plural: 
+    save: 
+    singular: 
+    url: 
   birth: Рождена дата
   birth_and: и
   birth_between: Рождена дата между
@@ -453,10 +476,13 @@ bg:
   extended: Разширен
   external_school_record:
     absences: 
+    add: 
     attendance_rate: 
     beginning: Започва
     data: Данни
     ending: Приключва
+    list: 
+    plural: 
     singular: 
     student_id_number: Номер
   extracurricular_activity:
@@ -483,8 +509,16 @@ bg:
       destroy:
         alert: '%{resource_name} не може да бъде изтрит!'
         notice: 
+      recovery:
+        alert: 
+        notice: 
+      soft_delete:
+        alert: 
+        notice: 
       update:
         notice: '%{resource_name} е успешно изтрит!'
+      update_master:
+        notice: 
   full_name: Пълно име
   full_name_reading: 
   gaku_engine: GAKU Сисетма
@@ -513,16 +547,24 @@ bg:
     weighting_portion: 
   grading_method:
     add: 
+    add_argument: 
     arguments: Аргументи
     choose: 
     curved: 
     description: Описание
     edit: Редактирай
+    interval: 
     list: 
     method: Метод
     name: Име
+    ordinal: 
+    pass_fail: 
+    percentage: 
     plural: 
+    ratio: 
+    remove_argument: 
     save: Запази
+    score: 
     singular: 
   grading_method_set:
     add: 
@@ -573,6 +615,7 @@ bg:
       admin: Админ
       administration: Администрация
       administrator: Администратор
+      badge_types: 
       changes:
         changes: Промени и изтривания
         student_addresses: Адреси на студентите
@@ -705,6 +748,9 @@ bg:
     plural: 
     save: 
     singular: 
+    student:
+      id_code: 
+      singular: 
   profile: 
   profiles:
     new: 
@@ -824,6 +870,16 @@ bg:
     grade: 
     index: 
     list: 
+    plural: 
+    save: 
+    singular: 
+  simple_grade_type:
+    add: 
+    edit: 
+    list: 
+    max_score: 
+    name: 
+    passing_score: 
     plural: 
     save: 
     singular: 
