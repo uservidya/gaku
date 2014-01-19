@@ -1,17 +1,5 @@
 en:
   academic: Academic
-  achievement:
-    add: Add Achievement
-    authority: Authority
-    badge: Badge
-    choose: Choose Achievement
-    description: Description
-    edit: Edit Achievement
-    list: Achievements list
-    name: Name
-    plural: Achievements
-    save: Save Achievement
-    singular: Achievement
   active: Active
   add: Add
   address:
@@ -102,6 +90,29 @@ en:
     plural: Attendance Types
     save: Save Attendance Type
     singular: Attendance Type
+  badge:
+    list: Badges list
+    add: Add badge
+    edit: Edit badge
+    index: Badges index
+    save: Save badge
+    singular: Badge
+    plural: Badges
+  badge_type:
+    add: Add badge type
+    authority: Authority
+    code: Code
+    issuer: Issuer
+    url: Url
+    badge: Badge
+    choose: Choose badge type
+    description: Description
+    edit: Edit badge type
+    list: Badge types list
+    name: Name
+    plural: Badge types
+    save: Save badge type
+    singular: Badge type
   back: Back
   birth: Birth Date
   birth_and: and
@@ -582,10 +593,10 @@ en:
   manage: Manage
   menu:
     admin:
-      achievements: Achievements
       admin: Admin
       administration: Administration
       administrator: Administrator
+      badge_types: Badge types
       changes:
         changes: Changes and Deletions
         student_addresses: Student Addresses
@@ -843,6 +854,16 @@ en:
     plural: Simple Grades
     save: Save Simple Grade
     singular: Simple Grade
+  simple_grade_type:
+    max_score: Max score
+    passing_score: Passing score
+    add: Add simple grade type
+    edit: Edit simple grade type
+    list: Simple grade types list
+    name: Name
+    plural: Simple grade types
+    save: Save Simple grade type
+    singular: Simple grade type
   specialty:
     add: Add Specialty
     already_added: Specialty already added!
@@ -899,11 +920,6 @@ en:
     scholarship_status: Scholarship Status
     show: Show Students
     singular: Student
-  student_achievement:
-    edit: Edit Student Achievement
-    index: Student Achievement Index
-    save: Save Student Achievement
-    singular: Student Achievement
   student_name: Student Name
   student_specialty:
     edit: Student Specialty Edit

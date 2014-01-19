@@ -20,8 +20,8 @@ describe Gaku::Student do
     it { should have_many :student_specialties }
     it { should have_many(:specialties).through(:student_specialties) }
 
-    it { should have_many :achievements }
-    it { should have_many(:achievements).through(:student_achievements) }
+    it { should have_many :badges }
+    it { should have_many(:badge_types).through(:badges) }
 
     it { should have_many(:student_guardians).dependent(:destroy) }
     it { should have_many(:guardians).through(:student_guardians) }
@@ -29,7 +29,7 @@ describe Gaku::Student do
     it { should have_many :exam_portion_scores }
     it { should have_many :assignment_scores }
     it { should have_many :attendances }
-    it { should have_many :achievements }
+
     it { should have_many :external_school_records }
     it { should have_many :simple_grades }
 
@@ -72,6 +72,29 @@ describe Gaku::Student do
   context 'counter_cache' do
 
     let!(:student) { create(:student) }
+
+    context 'badges_count' do
+
+      let(:badge) { create(:badge) }
+      let(:student_badge) { create(:badge, student: student) }
+
+      xit 'increments' do
+        badge
+        expect do
+          student.badges << badge
+          student.reload
+          puts student.badges.to_json
+        end.to change { student.badges_count }.by 1
+      end
+
+      xit 'decrements' do
+        student.badges << student_badge
+        expect do
+          student.badges.last.destroy!
+          student.reload
+        end.to change { student.badges_count }.by -1
+      end
+    end
 
     context 'guardians_count' do
 
