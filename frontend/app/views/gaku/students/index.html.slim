@@ -1,14 +1,3 @@
-h1 data-intro="introjs テストだよー" data-step="1"
-  |Intro01
-h1 data-intro="introjs テストだよー" data-step="2"
-  |Intro02
-h1 data-intro="introjs テストだよー" data-step="3"
-  |Intro03
-h1 data-intro="introjs テストだよー" data-step="4"
-  |Intro04
-hr
-
-
 = content_for :title, t(:'student.list')
 
 = content_for :new_form do
@@ -24,5 +13,25 @@ hr
 
 = render 'gaku/shared/student_chooser/chooser'
 
+javascript:
+  var new_student_path = "#{new_student_path}"
 coffee:
-  console.log 11111
+  $("#new-student-link").attr
+    'data-intro': 'まず初めにこのボタンをクリック下ください。<br>情報入力ページに遷移します。'
+    'data-position': 'left'
+    href: '#'
+  $('#new-student-link').click ->
+    window.location.href = new_student_path + '?multipage=true'
+
+  intro = getIntro()
+  intro.setOptions
+    showButtons: false
+    showBullets: false
+  intro.onexit ->
+    $("#new-student-link").attr
+      href: new_student_path
+
+  $('#new-student-link').after(
+    $('<button class="btn btn-default"><span class="glyphicon glyphicon-question-sign"></span></button>').click ->
+      intro.start()
+  )

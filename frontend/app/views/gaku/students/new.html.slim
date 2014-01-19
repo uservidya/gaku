@@ -1,3 +1,14 @@
 = normal_form_for @student, label: 'nil' do |f|
   = render 'form_fields', f: f, student: @student
   = submit_button t(:'student.save'), id: 'submit-student-button'
+
+coffee:
+  $(".panel.panel-primary").attr
+    'data-step': '1'
+    'data-intro': '次に各フォームに生徒情報を入力して下さい。'
+
+  $("#submit-student-button").attr
+    'data-step': '2'
+    'data-intro': '最後にこのボタンをクリックして保存すれば完了です。'
+
+  getIntro().start() if RegExp("multipage", "gi").test(window.location.search)

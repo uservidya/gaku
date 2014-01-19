@@ -44,3 +44,10 @@
 NProgress.configure
   showSpinner: false
   ease: 'ease-in-out'
+
+window.getIntro = ->
+  introJs().setOptions
+    nextLabel: "次へ＞"
+    prevLabel: "＜前へ"
+    skipLabel: "スキップ"
+    doneLabel: "終了"
