@@ -83,8 +83,9 @@ Gaku::Core::Engine.routes.draw do
   resources :students, concerns: %i( addresses contacts notes pagination ) do
     resources :simple_grades,        controller: 'students/simple_grades', except: :show
     resources :commute_methods,      controller: 'students/commute_methods'
-    resources :student_achievements, controller: 'students/student_achievements', except: :show
+    resources :badges, controller: 'students/badges', except: :show
     resources :student_specialties,  controller: 'students/student_specialties',  except: :show
+    resources :external_school_records,  controller: 'students/external_school_records',  except: :show
 
     resources :guardians, except: %i( index show ),
       controller: 'students/guardians',
