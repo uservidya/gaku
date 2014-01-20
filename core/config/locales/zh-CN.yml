@@ -103,6 +103,29 @@ zh-CN:
     save: 
     singular: 
   back: 
+  badge:
+    add: 
+    edit: 
+    index: 
+    list: 
+    plural: 
+    save: 
+    singular: 
+  badge_type:
+    add: 
+    authority: 
+    badge: 
+    choose: 
+    code: 
+    description: 
+    edit: 
+    issuer: 
+    list: 
+    name: 
+    plural: 
+    save: 
+    singular: 
+    url: 
   birth: 
   birth_and: 
   birth_between: 
@@ -449,10 +472,13 @@ zh-CN:
   extended: 
   external_school_record:
     absences: 
+    add: 
     attendance_rate: 
     beginning: 
     data: 
     ending: 
+    list: 
+    plural: 
     singular: 
     student_id_number: 
   extracurricular_activity:
@@ -479,7 +505,15 @@ zh-CN:
       destroy:
         alert: 
         notice: 
+      recovery:
+        alert: 
+        notice: 
+      soft_delete:
+        alert: 
+        notice: 
       update:
+        notice: 
+      update_master:
         notice: 
   full_name: 
   full_name_reading: 
@@ -509,16 +543,24 @@ zh-CN:
     weighting_portion: 
   grading_method:
     add: 
+    add_argument: 
     arguments: 
     choose: 
     curved: 
     description: 
     edit: 
+    interval: 
     list: 
     method: 
     name: 
+    ordinal: 
+    pass_fail: 
+    percentage: 
     plural: 
+    ratio: 
+    remove_argument: 
     save: 
+    score: 
     singular: 
   grading_method_set:
     add: 
@@ -569,6 +611,7 @@ zh-CN:
       admin: 
       administration: 
       administrator: 
+      badge_types: 
       changes:
         changes: 
         student_addresses: 
@@ -701,6 +744,9 @@ zh-CN:
     plural: 
     save: 
     singular: 
+    student:
+      id_code: 
+      singular: 
   profile: 
   profiles:
     new: 
@@ -820,6 +866,16 @@ zh-CN:
     grade: 
     index: 
     list: 
+    plural: 
+    save: 
+    singular: 
+  simple_grade_type:
+    add: 
+    edit: 
+    list: 
+    max_score: 
+    name: 
+    passing_score: 
     plural: 
     save: 
     singular: 
