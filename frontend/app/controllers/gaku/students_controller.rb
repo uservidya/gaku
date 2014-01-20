@@ -16,7 +16,15 @@ module Gaku
     before_action :set_student,           only: %i( show edit update destroy )
 
     def new
+      @enrolled_status = EnrollmentStatus.where(code: 'enrolled').first_or_create!
+      @last_student = Student.last
+
       @student = Student.new
+      if @last_student
+        @student.admitted = @last_student.admitted
+        @student.enrollment_status_code = @last_student.enrollment_status_code
+
+      end
       @student.class_group_enrollments.new
       respond_with @student
     end
@@ -24,7 +32,6 @@ module Gaku
     def create
       @student = Student.new(student_params)
       if @student.save
-        @student.make_enrolled if @student.valid?
         @count = Student.count
         respond_with @student, location: [:edit, @student]
       else
@@ -37,9 +44,16 @@ module Gaku
       @enrolled_students = params[:enrolled_students]
 
       @search = Student.active.search(params[:q])
+      if params[:q]
+        if params[:q][:birth_date_gteq]  || params[:q][:birth_date_lteq]
+          @search.sorts = 'birth_date desc'
+        else
+          @search.sorts = 'created_at desc'
+        end
+      end
       results = @search.result(distinct: true)
+      @students = results.page(params[:page])
       @count = results.count
-      @students = results.order('created_at ASC').page(params[:page])
 
       respond_with(@students) do |format|
         format.pdf do

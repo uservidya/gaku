@@ -15,6 +15,20 @@ $.fn.hideModal = ->
   $(this).modal('hide')
 
 
+$.fn.datepicker_i18n = ->
+  $(this).datepicker({
+       language: $('body').data('locale'),
+       startView: 2,
+       autoclose: true,
+       todayBtn: true,
+       todayHighlight: true,
+       calendarWeeks: true
+  })
+
+$.fn.datepicker.defaults.format = "yyyy-mm-dd"
+
+
+
 
 window.load_states = ->
   countryCode = $("#country_dropdown option:selected").val()
@@ -28,6 +42,8 @@ window.load_states = ->
 
 class App
   init: ->
+
+    $('.datepicker').datepicker_i18n()
 
     $(document).on 'ajax:success', '.recovery-link', ->
       $(this).closest('tr').remove()
@@ -70,7 +86,6 @@ class App
       e.preventDefault()
       $('#delete-modal').modal('show')
 
-
   show: ->
     # FIXME Remove after view refactoring
     @edit()
@@ -106,6 +121,10 @@ class App
     $(document).on 'change', "#search-students select", (event) ->
       $.get($("#search-students").attr("action"), $("#search-students").serialize(), null, "script")
       return false
+
+    $('.datepicker').datepicker().on 'hide', (e) ->
+      $.get($("#search-students").attr("action"), $("#search-students").serialize(), null, "script")
+      console.log "Picked"
 
 
     $('body').on 'change', 'input.student-check', ->
