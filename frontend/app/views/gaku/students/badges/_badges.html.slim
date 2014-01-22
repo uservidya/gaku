@@ -1,2 +1,2 @@
 span#student-badges-list
-  = link_to student.badges_list, [@student, :badges], id: 'badges', remote: true
+  = link_to '<div class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span></div>'.html_safe, [@student, :badges], id: 'badges', remote: true

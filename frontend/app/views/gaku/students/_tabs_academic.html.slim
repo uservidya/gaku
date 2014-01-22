@@ -20,11 +20,19 @@
         .row
           .col-md-12
             = render 'gaku/notes/notes'
+
       #courses.tab-pane
         .row
           .col-md-12
             = render 'gaku/students/course_enrollments/course_enrollments'
+
       #badges_tab.tab-pane
+        .row
+          .col-md-12
+            h3.pull-left = t(:'badge.plural')
+            #student-badge.pull-right
+              = render 'gaku/students/badges/badges', student: student
+        hr.mt-s.mb-s
         .row
           .col-md-12#badges-tab
             = render 'gaku/students/badges/badges_tab'
