@@ -13,6 +13,10 @@
       li
         a#student-external-school-records-tab-link data-toggle="tab" href="#external_school_records_tab"
           = print_count student.external_school_records_count, t(:'external_school_record.plural')
+      li
+        a#student-simple-grade-tab-link data-toggle="tab" href="#student_simple_grade_tab"
+          = t(:'simple_grade.plural')
+
 
     .tab-content
 
@@ -29,8 +33,10 @@
       #badges_tab.tab-pane
         .row
           .col-md-12
-            h3.pull-left = t(:'badge.plural')
+            h3.pull-left.mt-xs = t(:'badge.plural')
             #student-badge.pull-right
+              = link_to '<div class="btn btn-warning"><span class="glyphicon glyphicon-edit"></span></div>'.html_safe, [@student, :badges], id: 'badges', remote: true
+            /#student-badge.pull-left.ml-m.mt-xs
               = render 'gaku/students/badges/badges', student: student
         hr.mt-s.mb-s
         .row
@@ -41,6 +47,12 @@
         .row
           .col-md-12#external-school-records-tab
             = render 'gaku/students/external_school_records/external_school_records'
+
+      #student_simple_grade_tab.tab-pane
+        .row
+          .col-md-12
+            = render 'gaku/students/simple_grades/index'
+            /= render 'gaku/students/simple_grades/index_modal'
 
 
 
