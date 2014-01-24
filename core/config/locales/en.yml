@@ -583,6 +583,9 @@ en:
     save: Save Grading Method Set Item
     singular: Geading Method Set Item
   graduated: Graduated On
+  group:
+    plural: Groups
+    singular: Group
   guardian:
     add: Add Guardian
     addresses: Guardian Addresses
@@ -925,6 +928,7 @@ en:
     edit: Edit Student
     enroll: Enroll Student
     export: Export Students
+    foreign_id_code: Foreign ID/Entry Code
     foreign_id_number: Foreign ID
     id_number: Student ID
     import: Import Students

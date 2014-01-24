@@ -39,6 +39,7 @@ Gaku::Core::Engine.routes.draw do
   end
 
   resources :class_groups, concerns: %i( notes student_chooser pagination ) do
+    get :with_semesters, on: :collection
     resources :semester_class_groups, controller: 'class_groups/semester_class_groups'
     resources :class_group_course_enrollments, controller: 'class_groups/courses', only: %i( new create destroy )
     resources :students, controller: 'class_groups/students', only: %i( new destroy ), concerns: %i( enroll_student )
@@ -81,6 +82,9 @@ Gaku::Core::Engine.routes.draw do
   resources :teachers, concerns: %i( addresses contacts notes show_deleted pagination )
 
   resources :students, concerns: %i( addresses contacts notes pagination ) do
+    get :search, on: :collection
+    get :advanced_search, on: :collection
+    get :chosen, on: :collection
     resources :simple_grades,        controller: 'students/simple_grades', except: :show
     resources :commute_methods,      controller: 'students/commute_methods'
     resources :badges, controller: 'students/badges', except: :show

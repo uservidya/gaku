@@ -9,10 +9,15 @@ Gaku::Core::Engine.routes.draw  do
   resources :attachments, concerns: :soft_delete
   resources :teachers, concerns: :soft_delete
   resources :students, concerns: :soft_delete do
+    get :search, on: :collection
+    get :advanced_search, on: :collection
+    get :chosen, on: :collection
     resources :guardians, controller: 'students/guardians', concerns: :soft_delete
   end
   resources :extracurricular_activities, concerns: :soft_delete
-  resources :class_groups, concerns: :soft_delete
+  resources :class_groups, concerns: :soft_delete do
+    get :with_semesters, on: :collection
+  end
   resources :courses, concerns: :soft_delete
   resources :course_groups, concerns: :soft_delete
   resources :exams, concerns: :soft_delete
