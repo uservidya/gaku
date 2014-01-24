@@ -579,6 +579,9 @@ zh-CN:
     save: 
     singular: 
   graduated: 
+  group:
+    plural: 
+    singular: 
   guardian:
     add: 
     addresses: 
@@ -921,6 +924,7 @@ zh-CN:
     edit: 
     enroll: 
     export: 
+    foreign_id_code: 
     foreign_id_number: 
     id_number: 
     import: 

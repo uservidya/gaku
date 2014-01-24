@@ -583,6 +583,9 @@ bg:
     save: 
     singular: 
   graduated: 
+  group:
+    plural: 
+    singular: 
   guardian:
     add: 
     addresses: 
@@ -925,6 +928,7 @@ bg:
     edit: 
     enroll: 
     export: 
+    foreign_id_code: 
     foreign_id_number: 
     id_number: 
     import: 

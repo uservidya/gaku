@@ -1,9 +1,4 @@
 en:
-  group:
-    singular: Group
-    plural: Groups
-  achievement:
-    singular: Achievement
   academic: Academic
   achievement:
     add: Add Achievement
@@ -137,8 +132,6 @@ en:
   birth_date: Birth Date
   birth_date_from: Birth date(from)
   birth_date_to: Birth date(to)
-  age_from: Age(from)
-  age_to: Age(to)
   campus:
     add: Add Campus
     address: Campus Address
@@ -167,8 +160,6 @@ en:
     user: Changed by
   class: Class
   class_group:
-    with_semester: With Semester
-    without_semester: Without Semester
     add: Add Class Group
     already_enrolled: Already enrolled to the class group!
     choose: Choose Class Group
@@ -592,6 +583,9 @@ en:
     save: Save Grading Method Set Item
     singular: Geading Method Set Item
   graduated: Graduated On
+  group:
+    plural: Groups
+    singular: Group
   guardian:
     add: Add Guardian
     addresses: Guardian Addresses
@@ -934,6 +928,7 @@ en:
     edit: Edit Student
     enroll: Enroll Student
     export: Export Students
+    foreign_id_code: Foreign ID/Entry Code
     foreign_id_number: Foreign ID
     id_number: Student ID
     import: Import Students
@@ -948,10 +943,11 @@ en:
     scholarship_status: Scholarship Status
     show: Show Students
     singular: Student
-    admitted_from: Admitted(from)
-    admitted_to: Admitted(To)
-    graduated_from: Graduated(from)
-    graduated_to: Graduated(to)
+  student_achievement:
+    edit: Edit Student Achievement
+    index: Student Achievement Index
+    save: Save Student Achievement
+    singular: Student Achievement
   student_name: Student Name
   student_specialty:
     edit: Student Specialty Edit

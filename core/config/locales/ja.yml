@@ -583,6 +583,9 @@ ja:
     save: 評価方法セットアイテムを保存
     singular: 採点方式セット項目
   graduated: 卒業日
+  group:
+    plural: グループ
+    singular: グループ
   guardian:
     add: 保護者を追加
     addresses: 保護者の住所
@@ -709,7 +712,7 @@ ja:
   personal: 個人
   personal_information: 個人情報
   phone: 電話番号
-  phonetic_reading: ﾌﾘｶﾞﾅ
+  phonetic_reading: フリガナ
   picture: 画像
   pictures:
     change: 写真を変更
@@ -925,6 +928,7 @@ ja:
     edit: 編集
     enroll: 生徒を追加
     export: 生徒情報のエキスポート
+    foreign_id_code: 外部登録番号/入試番号
     foreign_id_number: 外部生徒番号
     id_number: 生徒番号
     import: 生徒情報のインポート
