@@ -16,6 +16,9 @@
       li
         a#student-simple-grade-tab-link data-toggle="tab" href="#student_simple_grade_tab"
           = t(:'simple_grade.plural')
+      li
+        a#student-specialty-tab-link data-toggle="tab" href="#student_specialty_tab"
+          = t(:'specialty.plural')
 
 
     .tab-content
@@ -54,6 +57,10 @@
             = render 'gaku/students/simple_grades/index'
             /= render 'gaku/students/simple_grades/index_modal'
 
+      #student_specialty_tab.tab-pane
+        .row
+          .col-md-12
+            = render 'gaku/students/student_specialties/index'
 
 
 

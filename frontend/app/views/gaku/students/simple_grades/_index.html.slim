@@ -6,8 +6,6 @@
     .pull-right
       = ajax_link_to_new t(:'simple_grade.add'), [:new, @student, :simple_grade], id: 'new-student-simple-grade-link'
 
-= hr
-
 = table_for 'student-simple-grades-index' do
   thead
     tr
