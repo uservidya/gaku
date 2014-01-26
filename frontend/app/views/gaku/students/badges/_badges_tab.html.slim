@@ -1,8 +1,5 @@
-.row
-  ul.thumbnails.list-unstyled
-    - @student.badges.each_slice(6) do |badges|
-      .row
-        .badges-group
-          - badges.each do |badge|
-            = render 'gaku/students/badges/badge_type', badge: badge
-      hr
+- @student.badges.each_slice(6) do |badges|
+  .thumbnails.badges-group
+    .row
+      - badges.each do |badge|
+        = render 'gaku/students/badges/badge_type', badge: badge

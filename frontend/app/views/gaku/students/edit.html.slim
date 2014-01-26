@@ -1,13 +1,13 @@
 .row
-  .col-md-9
+  .col-sm-9
     = render 'personal', student: student
-  .col-md-3
+  .col-sm-3.text-center
     = render 'gaku/shared/picture', resource: student
 
 hr
 
 .row.mt-l
-  .col-md-12
+  .col-sm-12
     ul.nav.nav-pills.nav-justified
       li.active
         a#student-personal-tab-link data-toggle="tab" href="#personal"
@@ -20,17 +20,17 @@ hr
         = render 'tabs_personal'
       #academic.tab-pane
         .row
-          .col-md-3
+          /.col-sm-3
             = render 'academic', student: student
-          .col-md-9
+          .col-sm-12
             = render 'tabs_academic'
 
 = footer do
-  .col-md-6
+  .col-sm-6
     = link_to_index students_path
-  .col-md-3
-    = link_to_new t(:'student.new'), new_student_path
-  .col-md-3
+  .col-sm-3
+    = link_to_new t(:'student.new'), new_student_path, class: "col-sm-12 btn btn-primary"
+  .col-sm-3
     = link_to_modal_delete
   .delete_modal
     = render 'gaku/shared/delete_modal', target: student

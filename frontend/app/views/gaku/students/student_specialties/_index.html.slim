@@ -6,8 +6,6 @@
     .pull-right
       = ajax_link_to_new t(:'specialty.add'), [:new, @student, :student_specialty], id: 'new-student-specialty-link'
 
-= hr
-
 = table_for 'student-specialties-index' do
   thead
     tr
@@ -15,4 +13,4 @@
       = th t(:'specialty.major')
       = th_actions 2
   tbody
-    = render partial: 'student_specialty', collection: @student_specialties, as: :student_specialty
+    = render partial: 'gaku/students/student_specialties/student_specialty', collection: @student_specialties, as: :student_specialty

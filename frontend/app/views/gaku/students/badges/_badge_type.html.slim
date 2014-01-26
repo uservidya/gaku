@@ -1,5 +1,7 @@
-li.col-md-2
-  .thumbnail
-    =image_tag(badge.badge_type.badge_image)
-    h4 =badge.badge_type.name
-    p.muted =badge.badge_type.authority
+.col-md-2.col-sm-3
+  a.thumbnail.mb-0 href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="#{badge.badge_type.name}"
+    = image_tag(badge.badge_type.badge_image)
+
+    /.caption
+      h5.text-center = badge.badge_type.name
+      p.muted = badge.badge_type.authority

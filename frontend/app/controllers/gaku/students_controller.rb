@@ -134,7 +134,7 @@ module Gaku
 
     def attributes
       [ :name, :surname, :name_reading, :surname_reading, :birth_date,
-          :gender, :scholarship_status_id,
+          :gender, :scholarship_status_id, :foreign_id_code,
           :enrollment_status_code, :commute_method_type_id, :admitted,
           :graduated, :picture, class_group_enrollments_attributes: [:id, :class_group_id] ]
     end
