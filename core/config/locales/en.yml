@@ -160,6 +160,8 @@ en:
     user: Changed by
   class: Class
   class_group:
+    with_semester: With Semester
+    without_semester: Without Semester
     add: Add Class Group
     already_enrolled: Already enrolled to the class group!
     choose: Choose Class Group
@@ -876,6 +878,8 @@ en:
     plural: Simple Grades
     save: Save Simple Grade
     singular: Simple Grade
+    score: Score
+    award_date: Award Date
   simple_grade_type:
     add: Add Simple Grade Type
     edit: Edit Simple Grade Type
