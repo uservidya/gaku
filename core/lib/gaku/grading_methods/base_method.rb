@@ -2,12 +2,12 @@ module Gaku
   module GradingMethods
     class  BaseMethod
 
-      attr_reader :exam, :students, :parameters, :results
+      attr_reader :exam, :students, :criteria, :results
 
-      def initialize(exam, students, parameters = nil)
+      def initialize(exam, students, criteria = nil)
         @exam = exam
         @students = students
-        @parameters = parameters
+        @criteria = criteria
       end
 
       def grade
