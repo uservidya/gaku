@@ -9,12 +9,13 @@
 #= require jquery.ui.sortable
 #= require jquery.ui.effect-slide
 
-# require bootstrap
-#= require bootstrap/alert
-#= require bootstrap/button
-#= require bootstrap/tab
-#= require bootstrap/dropdown
-#= require bootstrap/modal
+#= require bootstrap
+# require bootstrap/collapse
+# require bootstrap/alert
+# require bootstrap/button
+# require bootstrap/tab
+# require bootstrap/dropdown
+# require bootstrap/modal
 
 
 #= require nprogress
