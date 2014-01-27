@@ -10,7 +10,7 @@
         td = student.class_group
 
         th.active = t(:'admitted')
-        td = student.admitted
+        td.text-center = student.admitted ? student.admitted : t(:none)
 
       = render 'gaku/shared/fields/address_and_contact_show_table', person: student
       tr
