@@ -608,3 +608,21 @@
       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff428bca', endColorstr='#ff357ebd', GradientType=0);    }
   }
 }
+
+// for responsive ----------------
+/* Small devices (tablets, 768px and down) */
+@media (max-width: 768px) {
+  .dropdown-submenu {
+    > .dropdown-menu {
+      margin-left: 10px;
+    }
+  }
+}
+
+/* Medium devices (desktops, 992px) */
+@media (min-width: 768px) and (max-width: 992px) {
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+}
