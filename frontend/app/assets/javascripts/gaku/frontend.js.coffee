@@ -16,6 +16,8 @@
 #= require bootstrap/dropdown
 #= require bootstrap/modal
 #= require bootstrap/tooltip
+#= require bootstrap/collapse
+#= require bootstrap/transition
 
 #= require bootstrap-datepicker/core
 #= require bootstrap-datepicker/locales/bootstrap-datepicker.ja
