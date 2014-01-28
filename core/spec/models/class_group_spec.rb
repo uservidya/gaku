@@ -9,7 +9,9 @@ describe Gaku::ClassGroup do
   describe 'associations' do
     it { should have_many :enrollments }
     it { should have_many(:students).through(:enrollments) }
-    it { should have_many(:class_group_course_enrollments).dependent(:destroy) }
+    it do
+      should have_many(:class_group_course_enrollments).dependent(:destroy)
+    end
     it { should have_many(:courses).through(:class_group_course_enrollments) }
     it { should have_many(:semester_class_groups).dependent(:destroy) }
     it { should have_many(:semesters).through(:semester_class_groups) }
@@ -21,7 +23,9 @@ describe Gaku::ClassGroup do
 
   describe '#to_s' do
     let(:class_group) { build(:class_group) }
-    specify { class_group.to_s.should eq "#{class_group.grade} - #{class_group.name}" }
+    specify do
+      class_group.to_s.should eq "#{class_group.grade} - #{class_group.name}"
+    end
   end
 
   context 'counter_cache' do
@@ -36,13 +40,13 @@ describe Gaku::ClassGroup do
       it 'increments notes_count' do
         expect do
           class_group.notes << note
-        end.to change { class_group.reload.notes_count }.by 1
+        end.to change { class_group.reload.notes_count }.by(1)
       end
 
       it 'decrements notes_count' do
         expect do
           class_group_with_note.notes.last.destroy
-        end.to change { class_group_with_note.reload.notes_count }.by -1
+        end.to change { class_group_with_note.reload.notes_count }.by(-1)
       end
     end
   end

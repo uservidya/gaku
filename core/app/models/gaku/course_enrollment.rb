@@ -1,6 +1,5 @@
 module Gaku
   class CourseEnrollment < ActiveRecord::Base
-
     belongs_to :student, counter_cache: :courses_count
     belongs_to :course,  counter_cache: :students_count
 

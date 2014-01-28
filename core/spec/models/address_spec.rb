@@ -28,9 +28,15 @@ describe Gaku::Address do
   end
 
   describe 'addressable scopes' do
-    let!(:student_address) { create(:address, addressable_type: 'Gaku::Student') }
-    let!(:teacher_address) { create(:address, addressable_type: 'Gaku::Teacher') }
-    let!(:guardian_address) { create(:address, addressable_type: 'Gaku::Guardian') }
+    let!(:student_address) do
+      create(:address, addressable_type: 'Gaku::Student')
+    end
+    let!(:teacher_address) do
+      create(:address, addressable_type: 'Gaku::Teacher')
+    end
+    let!(:guardian_address) do
+      create(:address, addressable_type: 'Gaku::Guardian')
+    end
 
     describe '.students' do
       it 'returns records with address type Student' do
@@ -51,7 +57,6 @@ describe Gaku::Address do
     end
   end
 
-
   describe '#ensure_first_primary' do
     it 'sets first address as primary' do
       address1 = create(:address, addressable: student)
@@ -66,7 +71,8 @@ describe Gaku::Address do
 
   describe '#make_primary' do
     it 'sets primary: false except self' do
-      address2 = create(:address, country: country, addressable: student, primary: true)
+      address2 = create(:address, country: country,
+                                  addressable: student, primary: true)
       address.make_primary
       address2.reload
       expect(address2.primary).to be_false
@@ -84,7 +90,6 @@ describe Gaku::Address do
       end.to change(address.addressable.reload, :primary_address)
     end
   end
-
 
   describe '.after_destroy' do
     describe '#reset_counter_cache' do

@@ -9,9 +9,9 @@ module Contacts
     end
 
     def contact_widget
-      "#{get_primary_contact.contact_type}: #{get_primary_contact.data}" if get_primary_contact
+      if get_primary_contact
+        "#{get_primary_contact.contact_type}: #{get_primary_contact.data}"
+      end
     end
   end
-
 end
-

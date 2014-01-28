@@ -1,6 +1,5 @@
 module Gaku
   class Attachment < ActiveRecord::Base
-
     belongs_to :attachable, polymorphic: true
 
     has_attached_file :asset
@@ -14,6 +13,5 @@ module Gaku
     def to_s
       name
     end
-
   end
 end

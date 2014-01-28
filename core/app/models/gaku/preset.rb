@@ -1,6 +1,5 @@
 module Gaku
   class Preset < ActiveRecord::Base
-
     store_accessor :pagination
     store_accessor :person
     store_accessor :student
@@ -20,6 +19,5 @@ module Gaku
     def self.address(key)
       active.address[key.to_s] unless active.nil?
     end
-
   end
 end

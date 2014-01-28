@@ -81,6 +81,5 @@ module Gaku
         exam_portions.where(id: id).update_all(position: index)
       end
     end
-
   end
 end

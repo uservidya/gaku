@@ -1,6 +1,5 @@
 module Gaku
   class Guardian < ActiveRecord::Base
-
     include Person, Addresses, Contacts, Picture
 
     belongs_to :user
@@ -17,6 +16,5 @@ module Gaku
         Student.reset_counters(s.id, :guardians)
       end
     end
-
   end
 end

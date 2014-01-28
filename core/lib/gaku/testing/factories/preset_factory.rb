@@ -5,12 +5,12 @@ FactoryGirl.define do
     names_order '%first %middle %last'
     active true
     default true
-    pagination {{ }}
-    person {{ }}
-    address {{ }}
-    export_formats {{ }}
-    chooser_fields {{ }}
-    grading {{ }}
+    pagination { { } }
+    person { { } }
+    address { { } }
+    export_formats { { } }
+    chooser_fields { { } }
+    grading { { } }
   end
 
 end

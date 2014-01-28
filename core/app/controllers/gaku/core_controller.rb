@@ -1,7 +1,7 @@
 module Gaku
   class CoreController < ActionController::Base
     protect_from_forgery
-    #check_authorization
+    # check_authorization
 
     rescue_from CanCan::AccessDenied do |exception|
       redirect_to root_url, alert: exception.message
@@ -44,9 +44,7 @@ module Gaku
     end
 
     def users_check
-      if User.count == 0
-        redirect_to set_up_admin_account_path
-      end
+      redirect_to set_up_admin_account_path if User.count == 0
     end
 
     def extract_locale_from_accept_language_header
@@ -63,6 +61,5 @@ module Gaku
     def after_sign_out_path_for(resource_or_scope)
       root_path
     end
-
   end
 end

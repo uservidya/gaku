@@ -1,6 +1,5 @@
 module Gaku
   class Contact < ActiveRecord::Base
-
     belongs_to :contact_type
     belongs_to :contactable, polymorphic: true, counter_cache: true
 
@@ -71,14 +70,13 @@ module Gaku
 
     def update_primary_contact_field
       if contactable.has_attribute? :primary_contact
-        contactable.update_attribute(:primary_contact, contactable.contact_widget)
+        contactable.update_attribute(:primary_contact,
+                                     contactable.contact_widget)
       end
     end
 
     def contacts
       contactable.contacts
     end
-
   end
 end
-

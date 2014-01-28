@@ -1,6 +1,5 @@
 module Gaku
   class Course < ActiveRecord::Base
-
     include Notes
 
     has_many :enrollments,
@@ -29,7 +28,11 @@ module Gaku
 
     validates :code, presence: true
 
-    scope :without_semester, -> { includes(:semester_courses).where(gaku_semester_courses: { course_id: nil }) }
+    scope :without_semester,
+          lambda do
+            includes(:semester_courses)
+              .where(gaku_semester_courses: { course_id: nil })
+          end
 
     def to_s
       if syllabus_name
@@ -47,11 +50,11 @@ module Gaku
       unless class_group.blank?
         ActiveRecord::Base.transaction do
           class_group.student_ids.each do |student_id|
-            CourseEnrollment.find_or_create_by(student_id: student_id, course_id: id)
-         end
+            CourseEnrollment.find_or_create_by(student_id: student_id,
+                                               course_id: id)
+          end
         end
       end
     end
-
   end
 end

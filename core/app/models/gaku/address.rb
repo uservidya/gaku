@@ -9,7 +9,6 @@ module Gaku
     scope :teachers,  -> { where(addressable_type: 'Gaku::Teacher') }
     scope :guardians, -> { where(addressable_type: 'Gaku::Guardian') }
 
-
     validates :address1, :country, :city, presence: true
 
     accepts_nested_attributes_for :country
@@ -81,9 +80,9 @@ module Gaku
 
     def update_primary_address_field
       if addressable && addressable.has_attribute?(:primary_address)
-        addressable.update_attribute(:primary_address, addressable.address_widget)
+        addressable.update_attribute(:primary_address,
+                                     addressable.address_widget)
       end
     end
-
   end
 end

@@ -7,7 +7,10 @@ FactoryGirl.define do
     # file_file_name { 'sample_roster.ods' }
     # file_content_type { 'application/vnd.oasis.opendocument.spreadsheet' }
     # file_file_size { 1024 }
-    file { fixture_file_upload(Rails.root + '../support/sample_roster.ods', 'application/vnd.oasis.opendocument.spreadsheet') }
+    file do
+      fixture_file_upload(Rails.root + '../support/sample_roster.ods',
+                          'application/vnd.oasis.opendocument.spreadsheet')
+    end
     locked false
 
     factory :invalid_template do
