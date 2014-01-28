@@ -45,10 +45,9 @@ describe Gaku::Student do
   describe '#set_serial_id' do
     it 'generates serial_id' do
       student = create(:student)
-      expect(student.serial_id).to eq("%05d" % student.id)
+      expect(student.serial_id).to eq('%05d' % student.id)
     end
   end
-
 
   describe '#set_code' do
 
@@ -68,7 +67,6 @@ describe Gaku::Student do
     end
   end
 
-
   context 'counter_cache' do
 
     let!(:student) { create(:student) }
@@ -84,7 +82,7 @@ describe Gaku::Student do
           student.badges << badge
           student.reload
           puts student.badges.to_json
-        end.to change { student.badges_count }.by 1
+        end.to change { student.badges_count }.by(1)
       end
 
       xit 'decrements' do
@@ -92,7 +90,7 @@ describe Gaku::Student do
         expect do
           student.badges.last.destroy!
           student.reload
-        end.to change { student.badges_count }.by -1
+        end.to change { student.badges_count }.by(-1)
       end
     end
 
@@ -106,27 +104,29 @@ describe Gaku::Student do
         expect do
           student.guardians << guardian
           student.reload
-        end.to change { student.guardians_count }.by 1
+        end.to change { student.guardians_count }.by(1)
       end
 
       it 'decrements guardians_count' do
         expect do
           student_with_one_guardian.guardians.last.destroy
-        end.to change { student_with_one_guardian.reload.guardians_count }.by -1
+        end.to change { student_with_one_guardian.reload.guardians_count }.by(-1)
       end
     end
 
-     context 'external_school_records_count' do
+    context 'external_school_records_count' do
 
       let(:school) { create(:school) }
-      let(:external_school_record) { create(:external_school_record, school: school, student: student) }
+      let(:external_school_record) do
+        create(:external_school_record, school: school, student: student)
+      end
 
       it 'increments' do
         external_school_record
         expect do
           external_school_record
           student.reload
-        end.to change { student.external_school_records_count }.by 1
+        end.to change { student.external_school_records_count }.by(1)
       end
 
       it 'decrements' do
@@ -134,7 +134,7 @@ describe Gaku::Student do
         puts student.external_school_records.last.to_json
         expect do
           student.external_school_records.last.destroy
-        end.to change { student.reload.external_school_records_count }.by -1
+        end.to change { student.reload.external_school_records_count }.by(-1)
       end
     end
 
@@ -147,13 +147,13 @@ describe Gaku::Student do
         expect do
           student.courses << course
           student.reload
-        end.to change { student.courses_count }.by 1
+        end.to change { student.courses_count }.by(1)
       end
 
       it 'decrements courses_count' do
         expect do
           student_with_course.courses.last.destroy
-        end.to change { student_with_course.reload.courses_count }.by -1
+        end.to change { student_with_course.reload.courses_count }.by(-1)
       end
     end
 
@@ -165,13 +165,13 @@ describe Gaku::Student do
       it 'increments addresses_count' do
         expect do
           student.addresses << address
-        end.to change { student.reload.addresses_count }.by 1
+        end.to change { student.reload.addresses_count }.by(1)
       end
 
       it 'decrements addresses_count' do
         expect do
           student_with_address.addresses.last.destroy
-        end.to change { student_with_address.reload.addresses_count }.by -1
+        end.to change { student_with_address.reload.addresses_count }.by(-1)
       end
     end
 
@@ -183,13 +183,13 @@ describe Gaku::Student do
       it 'increments contacts_count' do
         expect do
           student.contacts << contact
-        end.to change { student.reload.contacts_count }.by 1
+        end.to change { student.reload.contacts_count }.by(1)
       end
 
       it 'decrements contacts_count' do
         expect do
           student_with_contact.contacts.last.destroy
-        end.to change { student_with_contact.reload.contacts_count }.by -1
+        end.to change { student_with_contact.reload.contacts_count }.by(-1)
       end
     end
 
@@ -201,13 +201,13 @@ describe Gaku::Student do
       it 'increments notes_count' do
         expect do
           student.notes << note
-        end.to change { student.reload.notes_count }.by 1
+        end.to change { student.reload.notes_count }.by(1)
       end
 
       it 'decrements notes_count' do
         expect do
           student_with_note.notes.last.destroy
-        end.to change { student_with_note.reload.notes_count }.by -1
+        end.to change { student_with_note.reload.notes_count }.by(-1)
       end
     end
 

@@ -21,6 +21,7 @@ describe Gaku::State do
 
   it 'can find all states group by country numcode' do
     state = create(:state)
-    Gaku::State.states_group_by_country_iso.should == { state.country_iso => [[state.id, state.name]] }
+    Gaku::State.states_group_by_country_iso.should ==
+      { state.country_iso => [[state.id, state.name]] }
   end
 end
