@@ -1,8 +1,10 @@
 module I18n
   module Backend
     class Simple
-      # Monkey-patch-in localization debugging.. ( see: http://www.unixgods.org/~tilo/Rails/which_l10n_strings_is_rails_trying_to_lookup.html )
-      # Enable with ENV['I18N_DEBUG']=1 on the command line in server startup, or ./config/environments/*.rb file.
+      # Monkey-patch-in localization debugging.. ( see: http://www.unixgods.
+      # org/~tilo/Rails/which_l10n_strings_is_rails_trying_to_lookup.html )
+      # Enable with ENV['I18N_DEBUG']=1 on the command line in server startup,
+      # or ./config/environments/*.rb file.
       #
       def lookup(locale, key, scope = [], options = {})
         init_translations unless initialized?
@@ -14,9 +16,13 @@ module I18n
           _key = _key.to_sym
           return nil unless result.is_a?(Hash) && result.key?(_key)
           result = result[_key]
-          result = resolve(locale, _key, result, options.merge(scope: nil)) if result.is_a?(Symbol)
+          if result.is_a?(Symbol)
+            result = resolve(locale, _key, result, options.merge(scope: nil))
+          end
 
-          puts "\t\t => " + result.to_s + "\n" if ENV['I18N_DEBUG'] && (result.class == String)
+          if ENV['I18N_DEBUG'] && (result.class == String)
+            puts "\t\t => " + result.to_s + "\n"
+          end
 
           result
         end

@@ -4,10 +4,10 @@ Gaku::Core::Engine.routes.draw do
     class_name: 'Gaku::User',
     module: :devise,
     controllers: {
-       sessions: 'gaku/devise/sessions',
-       registrations: 'gaku/devise/registrations',
-       passwords: 'gaku/devise/passwords'
-     }
+      sessions: 'gaku/devise/sessions',
+      registrations: 'gaku/devise/registrations',
+      passwords: 'gaku/devise/passwords'
+    }
   }
 
   resources :states, only: :index

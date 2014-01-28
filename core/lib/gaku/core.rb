@@ -12,7 +12,6 @@ require 'globalize'
 require 'draper'
 
 module Gaku
-
   module Core
   end
 
