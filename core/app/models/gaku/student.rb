@@ -1,6 +1,5 @@
 module Gaku
   class Student < ActiveRecord::Base
-
     include Person, Addresses, Contacts, Notes, Picture, Pagination
 
     has_many :course_enrollments, dependent: :destroy
@@ -10,7 +9,8 @@ module Gaku
     has_many :class_groups, through: :class_group_enrollments
 
     has_many :extracurricular_activity_enrollments
-    has_many :extracurricular_activities, through: :extracurricular_activity_enrollments
+    has_many :extracurricular_activities,
+             through: :extracurricular_activity_enrollments
 
     has_many :student_specialties
     has_many :specialties, through: :student_specialties
@@ -30,22 +30,22 @@ module Gaku
     belongs_to :user
     belongs_to :commute_method_type
     belongs_to :scholarship_status
-    belongs_to :enrollment_status, foreign_key: :enrollment_status_code, primary_key: :code
+    belongs_to :enrollment_status,
+               foreign_key: :enrollment_status_code, primary_key: :code
 
     accepts_nested_attributes_for :guardians, allow_destroy: true
     accepts_nested_attributes_for :class_group_enrollments,
-        reject_if: proc { |attributes| attributes[:class_group_id].blank? }
-
-
+                                  reject_if: proc { |attributes| attributes[:class_group_id].blank? }
 
     before_create :set_scholarship_status
     after_create  :set_serial_id
     after_save   :set_code
 
-
     def make_enrolled
-      enrollment_status = EnrollmentStatus.where( code: 'enrolled',
-                                                  active: true, immutable: true).first_or_create!.try(:code)
+      enrollment_status =
+        EnrollmentStatus.where(code: 'enrolled',
+                               active: true,
+                               immutable: true).first_or_create!.try(:code)
       update_column(:enrollment_status_code, enrollment_status)
       save
     end
@@ -53,7 +53,6 @@ module Gaku
     def major_specialty
       student_specialties.ordered.first.specialty if student_specialties.any?
     end
-
 
     def identification_number
       '%surname-%name-%id'.gsub(/%(\w+)/) do |s|
@@ -81,7 +80,8 @@ module Gaku
     end
 
     def active
-      enrollment_status = EnrollmentStatus.find_by(code: enrollment_status_code)
+      enrollment_status =
+        EnrollmentStatus.find_by(code: enrollment_status_code)
       if enrollment_status
         enrollment_status.active?
       else
@@ -90,7 +90,6 @@ module Gaku
     end
 
     private
-
 
     def major_specialty_code
       major_specialty || empty_string(2)
@@ -101,17 +100,16 @@ module Gaku
     end
 
     def set_code
-      update_column(:code, "#{major_specialty_code}-#{admitted_code}-#{serial_id}")
+      update_column(:code,
+                    "#{major_specialty_code}-#{admitted_code}-#{serial_id}")
     end
 
     def set_serial_id
-      update_column(:serial_id, "%05d" % id)
+      update_column(:serial_id, '%05d' % id)
     end
 
     def empty_string(size)
       '*' * size
     end
-
-
   end
 end

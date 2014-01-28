@@ -1,6 +1,5 @@
 module Gaku
   class Semester < ActiveRecord::Base
-
     has_many :semester_courses
     has_many :courses, through: :semester_courses
 
@@ -22,7 +21,9 @@ module Gaku
 
     def ending_after_starting
       return if  starting.blank? && ending.blank?
-      errors.add(:base, I18n.t(:'semester.ending_after_starting')) if starting >= ending
+      if starting >= ending
+        errors.add(:base, I18n.t(:'semester.ending_after_starting'))
+      end
     end
 
     def between_school_year_dates
@@ -32,6 +33,5 @@ module Gaku
         errors.add(:base, I18n.t(:'semester.between'))
       end
     end
-
   end
 end
