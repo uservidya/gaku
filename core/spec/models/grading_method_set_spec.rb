@@ -4,9 +4,7 @@ describe Gaku::GradingMethodSet do
 
   describe 'relations' do
     it { should have_many(:grading_method_set_items) }
-    it do
-      should have_many(:grading_methods).through(:grading_method_set_items)
-    end
+    it { should have_many(:grading_methods).through(:grading_method_set_items) }
   end
 
   describe 'validations' do
