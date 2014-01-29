@@ -45,7 +45,7 @@ describe Gaku::Student do
   describe '#set_serial_id' do
     it 'generates serial_id' do
       student = create(:student)
-      expect(student.serial_id).to eq('%05d' % student.id)
+      expect(student.serial_id).to eq(sprintf('%05d', student.id))
     end
   end
 

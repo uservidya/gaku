@@ -35,7 +35,9 @@ module Gaku
 
     accepts_nested_attributes_for :guardians, allow_destroy: true
     accepts_nested_attributes_for :class_group_enrollments,
-                                  reject_if: proc { |attributes| attributes[:class_group_id].blank? }
+                                  reject_if: proc do |attributes|
+                                    attributes[:class_group_id].blank?
+                                  end
 
     before_create :set_scholarship_status
     after_create  :set_serial_id
@@ -68,7 +70,7 @@ module Gaku
     end
 
     def self.specialties
-      student_specialties.map &:name
+      student_specialties.map(&:name)
     end
 
     def self.active
@@ -105,7 +107,7 @@ module Gaku
     end
 
     def set_serial_id
-      update_column(:serial_id, '%05d' % id)
+      update_column(:serial_id, sprintf('%05d', id))
     end
 
     def empty_string(size)
