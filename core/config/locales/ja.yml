@@ -176,6 +176,8 @@ ja:
     save: クラスを保存
     show: クラス照会
     singular: クラス
+    with_semester: 
+    without_semester: 
   class_group_course_enrollment:
     save: クラスに授業を登録
     singular: 授業
@@ -548,8 +550,9 @@ ja:
   grading_method:
     add: 評価法を追加
     add_argument: 引数を追加
-    arguments: 引数
+    arguments: 
     choose: 評価方法を選択してください。
+    criteria: 評定水準
     curved: 相対評価
     description: 評価法の詳細
     edit: 評価法を編集
@@ -869,12 +872,14 @@ ja:
   show: 照会
   simple_grade:
     add: 単体評価を追加
+    award_date: 
     edit: 単体評価を編集
     grade: 単体評価[点数/スコア/結果]
     index: 単体評価一覧
     list: 単体評価覧
     plural: 単体評価
     save: 単体評価を保存
+    score: 
     singular: 単体評価
   simple_grade_type:
     add: 単体評価タイプを追加

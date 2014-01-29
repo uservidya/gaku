@@ -176,6 +176,8 @@ pt-BR:
     save: Salvar Grupo de Classe
     show: Exibir
     singular: Grupo de Classe
+    with_semester: 
+    without_semester: 
   class_group_course_enrollment:
     save: Salvar Curso para Grupo de Classes
     singular: 
@@ -546,6 +548,7 @@ pt-BR:
     add_argument: 
     arguments: 
     choose: 
+    criteria: 
     curved: 
     description: 
     edit: 
@@ -865,12 +868,14 @@ pt-BR:
   show: 
   simple_grade:
     add: 
+    award_date: 
     edit: 
     grade: 
     index: 
     list: 
     plural: 
     save: 
+    score: 
     singular: 
   simple_grade_type:
     add: 

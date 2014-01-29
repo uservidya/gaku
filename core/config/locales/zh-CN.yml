@@ -176,6 +176,8 @@ zh-CN:
     save: 
     show: 
     singular: 
+    with_semester: 
+    without_semester: 
   class_group_course_enrollment:
     save: 
     singular: 
@@ -546,6 +548,7 @@ zh-CN:
     add_argument: 
     arguments: 
     choose: 
+    criteria: 
     curved: 
     description: 
     edit: 
@@ -865,12 +868,14 @@ zh-CN:
   show: 
   simple_grade:
     add: 
+    award_date: 
     edit: 
     grade: 
     index: 
     list: 
     plural: 
     save: 
+    score: 
     singular: 
   simple_grade_type:
     add: 

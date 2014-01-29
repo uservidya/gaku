@@ -13,11 +13,10 @@ module Gaku
 
     validates :name, presence: true
 
-    scope :without_semester,
-          lambda do
-            includes(:semester_class_groups)
-            .where(gaku_semester_class_groups: { class_group_id: nil })
-          end
+    scope :without_semester, ->  {
+      includes(:semester_class_groups).where(
+        gaku_semester_class_groups: {class_group_id: nil})
+    }
 
     def to_s
       "#{grade} - #{name}"

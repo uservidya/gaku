@@ -176,6 +176,8 @@ bg:
     save: Запази Клас
     show: Покажи
     singular: Клас
+    with_semester: 
+    without_semester: 
   class_group_course_enrollment:
     save: Запази Курс към Клас
     singular: Курс
@@ -548,8 +550,9 @@ bg:
   grading_method:
     add: 
     add_argument: 
-    arguments: Аргументи
+    arguments: 
     choose: 
+    criteria: 
     curved: 
     description: Описание
     edit: Редактирай
@@ -869,12 +872,14 @@ bg:
   show: 
   simple_grade:
     add: 
+    award_date: 
     edit: 
     grade: 
     index: 
     list: 
     plural: 
     save: 
+    score: 
     singular: 
   simple_grade_type:
     add: 

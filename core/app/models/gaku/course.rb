@@ -28,11 +28,8 @@ module Gaku
 
     validates :code, presence: true
 
-    scope :without_semester,
-          lambda do
-            includes(:semester_courses)
-              .where(gaku_semester_courses: { course_id: nil })
-          end
+    scope :without_semester, -> { includes(:semester_courses).where(
+      gaku_semester_courses: { course_id: nil }) }
 
     def to_s
       if syllabus_name
