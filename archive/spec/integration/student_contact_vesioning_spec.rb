@@ -10,7 +10,7 @@ describe 'Student Contact Versioning' do
       contact.data = 'Changed'
       contact.save!
       contact.reload
-    end.to change(Gaku::Versioning::ContactVersion, :count).by 1
+    end.to change(Gaku::Versioning::ContactVersion, :count).by(1)
 
     version = Gaku::Versioning::ContactVersion.last
 

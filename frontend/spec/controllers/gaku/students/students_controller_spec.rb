@@ -326,7 +326,7 @@ describe Gaku::StudentsController do
         student
         expect do
           gaku_js_delete :destroy, id: student
-        end.to change(Gaku::Student, :count).by -1
+        end.to change(Gaku::Student, :count).by(-1)
       end
     end
 

@@ -122,7 +122,7 @@ describe Gaku::AddressesController do
         it 'renders :recovery' do
           js_get_recovery
           should render_template :recovery
-       end
+        end
 
         it 'sets flash' do
           js_get_recovery

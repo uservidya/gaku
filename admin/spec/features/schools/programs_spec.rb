@@ -110,7 +110,7 @@ describe 'Admin Program' do
       expect do
         ensure_delete_is_working
         flash_destroyed?
-      end.to change(Gaku::Program, :count).by -1
+      end.to change(Gaku::Program, :count).by(-1)
 
       within(count_div) { page.should_not have_content 'Programs list(1)' }
       page.should_not have_content program.name

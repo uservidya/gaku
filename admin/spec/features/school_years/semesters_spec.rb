@@ -132,7 +132,7 @@ describe 'Admin School Years Semesters' do
       expect do
         ensure_delete_is_working
         flash_destroyed?
-      end.to change(Gaku::Semester, :count).by -1
+      end.to change(Gaku::Semester, :count).by(-1)
 
       within(count_div) { page.should_not have_content 'Semesters list(1)' }
       within(count_div) { page.should have_content 'Semesters list' }

@@ -9,7 +9,7 @@ describe Gaku::Admin::SchoolsController do
     ensures 'deny except', :admin
   end
 
- context 'as admin' do
+  context 'as admin' do
     before { as :admin }
 
     context 'html' do
@@ -199,6 +199,4 @@ describe Gaku::Admin::SchoolsController do
 
     end
   end
-
-
 end

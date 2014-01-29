@@ -13,7 +13,7 @@ shared_examples_for 'enroll to course' do
         select "#{@course.code}", from: @select
         click submit
         flash? 'successfully'
-      end.to change(@data.courses, :count).by 1
+      end.to change(@data.courses, :count).by(1)
       page.should have_content "#{@course.code}"
 
       if page.has_css?(count_div)
@@ -57,7 +57,7 @@ shared_examples_for 'remove enrollment' do
     expect do
       ensure_delete_is_working
       flash_destroyed?
-    end.to change(@data.courses, :count).by -1
+    end.to change(@data.courses, :count).by(-1)
 
     within(count_div) { page.should_not have_content 'Courses list(1)' } if page.has_css?(count_div)
     if page.has_css?(tab_link)

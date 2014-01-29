@@ -15,7 +15,7 @@ describe Gaku::Admin::GradingMethodSets::GradingMethodSetItemsController do
         gaku_js_get :edit,
                     id: grading_method_set_item,
                     grading_method_set_id: grading_method_set
-        end
+      end
 
       it { should respond_with 302 }
       it('redirects') { redirect_to? gaku.root_path }

@@ -1,5 +1,4 @@
 module Gaku::Testing::FlashHelpers
-
   def flash?(text)
     page.should have_selector('#notice', text: text)
   end
@@ -27,7 +26,6 @@ module Gaku::Testing::FlashHelpers
   def flash_error_for(field)
     page.should have_selector("div.#{field}formError")
   end
-
 end
 
 RSpec.configure do |config|

@@ -54,7 +54,7 @@ describe 'ClassGroup Students' do
         end
         invisible? '#student-modal'
         within(table) { page.has_content? "#{student1.name}" }
-      end.to change(Gaku::ClassGroupEnrollment,:count).by 1
+      end.to change(Gaku::ClassGroupEnrollment, :count).by(1)
 
       page.should have_content "#{student1} : Successfully enrolled!"
       within('#class-group-enrollments-tab-link'){ page.should have_content('1') }

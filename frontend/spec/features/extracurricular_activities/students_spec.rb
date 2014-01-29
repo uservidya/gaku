@@ -57,7 +57,7 @@ describe 'ExtracurricularActivity Students' do
         end
         invisible? '#student-modal'
         within(table) { page.has_content? "#{student1.name}" }
-      end.to change(Gaku::ExtracurricularActivityEnrollment,:count).by 1
+      end.to change(Gaku::ExtracurricularActivityEnrollment, :count).by(1)
 
       page.should have_content "#{student1} : Successfully enrolled!"
       within('.extracurricular-activity-enrollments-count') { page.should have_content '1' }

@@ -11,7 +11,7 @@ module Gaku
         end
       end
 
-      config.to_prepare &method(:activate).to_proc
+      config.to_prepare(&method(:activate).to_proc)
 
       config.after_initialize do
         Rails.application.routes_reloader.reload!

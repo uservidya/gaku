@@ -5,8 +5,10 @@ describe 'Admin Grading Methods' do
   before { as :admin }
   before(:all) { set_resource 'admin-grading-method' }
 
-  let(:grading_method) { create(:grading_method, name: 'Bulgarian',
-                        arguments: {"A" => 95, "B" => 85 } ) }
+  let(:grading_method) do
+    create(:grading_method, name: 'Bulgarian',
+           arguments: {'A' => 95, 'B' => 85 } )
+  end
 
 
   context 'new', js: true do
@@ -22,7 +24,7 @@ describe 'Admin Grading Methods' do
         find('input.dynamicAttributeValue').set 85
         click submit
         flash_created?
-      end.to change(Gaku::GradingMethod, :count).by 1
+      end.to change(Gaku::GradingMethod, :count).by(1)
 
       has_content? 'Bulgarian'
       count? 'Grading Methods list(1)'
@@ -90,7 +92,7 @@ describe 'Admin Grading Methods' do
       expect do
         ensure_delete_is_working
         flash_destroyed?
-      end.to change(Gaku::GradingMethod, :count).by -1
+      end.to change(Gaku::GradingMethod, :count).by(-1)
 
 
       count? 'Grading Methods list(1)'

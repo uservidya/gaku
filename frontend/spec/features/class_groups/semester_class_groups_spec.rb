@@ -86,7 +86,7 @@ describe 'ClassGroup Semesters' do
       expect do
         ensure_delete_is_working
         flash_destroyed?
-      end.to change(Gaku::SemesterClassGroup,:count).by -1
+      end.to change(Gaku::SemesterClassGroup, :count).by(-1)
 
       within(table)     { page.should_not have_content "#{semester.starting} / #{semester.ending}" }
       within(tab_link) { page.should_not have_content 'Semesters(1)' }

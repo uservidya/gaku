@@ -21,7 +21,7 @@ describe 'Extracurricular Activities' do
         fill_in 'extracurricular_activity_name', with: 'Tennis'
         click submit
         flash_created?
-      end.to change(Gaku::ExtracurricularActivity, :count).by 1
+      end.to change(Gaku::ExtracurricularActivity, :count).by(1)
 
       page.should have_content 'Tennis'
       within(count_div) { page.should have_content 'Extracurricular Activities list(1)' }

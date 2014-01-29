@@ -27,7 +27,7 @@ describe 'Student Class Group Enrollments' do
       click_on 'Create Class Enrollment'
       #click_on 'Cancel'
       invisible? modal
-    end.to change(Gaku::ClassGroupEnrollment, :count).by 1
+    end.to change(Gaku::ClassGroupEnrollment, :count).by(1)
 
     click el
     visible? '#new-class-group-enrollment-modal'

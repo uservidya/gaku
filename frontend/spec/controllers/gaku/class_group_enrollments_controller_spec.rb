@@ -16,7 +16,7 @@ describe Gaku::ClassGroupEnrollmentsController do
       it 'saves to db' do
         expect do
           gaku_js_post :enroll_students, attributes
-        end.to change(Gaku::ClassGroupEnrollment, :count).by 1
+        end.to change(Gaku::ClassGroupEnrollment, :count).by(1)
 
         should respond_with(:success)
       end

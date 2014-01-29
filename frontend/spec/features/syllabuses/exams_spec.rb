@@ -66,7 +66,7 @@ describe 'Syllabus Exams' do
           fill_in 'exam_exam_portions_attributes_0_name' , with: 'Biology Exam Portion'
           click submit
           flash_created?
-        end.to change(syllabus.exams, :count).by 1
+        end.to change(syllabus.exams, :count).by(1)
 
         within(table) do
           has_content? department.name
@@ -117,7 +117,7 @@ describe 'Syllabus Exams' do
         expect do
           ensure_delete_is_working
           flash_destroyed?
-        end.to change(syllabus.exams, :count).by -1
+        end.to change(syllabus.exams, :count).by(-1)
 
 
         within(table){ has_no_content? exam.name }

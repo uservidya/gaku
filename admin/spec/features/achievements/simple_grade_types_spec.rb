@@ -74,7 +74,7 @@ describe 'Admin Simple grade types' do
       expect do
         ensure_delete_is_working
         flash_destroyed?
-      end.to change(Gaku::SimpleGradeType, :count).by -1
+      end.to change(Gaku::SimpleGradeType, :count).by(-1)
 
       count? 'Simple grade type list'
       within(table) { has_no_content? simple_grade_type.name }

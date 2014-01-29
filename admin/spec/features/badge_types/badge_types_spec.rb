@@ -18,7 +18,7 @@ describe 'Admin BadgeTypes' do
         fill_in 'badge_type_name', with: 'medal'
         click submit
         flash_created?
-      end.to change(Gaku::BadgeType, :count).by 1
+      end.to change(Gaku::BadgeType, :count).by(1)
 
       has_content? 'medal'
       count? 'Badge types list(1)'

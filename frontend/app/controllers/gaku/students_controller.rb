@@ -197,7 +197,7 @@ module Gaku
         params[:direction]
       else
         'asc'
-       end
+      end
     end
 
   end

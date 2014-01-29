@@ -16,7 +16,7 @@ shared_examples_for 'new contact' do
         fill_in 'contact_details', with: 'The contact details'
         click submit
         flash_created?
-      end.to change(@resource.contacts, :count).by 1
+      end.to change(@resource.contacts, :count).by(1)
 
       has_content? 'The contact data'
       has_content? 'The contact details'

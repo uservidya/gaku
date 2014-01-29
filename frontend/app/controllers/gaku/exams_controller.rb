@@ -90,7 +90,8 @@ module Gaku
           attendances: @student_portion_attendance.as_json(root: true, include: :attendance_type),
           path_to_exam: @path_to_exam.to_json,
           completion: @completion
-        }end
+        }
+        end
         format.html { render 'gaku/exams/grading' }
       end
     end

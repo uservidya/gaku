@@ -25,7 +25,7 @@ describe 'Syllabus' do
         click submit
 
         flash_created?
-      end.to change(Gaku::Syllabus, :count).by 1
+      end.to change(Gaku::Syllabus, :count).by(1)
 
       within(table) do
         has_content? 'Syllabus1'

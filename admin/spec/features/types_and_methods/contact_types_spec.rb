@@ -18,7 +18,7 @@ describe 'Admin Contact Types' do
         fill_in 'contact_type_name', with: 'home phone'
         click submit
         flash_created?
-      end.to change(Gaku::ContactType, :count).by 1
+      end.to change(Gaku::ContactType, :count).by(1)
 
       has_content? 'home phone'
       count? 'Contact Types list(1)'

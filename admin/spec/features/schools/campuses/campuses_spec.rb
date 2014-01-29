@@ -27,7 +27,7 @@ describe 'Admin School Campuses' do
         fill_in 'campus_name', with: 'Nagoya Campus'
         click submit
         flash_created?
-      end.to change(school.campuses, :count).by 1
+      end.to change(school.campuses, :count).by(1)
 
       page.should have_content 'Nagoya Campus'
       within(count_div) { page.should have_content 'Campuses list(2)' }

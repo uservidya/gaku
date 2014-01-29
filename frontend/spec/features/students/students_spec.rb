@@ -123,7 +123,7 @@ describe 'Students', type: :feature do
         within(modal) { click_on 'Delete' }
         accept_alert
         flash_destroyed?
-      end.to change(Gaku::Student, :count).by -1
+      end.to change(Gaku::Student, :count).by(-1)
 
       within(count_div) { page.should_not have_content 'Students list(#{student_count - 1})' }
       current_path.should eq gaku.students_path
@@ -149,8 +149,8 @@ describe 'Students', type: :feature do
           click_button 'submit-student-button'
           flash_created?
 
-        end.to change(Gaku::Student, :count).by 1
-      end.to change(Gaku::ClassGroupEnrollment, :count).by 1
+        end.to change(Gaku::Student, :count).by(1)
+      end.to change(Gaku::ClassGroupEnrollment, :count).by(1)
 
       expect(current_path).to eq gaku.edit_student_path(Gaku::Student.last)
 
@@ -164,7 +164,7 @@ describe 'Students', type: :feature do
         fill_in 'student_surname', with: 'Doe'
         click_button 'submit-student-button'
         flash_created?
-      end.to change(Gaku::Student, :count).by 1
+      end.to change(Gaku::Student, :count).by(1)
       expect(current_path).to eq gaku.edit_student_path(Gaku::Student.last)
 
       page.has_text? 'John'

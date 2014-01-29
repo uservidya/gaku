@@ -21,7 +21,7 @@ describe 'Exam Portions' do
 
         click submit
         flash_created?
-      end.to change(Gaku::ExamPortion, :count).by 1
+      end.to change(Gaku::ExamPortion, :count).by(1)
 
       within(table) { has_content? 'Biology Exam Portion' }
       within(tab_link) { expect(page.has_content?('Exam Portions(1)')) }
@@ -68,7 +68,7 @@ describe 'Exam Portions' do
         click delete_link
         accept_alert
         flash_destroyed?
-      end.to change(Gaku::ExamPortion, :count).by -1
+      end.to change(Gaku::ExamPortion, :count).by(-1)
 
       within(tab_link) { has_no_content? 'Exam Portions(1)' }
       within(table) { has_no_content? exam_portion.name }
