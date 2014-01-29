@@ -6,8 +6,10 @@ describe 'Student Specialties' do
   before { as :admin }
 
   let(:student) { create(:student, name: 'John', surname: 'Doe') }
-  let(:specialty) {create(:specialty) }
-  let(:student_specialty) {create(:student_specialty, student: student, specialty: specialty )}
+  let(:specialty) { create(:specialty) }
+  let(:student_specialty) do
+    create(:student_specialty, student: student, specialty: specialty)
+  end
   let(:specialty2) { create(:specialty, name: 'Math Specialty') }
   let!(:el) { '#specialties' }
 

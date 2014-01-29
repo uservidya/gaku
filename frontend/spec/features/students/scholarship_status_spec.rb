@@ -14,7 +14,9 @@ describe 'Student Scholarship Status' do
     click submit
 
     flash_updated?
-    within('#student_scholarship_status_id') { has_content? scholarship_status.name }
+    within('#student_scholarship_status_id') do
+      has_content? scholarship_status.name
+    end
     student.reload
     expect(student.scholarship_status.name).to eq scholarship_status.name
   end

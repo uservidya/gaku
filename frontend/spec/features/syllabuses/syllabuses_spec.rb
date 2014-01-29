@@ -57,7 +57,8 @@ describe 'Syllabus' do
 
           expect(find_field('syllabus_name').value).to eq 'Maths'
           expect(find_field('syllabus_code').value).to eq 'math'
-          expect(find_field('syllabus_description').value).to eq 'Maths Description'
+          expect(find_field('syllabus_description').value)
+            .to eq 'Maths Description'
 
           syllabus.reload
           expect(syllabus.name).to eq 'Maths'

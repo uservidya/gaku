@@ -17,7 +17,9 @@ describe Gaku::SyllabusesController do
         end
 
         it { should respond_with 200 }
-        it('assigns @syllabuses') { expect(assigns(:syllabuses)).to eq [syllabus] }
+        it('assigns @syllabuses') do
+          expect(assigns(:syllabuses)).to eq [syllabus]
+        end
         it('assigns @count') { expect(assigns(:count)).to eq 1 }
         it('renders :index template') { template? :index }
       end
@@ -31,13 +33,17 @@ describe Gaku::SyllabusesController do
         it { should respond_with 200 }
         it('assigns @syllabus') { expect(assigns(:syllabus)).to eq syllabus }
         it('renders the :edit template') { template? :edit }
-        it('assigns @departments') { expect(assigns(:departments)).to eq [department] }
+        it('assigns @departments') do
+          expect(assigns(:departments)).to eq [department]
+        end
       end
 
       describe 'PATCH #update' do
         context 'with valid attributes' do
           before do
-            gaku_patch :update, id: syllabus, syllabus: attributes_for(:syllabus, name: 'mobifon')
+            gaku_patch :update,
+                       id: syllabus,
+                       syllabus: attributes_for(:syllabus, name: 'mobifon')
           end
 
           it { should respond_with 302 }
@@ -52,7 +58,9 @@ describe Gaku::SyllabusesController do
 
         context 'with invalid attributes' do
           before do
-            gaku_patch :update, id: syllabus, syllabus: attributes_for(:invalid_syllabus, name: '')
+            gaku_patch :update,
+                       id: syllabus,
+                       syllabus: attributes_for(:invalid_syllabus, name: '')
           end
 
           it { should respond_with 200 }
@@ -76,9 +84,13 @@ describe Gaku::SyllabusesController do
         end
 
         it { should respond_with 200 }
-        it('assigns @syllabus') { expect(assigns(:syllabus)).to be_a_new(Gaku::Syllabus) }
+        it('assigns @syllabus') do
+          expect(assigns(:syllabus)).to be_a_new(Gaku::Syllabus)
+        end
         it('renders the :new template') { template? :new }
-        it('assigns @departments') { expect(assigns(:departments)).to eq [department] }
+        it('assigns @departments') do
+          expect(assigns(:departments)).to eq [department]
+        end
       end
 
       describe 'JS POST #create' do

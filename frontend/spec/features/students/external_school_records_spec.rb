@@ -27,10 +27,11 @@ describe 'Student External School Records' do
 
   end
 
-
   context 'existing', js: true do
 
-    let!(:external_school_record) { create(:external_school_record, school: school, student: student) }
+    let!(:external_school_record) do
+      create(:external_school_record, school: school, student: student)
+    end
 
     context 'remove' do
 

@@ -60,12 +60,14 @@ describe 'ClassGroups' do
           click submit
           flash_updated?
 
-          expect(find_field('class_group_name').value).to eq 'Really awesome class group'
+          expect(find_field('class_group_name').value)
+            .to eq 'Really awesome class group'
           expect(find_field('class_group_grade').value).to eq '2'
           expect(find_field('class_group_homeroom').value).to eq 'B2'
 
           class_group_with_semesters.reload
-          expect(class_group_with_semesters.name).to eq 'Really awesome class group'
+          expect(class_group_with_semesters.name)
+            .to eq 'Really awesome class group'
           expect(class_group_with_semesters.grade).to eq 2
           expect(class_group_with_semesters.homeroom).to eq 'B2'
         end

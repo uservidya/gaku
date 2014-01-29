@@ -5,7 +5,6 @@ describe 'Exam Portions' do
   let!(:exam) { create(:exam, name: 'Linux') }
   let(:exam_portion) { create(:exam_portion, exam: exam) }
 
-
   before(:all) { set_resource 'exam-exam-portion' }
   before { as :admin }
 
@@ -49,7 +48,8 @@ describe 'Exam Portions' do
 
         exam_portion.reload
         expect(exam_portion.name).to eq 'Biology 2012 Portion'
-        expect(current_path).to eq gaku.edit_exam_exam_portion_path(exam, exam_portion)
+        expect(current_path)
+          .to eq gaku.edit_exam_exam_portion_path(exam, exam_portion)
       end
 
       it 'has validations' do
@@ -72,7 +72,6 @@ describe 'Exam Portions' do
 
       within(tab_link) { has_no_content? 'Exam Portions(1)' }
       within(table) { has_no_content? exam_portion.name }
-
 
     end
 

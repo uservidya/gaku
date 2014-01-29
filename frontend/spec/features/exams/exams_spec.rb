@@ -6,7 +6,6 @@ describe 'Exams' do
   let(:exam2) { create(:exam) }
   let(:department) { create(:department) }
 
-
   before(:all) { set_resource 'exam' }
   before { as :admin }
 

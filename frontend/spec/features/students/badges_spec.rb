@@ -70,7 +70,6 @@ describe 'Student Badges' do
           has_no_content? badge_type.name
         end
 
-
       end
     end
 

@@ -6,7 +6,9 @@ describe 'Student Enrollment Status' do
   before { as :admin }
 
   let(:student) { create(:student) }
-  let!(:enrollment_status) { create(:enrollment_status, name: 'Enrolled', code: 'enrolled') }
+  let!(:enrollment_status) do
+    create(:enrollment_status, name: 'Enrolled', code: 'enrolled')
+  end
 
   it 'create and show', js: true do
     visit gaku.edit_student_path(student)
@@ -14,7 +16,9 @@ describe 'Student Enrollment Status' do
     click submit
 
     flash_updated?
-    within('#student_enrollment_status_code') { has_content? enrollment_status.name }
+    within('#student_enrollment_status_code') do
+      has_content? enrollment_status.name
+    end
     student.reload
     expect(student.enrollment_status_code).to eq enrollment_status.code
   end

@@ -1,23 +1,26 @@
-@country = Gaku::Country.where(  name: '日本',
-                                 iso3: 'JPN',
-                                 iso: 'JP',
-                                 iso_name: 'JAPAN',
-                                 numcode: '392'
+@country = Gaku::Country.where(name: '日本',
+                               iso3: 'JPN',
+                               iso: 'JP',
+                               iso_name: 'JAPAN',
+                               numcode: '392'
                               ).first_or_create!
 
-@state = Gaku::State.where(name: Faker::Address.us_state, country_iso: @country.iso).first_or_create!
+@state =
+  Gaku::State.where(name: Faker::Address.us_state, country_iso: @country.iso)
+             .first_or_create!
 
 @mobile_phone = Gaku::ContactType.where(name: 'Mobile Phone').first_or_create!
 @home_phone = Gaku::ContactType.where(name: 'Home Phone').first_or_create!
 @email = Gaku::ContactType.where(name: 'Email').first_or_create!
-@enrollment_status = Gaku::EnrollmentStatus.where(code: 'admitted').first.try(:code)
+@enrollment_status =
+  Gaku::EnrollmentStatus.where(code: 'admitted').first.try(:code)
 @commute_method_type = Gaku::CommuteMethodType.create!(name: 'Superbike')
 @scholarship_status = Gaku::ScholarshipStatus.create!(name: 'Charity')
 
 @john_doe = {
   name: 'John',
   surname: 'Doe',
-  birth_date: Date.new(1983,10,5),
+  birth_date: Date.new(1983, 10, 5),
   enrollment_status_code: @enrollment_status
 }
 
@@ -41,10 +44,9 @@ def random_person
     name: Faker::Name.first_name,
     middle_name: Faker::Name.first_name,
     surname: Faker::Name.last_name,
-    birth_date: Date.today-rand(1000)
+    birth_date: Date.today - rand(1000)
   }
 end
-
 
 def random_home_phone
   {
@@ -74,7 +76,6 @@ def random_note
   }
 end
 
-
 def random_address
   {
     address1: Faker::Address.street_address,
@@ -87,11 +88,12 @@ def random_address
   }
 end
 
-def create_student_with_full_info(predefined_student=nil)
+def create_student_with_full_info(predefined_student = nil)
   if predefined_student
     student = Gaku::Student.where(predefined_student).first_or_create!
   else
-    random_student = random_person.merge(enrollment_status_code: @enrollment_status)
+    random_student =
+      random_person.merge(enrollment_status_code: @enrollment_status)
     student = Gaku::Student.where(random_student).first_or_create!
   end
 
@@ -102,19 +104,19 @@ def create_student_with_full_info(predefined_student=nil)
   student.notes.where(random_note).first_or_create!
   student.notes.where(random_note).first_or_create!
 
-  #guardian
+  # guardian
   guardian = Gaku::Guardian.where(random_person).first_or_create!
   guardian.addresses.where(random_address).first_or_create!
   guardian.contacts.where(random_email).first_or_create!
   guardian.contacts.where(random_home_phone).first_or_create!
   guardian.contacts.where(random_mobile_phone).first_or_create!
-  #guardian.notes.where(random_note).first_or_create!
-  #guardian.notes.where(random_note).first_or_create!
+  # guardian.notes.where(random_note).first_or_create!
+  # guardian.notes.where(random_note).first_or_create!
 
   student.guardians << guardian
 end
 
-def create_teacher_with_full_info(predefined_teacher=nil)
+def create_teacher_with_full_info(predefined_teacher = nil)
   if predefined_teacher
     teacher = Gaku::Teacher.where(predefined_teacher).first_or_create!
   else

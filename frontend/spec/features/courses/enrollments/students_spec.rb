@@ -10,7 +10,7 @@ describe 'CourseEnrollment'  do
   let(:course) { create(:course) }
   let(:student1) do
     create(:student, name: 'John', surname: 'Doe',
-           enrollment_status_code: enrollment_status_admitted.code)
+                     enrollment_status_code: enrollment_status_admitted.code)
   end
 
   before :all do

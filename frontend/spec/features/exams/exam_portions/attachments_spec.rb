@@ -88,7 +88,6 @@ describe 'Exam Portion Attachments' do
         flash_destroyed?
       end
 
-
       it 'deletes attachment from index table' do
         visit gaku.exam_exam_portion_path(exam, exam_portion)
         page.should_not have_content "#{attachment.name}"

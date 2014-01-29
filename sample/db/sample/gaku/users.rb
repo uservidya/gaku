@@ -33,10 +33,12 @@ users = [
 ]
 
 users.each do |user|
-  Gaku::User.where(username: user[:username]).first_or_create!(email: user[:email],
-                                                               password: user[:password],
-                                                               password_confirmation: user[:password_confirmation]
-                                                           )
+  Gaku::User.where(username: user[:username])
+            .first_or_create!(
+              email: user[:email],
+              password: user[:password],
+              password_confirmation: user[:password_confirmation]
+            )
 end
 
 admin_user = Gaku::User.find_by_username('admin')
@@ -54,6 +56,7 @@ guardian_user.roles << guardian_role
 say "Creating #{@count[:users]} users...".yellow
 
 batch_create(@count[:teachers]) do
-  Gaku::User.where(username: Faker::Name.first_name, email: Faker::Internet.email).first_or_create( password: '123456', password_confirmation: '123456')
+  Gaku::User
+    .where(username: Faker::Name.first_name, email: Faker::Internet.email)
+    .first_or_create(password: '123456', password_confirmation: '123456')
 end
-

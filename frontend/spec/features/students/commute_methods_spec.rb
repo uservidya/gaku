@@ -14,7 +14,9 @@ describe 'Student Commute Method Type' do
     click submit
 
     flash_updated?
-    within('#student_commute_method_type_id') { has_content? commute_method_type.name }
+    within('#student_commute_method_type_id') do
+      has_content? commute_method_type.name
+    end
     student.reload
     expect(student.commute_method_type.name).to eq commute_method_type.name
   end
