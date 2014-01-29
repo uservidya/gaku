@@ -382,6 +382,7 @@ en:
       unlocked: Your account was successfully unlocked. You are now signed in.
     username: Username
   edit: Edit
+  eg: eg
   email: Email
   empty: Empty
   enroll_to_class: Enroll to class
@@ -549,8 +550,8 @@ en:
     weighting_portion: Weighting
   grading_method:
     add: Add Grading Method
-    add_argument: Add Argument
-    arguments: Arguments
+    add_criteria: Add criteria
+    criteria: criteria
     choose: Choose Grading Method
     curved: Curved
     description: Description
@@ -564,7 +565,7 @@ en:
     percentage: Percentage
     plural: Grading Methods
     ratio: Ratio
-    remove_argument: Remove Argument
+    remove_criteria: Remove criteria
     save: Save Grading Method
     score: Score
     singular: Grading Method
