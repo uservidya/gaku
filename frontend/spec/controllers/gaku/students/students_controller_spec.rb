@@ -15,13 +15,13 @@ describe Gaku::StudentsController do
 
       let!(:student1) do
         create(:student, name: 'Rei', surname: 'Kagetsuki',
-                         enrollment_status_code: enrollment_status.code
-                         birth_date: Date.new(1950, 9, 1))
+                enrollment_status_code: enrollment_status.code,
+                birth_date: Date.new(1950, 9, 1))
       end
       let!(:student2) do
         create(:student, name: 'Vassil', surname: 'Kalkov',
-                         enrollment_status_code: enrollment_status.code,
-                         birth_date: Date.new(2013, 10, 5))
+                enrollment_status_code: enrollment_status.code,
+                birth_date: Date.new(2013, 10, 5))
       end
 
       it 'searches by name' do
