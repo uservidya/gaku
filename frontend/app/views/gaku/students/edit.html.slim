@@ -1,13 +1,9 @@
 .row
-  .col-sm-9
+  .col-sm-6
     = render 'personal', student: student
-  .col-sm-3.text-center
-    = render 'gaku/shared/picture', resource: student
-
-hr
-
-.row.mt-l
-  .col-sm-12
+    .col-sm-3.text-center
+      = render 'gaku/shared/picture', resource: student
+  .col-sm-6
     ul.nav.nav-pills.nav-justified
       li.active
         a#student-personal-tab-link data-toggle="tab" href="#personal"

@@ -49,13 +49,22 @@
 .center-block {float: none !important}
 
 // for fix --------
+.btn.btn-xs {
+  width: 24px;
+}
+
 .nav-pills {
   li {
     background-color: #F8F8F8;
   }
 }
 
-//.index-header { margin-bottom: 10px; }
+.nav-tabs.nav-justified > li > a {
+  padding: 10px 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 .container {
   max-width: 1900px;
@@ -70,11 +79,17 @@
 }
 
 .table {
-  & thead>tr>th {
+  table-layout: fixed;
+  thead>tr>th {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     vertical-align: middle;
     text-align: center;
   }
-  & tbody>tr>td {
+  tbody>tr>td {
+    overflow: hidden;
+    text-overflow: ellipsis;
     vertical-align: middle;
   }
 }

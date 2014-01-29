@@ -12,3 +12,7 @@
  *= require gaku/frontend/gaku
  *= require_self
 */
+
+.profiler-results.profiler-left.profiler-no-controls {
+  display: none;
+}
