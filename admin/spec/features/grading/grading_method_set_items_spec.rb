@@ -63,7 +63,7 @@ describe 'Admin Grading Method Set Items' do
       end
 
       it 'has validations' do
-        #select '', from: 'grading_method_set_item_grading_method_id'
+        # select '', from: 'grading_method_set_item_grading_method_id'
         has_validations?
       end
 
@@ -77,7 +77,6 @@ describe 'Admin Grading Method Set Items' do
         ensure_delete_is_working
         flash_destroyed?
       end.to change(Gaku::GradingMethodSetItem, :count).by(-1)
-
 
       within(table) { has_no_content? grading_method.name }
     end

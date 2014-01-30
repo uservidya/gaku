@@ -38,7 +38,7 @@ describe 'Admin Simple grade types' do
 
   context 'existing' do
     before do
-      school;grading_method
+      school; grading_method
       simple_grade_type
       visit gaku.admin_simple_grade_types_path
     end
@@ -68,7 +68,7 @@ describe 'Admin Simple grade types' do
     end
 
     it 'deletes', js: true do
-      within(table) {has_content? simple_grade_type.name }
+      within(table) { has_content? simple_grade_type.name }
       count? 'Simple grade types list(1)'
 
       expect do

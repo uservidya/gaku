@@ -102,7 +102,9 @@ describe Gaku::Admin::DepartmentsController do
       describe 'PATCH #update' do
         context 'with valid attributes' do
           before do
-            gaku_js_patch :update, id: department, department: attributes_for(:department, name: 'new type')
+            gaku_js_patch :update,
+                          id: department,
+                          department: attributes_for(:department, name: 'new type')
           end
 
           it { should respond_with 200 }
@@ -116,7 +118,9 @@ describe Gaku::Admin::DepartmentsController do
 
         context 'with invalid attributes' do
           before do
-            gaku_js_patch :update, id: department, department: attributes_for(:invalid_department, name: '')
+            gaku_js_patch :update,
+                          id: department,
+                          department: attributes_for(:invalid_department, name: '')
           end
 
           it { should respond_with 200 }

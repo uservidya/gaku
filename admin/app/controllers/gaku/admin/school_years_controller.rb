@@ -1,6 +1,5 @@
 module Gaku
   class Admin::SchoolYearsController < Admin::BaseController
-
     respond_to :html, only: %i( index show )
     respond_to :js, only: %i( new create destroy edit update )
 
@@ -40,7 +39,6 @@ module Gaku
       respond_with @school_year
     end
 
-
     private
 
     def school_year_params
@@ -58,6 +56,5 @@ module Gaku
     def attributes
       %i( starting ending )
     end
-
   end
 end

@@ -1,8 +1,7 @@
 module Gaku
   module Admin
     class StatesController < Admin::BaseController
-
-      #load_and_authorize_resource class: State
+      # load_and_authorize_resource class: State
 
       respond_to :js,   only: %i( new create edit update destroy country_states )
       respond_to :html, only: %i( index edit update )
@@ -86,7 +85,6 @@ module Gaku
       def set_default_country
         Country.where(iso: country_preset).first
       end
-
     end
   end
 end

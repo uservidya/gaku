@@ -32,7 +32,9 @@ describe Gaku::Admin::Achievements::SimpleGradeTypesController do
         end
 
         it { should respond_with 200 }
-        it('assigns @simple_grade_types') { expect(assigns(:simple_grade_types)).to eq [simple_grade_type] }
+        it('assigns @simple_grade_types') do
+          expect(assigns(:simple_grade_types)).to eq [simple_grade_type]
+        end
         it('assigns @count') { expect(assigns(:count)).to eq 1 }
         it('renders :index template') { template? :index }
       end
@@ -48,7 +50,9 @@ describe Gaku::Admin::Achievements::SimpleGradeTypesController do
         end
 
         it { should respond_with 200 }
-        it('assigns @simple_grade_type') { expect(assigns(:simple_grade_type)).to be_a_new(Gaku::SimpleGradeType) }
+        it('assigns @simple_grade_type') do
+          expect(assigns(:simple_grade_type)).to be_a_new(Gaku::SimpleGradeType)
+        end
         it('renders the :new template') { template? :new }
         it('assigns @schools') { expect(assigns(:schools)).to eq [school] }
         it('assigns @grading_methods') { expect(assigns(:grading_methods)).to eq [grading_method] }
@@ -107,20 +111,28 @@ describe Gaku::Admin::Achievements::SimpleGradeTypesController do
         end
 
         it { should respond_with 200 }
-        it('assigns @simple_grade_type') { expect(assigns(:simple_grade_type)).to eq simple_grade_type }
+        it('assigns @simple_grade_type') do
+          expect(assigns(:simple_grade_type)).to eq simple_grade_type
+        end
         it('renders the :edit template') { template? :edit }
         it('assigns @schools') { expect(assigns(:schools)).to eq [simple_grade_type.school] }
-        it('assigns @grading_methods') { expect(assigns(:grading_methods)).to eq [simple_grade_type.grading_method] }
+        it('assigns @grading_methods') do
+          expect(assigns(:grading_methods)).to eq [simple_grade_type.grading_method]
+        end
       end
 
       describe 'PATCH #update' do
         context 'with valid attributes' do
           before do
-            gaku_js_patch :update, id: simple_grade_type, simple_grade_type: attributes_for(:simple_grade_type, name: 'Ruby dev')
+            gaku_js_patch :update,
+                          id: simple_grade_type,
+                          simple_grade_type: attributes_for(:simple_grade_type, name: 'Ruby dev')
           end
 
           it { should respond_with 200 }
-          it('assigns @simple_grade_type') { expect(assigns(:simple_grade_type)).to eq simple_grade_type }
+          it('assigns @simple_grade_type') do
+            expect(assigns(:simple_grade_type)).to eq simple_grade_type
+          end
           it('sets flash') { flash_updated? }
           it "changes simple_grade_type's attributes" do
             simple_grade_type.reload
@@ -130,11 +142,15 @@ describe Gaku::Admin::Achievements::SimpleGradeTypesController do
 
         context 'with invalid attributes' do
           before do
-            gaku_js_patch :update, id: simple_grade_type, simple_grade_type: attributes_for(:invalid_simple_grade_type, name: '')
+            gaku_js_patch :update,
+                          id: simple_grade_type,
+                          simple_grade_type: attributes_for(:invalid_simple_grade_type, name: '')
           end
 
           it { should respond_with 200 }
-          it('assigns @simple_grade_type') { expect(assigns(:simple_grade_type)).to eq simple_grade_type }
+          it('assigns @simple_grade_type') do
+            expect(assigns(:simple_grade_type)).to eq simple_grade_type
+          end
 
           it "does not change simple_grade_type's attributes" do
             simple_grade_type.reload

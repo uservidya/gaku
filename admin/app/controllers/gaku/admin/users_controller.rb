@@ -1,7 +1,6 @@
 module Gaku
   class Admin::UsersController < Admin::BaseController
-
-    #load_and_authorize_resource class: User
+    # load_and_authorize_resource class: User
 
     respond_to :js,   only: %i( new create edit update destroy )
     respond_to :html, only: :index
@@ -55,7 +54,8 @@ module Gaku
     end
 
     def attributes
-      [:login, :username, :email, :password, :password_confirmation, :remember_me, :locale, { role_ids: [] } ]
+      [:login, :username, :email, :password,
+       :password_confirmation, :remember_me, :locale, { role_ids: [] }]
     end
 
     def set_roles
@@ -66,9 +66,7 @@ module Gaku
       if params[:user][:role_ids]
         @user.roles.destroy_all
         Role.all.each do |role|
-          if params[:user][:role_ids].include?(role.id.to_s)
-            @user.roles << role
-          end
+          @user.roles << role if params[:user][:role_ids].include?(role.id.to_s)
         end
       end
     end
@@ -77,6 +75,5 @@ module Gaku
       params[:user].delete(:password) if params[:user][:password].blank?
       params[:user].delete(:password_confirmation) if params[:user][:password_confirmation].blank?
     end
-
   end
 end

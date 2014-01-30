@@ -1,7 +1,6 @@
 module Gaku
   class Admin::AttendanceTypesController < Admin::BaseController
-
-    #load_and_authorize_resource class: AttendanceType
+    # load_and_authorize_resource class: AttendanceType
 
     respond_to :json, only: :index
     respond_to :js,   only: %i( new create edit update destroy )
@@ -54,7 +53,5 @@ module Gaku
     def attributes
       %i(name color_code counted_absent disable_credit credit_rate auto_credit)
     end
-
   end
 end
-

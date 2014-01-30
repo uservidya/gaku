@@ -22,10 +22,8 @@ require 'phantom_nested_forms'
 require 'gaku/core'
 
 module Gaku
-
   module Admin
   end
-
 end
 
 require 'gaku/admin/version'

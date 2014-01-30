@@ -28,7 +28,9 @@ describe Gaku::Admin::EnrollmentStatusesController do
         end
 
         it { should respond_with 200 }
-        it('assigns @enrollment_statuses') { expect(assigns(:enrollment_statuses)).to eq [enrollment_status] }
+        it('assigns @enrollment_statuses') do
+          expect(assigns(:enrollment_statuses)).to eq [enrollment_status]
+        end
         it('assigns @count') { expect(assigns(:count)).to eq 1 }
         it('renders :index template') { template? :index }
       end
@@ -41,7 +43,9 @@ describe Gaku::Admin::EnrollmentStatusesController do
         before { gaku_js_get :new }
 
         it { should respond_with 200 }
-        it('assigns @enrollment_status') { expect(assigns(:enrollment_status)).to be_a_new(Gaku::EnrollmentStatus) }
+        it('assigns @enrollment_status') do
+          expect(assigns(:enrollment_status)).to be_a_new(Gaku::EnrollmentStatus)
+        end
         it('renders the :new template') { template? :new }
       end
 
@@ -95,18 +99,24 @@ describe Gaku::Admin::EnrollmentStatusesController do
         before { gaku_js_get :edit, id: enrollment_status }
 
         it { should respond_with 200 }
-        it('assigns @enrollment_status') { expect(assigns(:enrollment_status)).to eq enrollment_status }
+        it('assigns @enrollment_status') do
+          expect(assigns(:enrollment_status)).to eq enrollment_status
+        end
         it('renders the :edit template') { template? :edit }
       end
 
       describe 'PATCH #update' do
         context 'with valid attributes' do
           before do
-            gaku_js_patch :update, id: enrollment_status, enrollment_status: attributes_for(:enrollment_status, code: 'new status')
+            gaku_js_patch :update,
+                          id: enrollment_status,
+                          enrollment_status: attributes_for(:enrollment_status, code: 'new status')
           end
 
           it { should respond_with 200 }
-          it('assigns @enrollment_status') { expect(assigns(:enrollment_status)).to eq enrollment_status }
+          it('assigns @enrollment_status') do
+            expect(assigns(:enrollment_status)).to eq enrollment_status
+          end
           it('sets flash') { flash_updated? }
           it "changes enrollment_status's attributes" do
             expect(enrollment_status.reload.code).to eq 'new status'
@@ -115,11 +125,15 @@ describe Gaku::Admin::EnrollmentStatusesController do
 
         context 'with invalid attributes' do
           before do
-            gaku_js_patch :update, id: enrollment_status, enrollment_status: attributes_for(:invalid_enrollment_status, code: '')
+            gaku_js_patch :update,
+                          id: enrollment_status,
+                          enrollment_status: attributes_for(:invalid_enrollment_status, code: '')
           end
 
           it { should respond_with 200 }
-          it('assigns @enrollment_status') { expect(assigns(:enrollment_status)).to eq enrollment_status }
+          it('assigns @enrollment_status') do
+            expect(assigns(:enrollment_status)).to eq enrollment_status
+          end
 
           it "does not change enrollment_status's attributes" do
             enrollment_status.reload

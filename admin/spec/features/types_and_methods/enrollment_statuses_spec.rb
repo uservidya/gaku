@@ -56,7 +56,6 @@ describe 'Admin Enrollment Statuses' do
       end
     end
 
-
     it 'deletes', js: true do
       has_content? enrollment_status.name
       count? 'Enrollment Statuses list(1)'

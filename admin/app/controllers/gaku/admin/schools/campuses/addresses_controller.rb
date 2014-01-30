@@ -1,6 +1,5 @@
 module Gaku
   class Admin::Schools::Campuses::AddressesController < Admin::BaseController
-
     respond_to :js,   only: %i( new create destroy edit update )
 
     before_action :set_address,  only: %i( edit update destroy )
@@ -58,7 +57,5 @@ module Gaku
     def set_countries
       @countries = Country.all
     end
-
   end
 end
-

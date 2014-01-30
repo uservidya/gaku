@@ -1,7 +1,6 @@
 module Gaku
   class Admin::BadgeTypesController < Admin::BaseController
-
-    #load_and_authorize_resource class: Achievement
+    # load_and_authorize_resource class: Achievement
 
     respond_to :js,   only: %i( new edit destroy )
     respond_to :html, only: %i( index create update )
@@ -64,6 +63,5 @@ module Gaku
     def t_resource
       t(:'badge_type.singular')
     end
-
   end
 end

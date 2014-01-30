@@ -103,7 +103,9 @@ describe Gaku::Admin::SchoolYearsController do
         context 'with valid attributes' do
           let(:time_starting) { Time.now - 1.year }
           let(:js_patch) do
-            gaku_js_patch :update, id: school_year, school_year: attributes_for(:school_year, starting: time_starting)
+            gaku_js_patch :update,
+                          id: school_year,
+                          school_year: attributes_for(:school_year, starting: time_starting)
           end
 
           before { js_patch }
@@ -113,14 +115,20 @@ describe Gaku::Admin::SchoolYearsController do
           it('sets flash') { flash_updated? }
           xit("changes school_year's attributes") do
             expect do
-              gaku_js_patch :update, id: school_year, school_year: attributes_for(:school_year, starting: time_starting - 2.years, ending: Time.now)
+              gaku_js_patch :update,
+                            id: school_year,
+                            school_year: attributes_for(:school_year,
+                                                        starting: time_starting - 2.years,
+                                                        ending: Time.now)
             end.to change(school_year.reload, :starting)
           end
         end
 
         context 'with invalid attributes' do
           before do
-            gaku_js_patch :update, id: school_year, school_year: attributes_for(:invalid_school_year)
+            gaku_js_patch :update,
+                          id: school_year,
+                          school_year: attributes_for(:invalid_school_year)
           end
 
           it { should respond_with 200 }

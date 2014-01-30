@@ -27,7 +27,9 @@ Gaku::Core::Engine.routes.draw  do
         end
       end
       resources :campuses, controller: 'schools/campuses', except: :index do
-        resources :contacts, controller: 'schools/campuses/contacts', except: %i( show index ), concerns: %i( soft_delete primary )
+        resources :contacts,
+                  controller: 'schools/campuses/contacts',
+                  except: %i( show index ), concerns: %i( soft_delete primary )
 
         resources :addresses, controller: 'schools/campuses/addresses', except: %i( show index )
       end
@@ -49,8 +51,8 @@ Gaku::Core::Engine.routes.draw  do
     resources :grading_methods
     resources :grading_method_sets, concerns: %i( primary ) do
       resources :grading_method_set_items,
-        controller: 'grading_method_sets/grading_method_set_items',
-        concerns: %i( sort )
+                controller: 'grading_method_sets/grading_method_set_items',
+                concerns: %i( sort )
     end
 
     resources :states do

@@ -1,7 +1,6 @@
 module Gaku
   class Admin::RolesController < Admin::BaseController
-
-    #load_and_authorize_resource class: Role
+    # load_and_authorize_resource class: Role
 
     respond_to :js,   only: %i( new create edit update destroy )
     respond_to :html, only: :index
@@ -49,6 +48,5 @@ module Gaku
     def role_params
       params.require(:role).permit(:name)
     end
-
   end
 end

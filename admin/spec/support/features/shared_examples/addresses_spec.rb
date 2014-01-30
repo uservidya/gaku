@@ -6,7 +6,7 @@ shared_examples 'new address' do
       click new_link
     end
 
-    it 'creates and shows', js:true do
+    it 'creates and shows', js: true do
       expect do
         fill_in 'address_title',    with: 'Primary address'
         select "#{country}",        from: 'country_dropdown'
@@ -20,12 +20,10 @@ shared_examples 'new address' do
 
       has_content? 'Primary address'
       count? 'Addresses list(1)'
-      if page.has_css?(tab_link)
-        within(tab_link)  { has_content? 'Addresses(1)' }
-      end
+      within(tab_link)  { has_content? 'Addresses(1)' } if page.has_css?(tab_link)
     end
 
-    it 'has validations', js:true do
+    it 'has validations', js: true do
       expect do
         click submit
         has_validations?
@@ -44,10 +42,10 @@ shared_examples_for 'edit address' do
     page.has_selector? modal
   end
 
-  it 'edits', js:true do
+  it 'edits', js: true do
     old_address = address.address1
 
-    fill_in 'address_address1', with:'The address new details'
+    fill_in 'address_address1', with: 'The address new details'
     click submit
 
     flash_updated?
@@ -56,8 +54,7 @@ shared_examples_for 'edit address' do
     has_no_content? old_address
   end
 
-
-  it 'errors without required fields', js:true do
+  it 'errors without required fields', js: true do
     fill_in 'address_address1',  with: ''
     fill_in 'address_city',      with: ''
 
@@ -93,7 +90,9 @@ shared_examples_for 'primary addresses' do
     expect(@resource.addresses.first.primary?).to eq true
     expect(@resource.addresses.second.primary?).to eq false
 
-    within("#{table} tr#address-#{@resource.addresses.second.id}") { click_link 'set_primary_link' }
+    within("#{table} tr#address-#{@resource.addresses.second.id}") do
+      click_link 'set_primary_link'
+    end
 
     accept_alert
 
@@ -115,7 +114,7 @@ shared_examples_for 'primary addresses' do
 
     page.find("#{address2_tr} .primary_address a.btn-primary")
 
-    within("#{table} #{address2_tr}") { click '.delete-link'}
+    within("#{table} #{address2_tr}") { click '.delete-link' }
     accept_alert
 
     page.find("#{address1_tr} .primary_address a.btn-primary")
@@ -138,8 +137,7 @@ shared_examples_for 'dynamic state dropdown' do
       select "#{state.name}", from: 'address_state_id'
     end
 
-
-    it 'changes country without state',js: true do
+    it 'changes country without state', js: true do
       select "#{country_without_state}", from: 'country_dropdown'
       within('#state-dropdown') do
         expect(page).to have_css('select#address_state_id[disabled]')
@@ -151,12 +149,11 @@ shared_examples_for 'dynamic state dropdown' do
   context 'edit form' do
     before { click js_edit_link }
 
-    it 'changes country with state',js: true do
+    it 'changes country with state', js: true do
       select "#{country}", from: 'country_dropdown'
       within('#state-dropdown') { has_content? state.name }
       select "#{state.name}", from: 'address_state_id'
     end
-
 
     it 'changes country without state', js: true do
       select "#{country_without_state}", from: 'country_dropdown'
@@ -168,4 +165,3 @@ shared_examples_for 'dynamic state dropdown' do
   end
 
 end
-

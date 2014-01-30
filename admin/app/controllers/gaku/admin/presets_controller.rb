@@ -1,6 +1,5 @@
 module Gaku
   class Admin::PresetsController < Admin::BaseController
-
     respond_to :html, only: %i( index edit update )
     before_action :set_preset, except: :index
 
@@ -59,12 +58,12 @@ module Gaku
     end
 
     def chooser_fields_attr
-      %i( surname name birth_date sex class_name seat_number admitted_on primary_address primary_contact assignments )
+      %i( surname name birth_date sex class_name seat_number
+          admitted_on primary_address primary_contact assignments )
     end
 
     def set_preset
       @preset = Preset.find(params[:id])
     end
-
   end
 end

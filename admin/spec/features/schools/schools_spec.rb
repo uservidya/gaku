@@ -27,7 +27,6 @@ describe 'Admin Schools' do
     it { has_validations? }
   end
 
-
   context 'existing', js: true do
 
     before do

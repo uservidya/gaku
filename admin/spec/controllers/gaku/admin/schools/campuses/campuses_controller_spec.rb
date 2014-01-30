@@ -27,15 +27,19 @@ describe Gaku::Admin::Schools::CampusesController do
         it('renders the :show template') { template? :show }
       end
 
-
       describe 'PATCH #update' do
         context 'with valid attributes' do
           before do
-            gaku_patch :update, id: campus, school_id: school.id, campus: attributes_for(:campus, name: 'test')
+            gaku_patch :update,
+                       id: campus,
+                       school_id: school.id,
+                       campus: attributes_for(:campus, name: 'test')
           end
 
           it { should respond_with 302 }
-          it('redirects to :edit view') { redirect_to? "/admin/schools/#{school.id}/campuses/#{campus.id}/edit"}
+          it('redirects to :edit view') do
+            redirect_to? "/admin/schools/#{school.id}/campuses/#{campus.id}/edit"
+          end
           it('assigns @campus') { expect(assigns(:campus)).to eq campus }
           it('sets flash') { flash_updated? }
           it "changes campus's attributes" do
@@ -46,7 +50,10 @@ describe Gaku::Admin::Schools::CampusesController do
 
         context 'with invalid attributes' do
           before do
-            gaku_patch :update, id: campus, school_id: school.id, campus: attributes_for(:campus, name: '')
+            gaku_patch :update,
+                       id: campus,
+                       school_id: school.id,
+                       campus: attributes_for(:campus, name: '')
           end
 
           it { should respond_with 200 }
@@ -96,7 +103,9 @@ describe Gaku::Admin::Schools::CampusesController do
 
         context 'with invalid attributes' do
           let(:invalid_js_create) do
-            gaku_js_post :create, school_id: school.id, campus: attributes_for(:invalid_campus, name: nil)
+            gaku_js_post :create,
+                         school_id: school.id,
+                         campus: attributes_for(:invalid_campus, name: nil)
           end
 
           it 'does not save the new campus' do

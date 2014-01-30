@@ -73,7 +73,9 @@ describe Gaku::Admin::BadgeTypesController do
       describe 'PATCH #update' do
         context 'with valid attributes' do
           before do
-            gaku_patch :update, id: badge_type, badge_type: attributes_for(:badge_type, name: 'Ruby Champion')
+            gaku_patch :update,
+                       id: badge_type,
+                       badge_type: attributes_for(:badge_type, name: 'Ruby Champion')
           end
 
           it { should respond_with 302 }
@@ -87,7 +89,10 @@ describe Gaku::Admin::BadgeTypesController do
 
         context 'with invalid attributes' do
           before do
-            gaku_patch :update, id: badge_type, badge_type: attributes_for(:invalid_badge_type, description: 'Ruby Champion')
+            gaku_patch :update,
+                       id: badge_type,
+                       badge_type: attributes_for(:invalid_badge_type,
+                                                  description: 'Ruby Champion')
           end
 
           it { should respond_with 302 }

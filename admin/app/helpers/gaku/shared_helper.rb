@@ -1,6 +1,5 @@
 module Gaku
   module SharedHelper
-
     def can_edit?
       %w( edit create update ).include? controller.action_name
     end
@@ -20,6 +19,5 @@ module Gaku
     def render_flash
       escape_javascript(render 'gaku/shared/flash', flash: flash)
     end
-
   end
 end

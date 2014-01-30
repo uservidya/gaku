@@ -1,7 +1,6 @@
 module Gaku
   class Admin::SpecialtiesController < Admin::BaseController
-
-    #load_and_authorize_resource class: Specialty
+    # load_and_authorize_resource class: Specialty
 
     respond_to :js,   only: %i( new create edit update destroy )
     respond_to :html, only: :index
@@ -58,6 +57,5 @@ module Gaku
     def attributes
       %i(name description major_only department_id)
     end
-
   end
 end

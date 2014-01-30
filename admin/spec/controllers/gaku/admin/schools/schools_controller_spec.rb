@@ -65,7 +65,7 @@ describe Gaku::Admin::SchoolsController do
           end
 
           it { should respond_with 302 }
-          it('redirects to :edit view') { redirect_to? "/admin/schools/#{school.id}/edit"}
+          it('redirects to :edit view') { redirect_to? "/admin/schools/#{school.id}/edit" }
           it('assigns @school') { expect(assigns(:school)).to eq school }
           it('sets flash') { flash_updated? }
           it "changes school's attributes" do
@@ -92,11 +92,12 @@ describe Gaku::Admin::SchoolsController do
       describe 'PATCH #update_master' do
         context 'with valid attributes' do
           before do
-            gaku_patch :update_master, id: master_school, school: attributes_for(:school, name: 'test')
+            gaku_patch :update_master,
+                       id: master_school, school: attributes_for(:school, name: 'test')
           end
 
           it { should respond_with 302 }
-          it('redirects to :edit_master view') { redirect_to? "/admin/school_details/edit"}
+          it('redirects to :edit_master view') { redirect_to? '/admin/school_details/edit' }
           it('assigns @school') { expect(assigns(:school)).to eq master_school }
           it('sets flash') { flash_updated? }
           it "changes school's attributes" do

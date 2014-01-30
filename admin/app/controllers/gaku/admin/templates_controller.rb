@@ -1,7 +1,6 @@
 module Gaku
   module Admin
     class TemplatesController < Admin::BaseController
-
       responders :collection
 
       respond_to :js,   only: %i( destroy )
@@ -65,8 +64,6 @@ module Gaku
       def attributes
         %i( name context locked file )
       end
-
     end
-
   end
 end

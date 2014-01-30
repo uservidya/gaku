@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'Admin School Years' do
 
-  let(:school_year) { create(:school_year)}
+  let(:school_year) { create(:school_year) }
 
   before { as :admin }
 
@@ -41,7 +41,6 @@ describe 'Admin School Years' do
         page.should_not have_content 'The Ending Date must come after the Starting Date'
         flash_created?
       end
-
 
       it 'has validations' do
         fill_in 'school_year_starting', with: ''

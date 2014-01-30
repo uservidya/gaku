@@ -10,7 +10,10 @@ describe 'Admin Program' do
   let!(:syllabus) { create(:syllabus, name: 'Ruby Ninja Championship') }
   let!(:specialty) { create(:specialty, name: 'Ruby throw exception') }
 
-  let(:program) { create(:program, :with_program_level, :with_program_syllabus, :with_program_specialty, school: school) }
+  let(:program) do
+    create(:program, :with_program_level, :with_program_syllabus,
+           :with_program_specialty, school: school)
+  end
 
   before :all do
     set_resource 'admin-school-program'
@@ -89,7 +92,6 @@ describe 'Admin Program' do
         flash_updated?
 
         within(table) { page.should have_content 'Rails Samurai' }
-
 
         %w(level syllabus specialty).each do |resource|
           click ".program-#{resource.pluralize}-list"

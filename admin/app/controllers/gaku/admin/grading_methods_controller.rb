@@ -1,7 +1,6 @@
 module Gaku
   class Admin::GradingMethodsController < Admin::BaseController
-
-    #load_and_authorize_resource class: GradingMethod
+    # load_and_authorize_resource class: GradingMethod
 
     respond_to :js,   only: %i( new create edit update destroy )
     respond_to :html, only: :index
@@ -55,6 +54,5 @@ module Gaku
     def attributes
       %i( description method name curved criteria )
     end
-
   end
 end

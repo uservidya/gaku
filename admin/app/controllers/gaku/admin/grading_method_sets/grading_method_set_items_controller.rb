@@ -1,6 +1,5 @@
 module Gaku
   class Admin::GradingMethodSets::GradingMethodSetItemsController < Admin::BaseController
-
     respond_to :js,   only: %i( new create edit update destroy )
 
     before_action :set_grading_method_set_item, only: %i( edit update destroy )
@@ -65,6 +64,5 @@ module Gaku
     def attributes
       %i(position grading_method_id grading_method_set_id)
     end
-
   end
 end

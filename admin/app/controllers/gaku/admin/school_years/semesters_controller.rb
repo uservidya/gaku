@@ -1,11 +1,9 @@
 module Gaku
   class Admin::SchoolYears::SemestersController < Admin::BaseController
-
     respond_to :js, only: %i( new create edit update destroy )
 
     before_action :set_school_year
     before_action :set_semester, only: %i( edit update destroy )
-
 
     def new
       @semester = Semester.new
@@ -53,6 +51,5 @@ module Gaku
     def attributes
       %i( starting ending )
     end
-
   end
 end

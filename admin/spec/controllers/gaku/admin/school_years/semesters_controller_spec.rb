@@ -22,7 +22,8 @@ describe Gaku::Admin::SchoolYears::SemestersController do
       describe 'POST #create' do
         context 'with valid attributes' do
           let(:valid_js_create) do
-            gaku_js_post :create, school_year_id: school_year.id,  semester: attributes_for(:semester)
+            gaku_js_post :create,
+                         school_year_id: school_year.id,  semester: attributes_for(:semester)
           end
 
           it 'creates new semester' do
@@ -44,7 +45,8 @@ describe Gaku::Admin::SchoolYears::SemestersController do
 
         context 'with invalid attributes' do
           let(:invalid_js_create) do
-            gaku_js_post :create, school_year_id: school_year, semester: attributes_for(:invalid_semester)
+            gaku_js_post :create,
+                         school_year_id: school_year, semester: attributes_for(:invalid_semester)
           end
 
           xit 'does not save the new semester' do
@@ -77,7 +79,10 @@ describe Gaku::Admin::SchoolYears::SemestersController do
         context 'with valid attributes' do
           let(:time_starting) { Time.now - 1.year }
           let(:js_patch) do
-            gaku_js_patch :update, id: semester, school_year_id: school_year, semester: attributes_for(:semester, starting: time_starting)
+            gaku_js_patch :update,
+                          id: semester,
+                          school_year_id: school_year,
+                          semester: attributes_for(:semester, starting: time_starting)
           end
 
           before { js_patch }
@@ -87,14 +92,21 @@ describe Gaku::Admin::SchoolYears::SemestersController do
           it('sets flash') { flash_updated? }
           xit("changes semester's attributes") do
             expect do
-              gaku_js_patch :update, id: semester,school_year_id: school_year, semester: attributes_for(:semester, starting: time_starting - 2.years, ending: Time.now)
+              gaku_js_patch :update,
+                            id: semester,
+                            school_year_id: school_year,
+                            semester: attributes_for(:semester, starting: time_starting - 2.years,
+                                                                ending: Time.now)
             end.to change(semester.reload, :starting)
           end
         end
 
         context 'with invalid attributes' do
           before do
-            gaku_js_patch :update, id: semester, school_year_id: school_year, semester: attributes_for(:invalid_semester)
+            gaku_js_patch :update,
+                          id: semester,
+                          school_year_id: school_year,
+                          semester: attributes_for(:invalid_semester)
           end
 
           it { should respond_with 200 }

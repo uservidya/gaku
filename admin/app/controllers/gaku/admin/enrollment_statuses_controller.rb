@@ -1,7 +1,6 @@
 module Gaku
   class Admin::EnrollmentStatusesController < Admin::BaseController
-
-    #load_and_authorize_resource class: EnrollmentStatus
+    # load_and_authorize_resource class: EnrollmentStatus
 
     respond_to :js,   only: %i( new create edit update destroy )
     respond_to :html, only: :index
@@ -53,6 +52,5 @@ module Gaku
     def attributes
       %i(code name active immutable)
     end
-
   end
 end
