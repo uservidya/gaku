@@ -49,6 +49,10 @@
 .center-block {float: none !important}
 
 // for fix --------
+.popover {
+  max-width: none;
+}
+
 .btn .btn-xs {
   width: 24px;
 }
@@ -101,6 +105,10 @@
   .panel:last-child {
     margin-bottom: 0px;
   }
+}
+
+.thumbnail {
+  cursor: pointer;
 }
 
 // theme main --------

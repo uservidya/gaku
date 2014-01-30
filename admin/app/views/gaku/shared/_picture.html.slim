@@ -1,8 +1,22 @@
-= image_tag resource.picture.url(:thumb), id: "avatar-picture", class: "img-thumbnail"
-
 - if can_edit?
-  .row.mt-m
-    .col-md-12
-      = link_to_upload_image 'JavaScript:void(0);', method: :get, id: "upload-picture-link"
-      #upload-picture.d-none
-        = render 'gaku/shared/upload_picture', resource: resource
+  a.thumbnail.mb-0#thumb-picture
+    = image_tag resource.picture.url(:thumb), id: "avatar-picture"
+  #popover-upload-picture.d-none
+    .row
+      .col-sm-12
+        = link_to_upload_image 'JavaScript:void(0);', method: :get, id: "upload-picture-link", style: "width: 280px"
+        #upload-picture.d-none
+          .row
+            .col-sm-9.mt-s
+              = render 'gaku/shared/upload_picture', resource: resource
+  coffee:
+    $(document).ready ->
+      $('#thumb-picture').popover
+        placement: 'bottom'
+        html: true
+        content: $("#popover-upload-picture")[0].innerHTML
+
+
+- else
+  a.thumbnail.mb-0
+    = image_tag resource.picture.url(:thumb), id: "avatar-picture"

@@ -1,5 +1,5 @@
 .row
-  .col-sm-8
+  .col-sm-8.col-lg-9
     .row
       .col-sm-6
         = f.text_field :surname_reading, label: surname_reading_label
@@ -10,10 +10,18 @@
         = f.text_field :surname, label: surname_label
       .col-sm-6
         = f.text_field :name, label: name_label
-  .col-sm-4
-    = render 'gaku/shared/picture', resource: person
+  .col-sm-4.col-lg-3
+    /.form-group.text-center
+    .form-group
+      label.control-label = t(:picture)
+      .controls
+        = render 'gaku/shared/picture', resource: person
 .row
   .col-sm-6
     = f.text_field :birth_date, class: "datepicker", label: t(:birth_date)
   .col-sm-6
     = f.select :gender, genders, {prompt: t(:'gender.choose'), selected: person.gender}, label: t(:'gender.label')
+
+coffee:
+  jQuery ->
+    $("#avatar-picture").css height:"98px"
