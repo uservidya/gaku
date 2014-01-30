@@ -14,9 +14,7 @@ describe Gaku::ExtracurricularActivity do
 
   describe '#to_s' do
     let(:extracurricular_activity) { build(:extracurricular_activity) }
-    specify do
-      extracurricular_activity.to_s.should eq extracurricular_activity.name
-    end
+    specify { extracurricular_activity.to_s.should eq extracurricular_activity.name }
   end
 
 end

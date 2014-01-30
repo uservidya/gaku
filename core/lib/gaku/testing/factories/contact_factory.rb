@@ -6,9 +6,7 @@ FactoryGirl.define do
     contact_type
 
     after(:build) do |contact|
-      if contact.contactable.respond_to?(:contacts)
-        contact.contactable.contacts.reload
-      end
+      contact.contactable.contacts.reload if contact.contactable.respond_to?(:contacts)
     end
 
     factory :invalid_contact do

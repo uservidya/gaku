@@ -14,8 +14,8 @@ describe Gaku::ExtracurricularActivityEnrollment do
 
     it do
       should validate_uniqueness_of(:student_id)
-        .scoped_to(:extracurricular_activity_id)
-        .with_message(/Already enrolled to the extracurricular activity!/)
+               .scoped_to(:extracurricular_activity_id)
+               .with_message(/Already enrolled to the extracurricular activity!/)
     end
   end
 

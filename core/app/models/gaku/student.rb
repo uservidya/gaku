@@ -35,7 +35,7 @@ module Gaku
 
     accepts_nested_attributes_for :guardians, allow_destroy: true
     accepts_nested_attributes_for :class_group_enrollments,
-      reject_if: proc { |attributes| attributes[:class_group_id].blank? }
+                                  reject_if: proc { |attributes| attributes[:class_group_id].blank? }
 
     before_create :set_scholarship_status
     after_create  :set_serial_id
@@ -80,8 +80,7 @@ module Gaku
     end
 
     def active
-      enrollment_status =
-        EnrollmentStatus.find_by(code: enrollment_status_code)
+      enrollment_status = EnrollmentStatus.find_by(code: enrollment_status_code)
       if enrollment_status
         enrollment_status.active?
       else
@@ -100,8 +99,7 @@ module Gaku
     end
 
     def set_code
-      update_column(:code,
-                    "#{major_specialty_code}-#{admitted_code}-#{serial_id}")
+      update_column(:code, "#{major_specialty_code}-#{admitted_code}-#{serial_id}")
     end
 
     def set_serial_id

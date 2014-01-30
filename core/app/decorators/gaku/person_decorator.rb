@@ -47,9 +47,7 @@ module Gaku
         when '%last' then proper_name(:surname, reading)
         end
       end
-      if object.middle_name.blank?
-        return result.gsub(/[^[[:word:]]\s]/, '').gsub(/\s+/, ' ').strip
-      end
+      return result.gsub(/[^[[:word:]]\s]/, '').gsub(/\s+/, ' ').strip if object.middle_name.blank?
       result.gsub(/\s+/, ' ').strip
     end
 

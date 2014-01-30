@@ -12,8 +12,7 @@ FactoryGirl.define do
       syllabus = create(:syllabus)
       specialty = create(:specialty)
       create(:program_level, level: level, program: program)
-      create(:program_syllabus, level: level,
-                                program: program, syllabus: syllabus)
+      create(:program_syllabus, level: level, program: program, syllabus: syllabus)
       create(:program_specialty, specialty: specialty, program: program)
     end
   end

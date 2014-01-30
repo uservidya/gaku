@@ -10,9 +10,7 @@ describe Gaku::Course do
     it { should have_many(:course_groups).through(:course_group_enrollments) }
 
     it { should have_many :class_group_course_enrollments }
-    it do
-      should have_many(:class_groups).through(:class_group_course_enrollments)
-    end
+    it { should have_many(:class_groups).through(:class_group_course_enrollments) }
 
     it { should have_many(:semester_courses).dependent(:destroy) }
     it { should have_many(:semesters).through(:semester_courses) }
@@ -33,10 +31,8 @@ describe Gaku::Course do
       course = create(:course)
       student1, student2 = create(:student), create(:student, name: 'gaku')
       class_group = create(:class_group)
-      create(:class_group_enrollment,
-             student_id: student1.id, class_group_id: class_group.id)
-      create(:class_group_enrollment,
-             student_id: student2.id, class_group_id: class_group.id)
+      create(:class_group_enrollment, student_id: student1.id, class_group_id: class_group.id)
+      create(:class_group_enrollment, student_id: student2.id, class_group_id: class_group.id)
       course.enroll_class_group(class_group)
       course.student_ids.include?(student1.id)
       course.student_ids.include?(student2.id)

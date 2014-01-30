@@ -8,8 +8,7 @@ module Gaku
         if badge.badge_type.badge_image_file_name.nil?
           badge.badge_type.name
         else
-          "#{badge.badge_type.name} (#{
-           h.resize_image(badge.badge_type.badge_image, size: 22)})"
+          "#{badge.badge_type.name} (#{h.resize_image(badge.badge_type.badge_image, size: 22)})"
         end
       end
     end

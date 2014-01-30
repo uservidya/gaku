@@ -52,9 +52,7 @@ module Gaku
     end
 
     def after_sign_in_path_for(resource_or_scope)
-      unless current_user.settings[:locale].blank?
-        I18n.locale = current_user.settings[:locale]
-      end
+      I18n.locale = current_user.settings[:locale] unless current_user.settings[:locale].blank?
       super
     end
 

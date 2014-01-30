@@ -9,9 +9,7 @@ describe Gaku::ClassGroup do
   describe 'associations' do
     it { should have_many :enrollments }
     it { should have_many(:students).through(:enrollments) }
-    it do
-      should have_many(:class_group_course_enrollments).dependent(:destroy)
-    end
+    it { should have_many(:class_group_course_enrollments).dependent(:destroy) }
     it { should have_many(:courses).through(:class_group_course_enrollments) }
     it { should have_many(:semester_class_groups).dependent(:destroy) }
     it { should have_many(:semesters).through(:semester_class_groups) }
@@ -23,9 +21,7 @@ describe Gaku::ClassGroup do
 
   describe '#to_s' do
     let(:class_group) { build(:class_group) }
-    specify do
-      class_group.to_s.should eq "#{class_group.grade} - #{class_group.name}"
-    end
+    specify { class_group.to_s.should eq "#{class_group.grade} - #{class_group.name}" }
   end
 
   context 'counter_cache' do

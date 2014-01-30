@@ -35,16 +35,11 @@ module Gaku
     def test_dummy_config
       @lib_name = options[:lib_name]
 
-      template 'rails/database.yml',
-               "#{dummy_path}/config/database.yml", force: true
-      template 'rails/boot.rb',
-               "#{dummy_path}/config/boot.rb", force: true
-      template 'rails/application.rb',
-               "#{dummy_path}/config/application.rb", force: true
-      template 'rails/routes.rb',
-               "#{dummy_path}/config/routes.rb", force: true
-      template 'rails/script/rails',
-               "#{dummy_path}/spec/dummy/script/rails", force: true
+      template 'rails/database.yml', "#{dummy_path}/config/database.yml", force: true
+      template 'rails/boot.rb', "#{dummy_path}/config/boot.rb", force: true
+      template 'rails/application.rb', "#{dummy_path}/config/application.rb", force: true
+      template 'rails/routes.rb', "#{dummy_path}/config/routes.rb", force: true
+      template 'rails/script/rails', "#{dummy_path}/spec/dummy/script/rails", force: true
     end
 
     def test_dummy_clean
@@ -80,8 +75,7 @@ module Gaku
       @application_definition ||= begin
 
         dummy_application_path =
-          File.expand_path("#{dummy_path}/config/application.rb",
-                           destination_root)
+          File.expand_path("#{dummy_path}/config/application.rb", destination_root)
         unless options[:pretend] || !File.exists?(dummy_application_path)
           contents = File.read(dummy_application_path)
           contents[(contents.index("module #{module_name}"))..-1]

@@ -10,10 +10,7 @@ describe Gaku::GradingMethod do
     it { should have_many :simple_grade_types }
 
     it { should have_many :grading_method_set_items }
-    it do
-      should have_many(:grading_method_sets)
-               .through(:grading_method_set_items)
-    end
+    it { should have_many(:grading_method_sets).through(:grading_method_set_items) }
   end
 
   describe 'validations' do

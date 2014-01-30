@@ -28,15 +28,9 @@ describe Gaku::Address do
   end
 
   describe 'addressable scopes' do
-    let!(:student_address) do
-      create(:address, addressable_type: 'Gaku::Student')
-    end
-    let!(:teacher_address) do
-      create(:address, addressable_type: 'Gaku::Teacher')
-    end
-    let!(:guardian_address) do
-      create(:address, addressable_type: 'Gaku::Guardian')
-    end
+    let!(:student_address) { create(:address, addressable_type: 'Gaku::Student') }
+    let!(:teacher_address) { create(:address, addressable_type: 'Gaku::Teacher') }
+    let!(:guardian_address) { create(:address, addressable_type: 'Gaku::Guardian') }
 
     describe '.students' do
       it 'returns records with address type Student' do
@@ -71,8 +65,7 @@ describe Gaku::Address do
 
   describe '#make_primary' do
     it 'sets primary: false except self' do
-      address2 = create(:address, country: country,
-                                  addressable: student, primary: true)
+      address2 = create(:address, country: country, addressable: student, primary: true)
       address.make_primary
       address2.reload
       expect(address2.primary).to be_false

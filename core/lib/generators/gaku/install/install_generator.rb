@@ -5,8 +5,7 @@ require 'bundler/cli'
 
 module Gaku
   class InstallGenerator < Rails::Generators::Base
-    class_option :migrate, type: :boolean, default: true,
-                           banner: 'Run Gaku migrations'
+    class_option :migrate, type: :boolean, default: true, banner: 'Run Gaku migrations'
     class_option :seed, type: :boolean, default: true,
                         banner: 'load seed data (migrations must be run)'
     class_option :auto_accept, type: :boolean
@@ -36,15 +35,9 @@ module Gaku
     def setup_assets
       @lib_name = 'gaku'
       %w{javascripts stylesheets images}.each do |path|
-        if defined? Gaku::Frontend || Rails.env.test?
-          empty_directory "app/assets/#{path}/gaku/frontend"
-        end
-        if defined? Gaku::Admin || Rails.env.test?
-          empty_directory "app/assets/#{path}/gaku/admin"
-        end
-        if defined? Gaku::Archive || Rails.env.test?
-          empty_directory "app/assets/#{path}/gaku/archive"
-        end
+        empty_directory "app/assets/#{path}/gaku/frontend" if defined? Gaku::Frontend || Rails.env.test?
+        empty_directory "app/assets/#{path}/gaku/admin" if defined? Gaku::Admin || Rails.env.test?
+        empty_directory "app/assets/#{path}/gaku/archive" if defined? Gaku::Archive || Rails.env.test?
       end
 
       if defined? Gaku::Frontend || Rails.env.test?
@@ -117,8 +110,7 @@ Gaku::Core::Engine.load_seed if defined?(Gaku::Core)
         say_status :running, 'migrations'
         rake 'db:migrate', env: @env
       else
-        say_status :skipping,
-                   "migrations (don't forget to run rake db:migrate)"
+        say_status :skipping, "migrations (don't forget to run rake db:migrate)"
       end
     end
 

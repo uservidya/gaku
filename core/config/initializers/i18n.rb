@@ -16,13 +16,9 @@ module I18n
           _key = _key.to_sym
           return nil unless result.is_a?(Hash) && result.key?(_key)
           result = result[_key]
-          if result.is_a?(Symbol)
-            result = resolve(locale, _key, result, options.merge(scope: nil))
-          end
+          result = resolve(locale, _key, result, options.merge(scope: nil)) if result.is_a?(Symbol)
 
-          if ENV['I18N_DEBUG'] && (result.class == String)
-            puts "\t\t => " + result.to_s + "\n"
-          end
+          puts "\t\t => " + result.to_s + "\n" if ENV['I18N_DEBUG'] && (result.class == String)
 
           result
         end

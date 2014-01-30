@@ -1,7 +1,6 @@
 module Gaku
   class EnrollmentStatus < ActiveRecord::Base
-    has_many :students,
-             foreign_key: :enrollment_status_code, primary_key: :code
+    has_many :students, foreign_key: :enrollment_status_code, primary_key: :code
 
     translates :name
 

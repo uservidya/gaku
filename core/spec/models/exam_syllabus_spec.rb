@@ -12,7 +12,7 @@ describe Gaku::ExamSyllabus do
     it { should validate_presence_of :syllabus_id }
     it do
       should validate_uniqueness_of(:syllabus_id)
-        .scoped_to(:exam_id).with_message(/Exam already added!/)
+               .scoped_to(:exam_id).with_message(/Exam already added!/)
     end
   end
 

@@ -2,8 +2,7 @@ module Gaku
   module Migrations
     def self.included(base)
       ActiveRecord::ConnectionAdapters::Table.send :include, TableDefinition
-      ActiveRecord::ConnectionAdapters::TableDefinition.send :include,
-                                                             TableDefinition
+      ActiveRecord::ConnectionAdapters::TableDefinition.send :include, TableDefinition
     end
 
     module TableDefinition

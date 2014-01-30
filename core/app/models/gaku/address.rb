@@ -73,15 +73,14 @@ module Gaku
     end
 
     def ensure_first_primary
-      if addressable.respond_to?(:addresses)
-        self.primary = true if addressable.addresses.blank?
+      if addressable.respond_to?(:addresses) && addressable.addresses.blank?
+        self.primary = true
       end
     end
 
     def update_primary_address_field
       if addressable && addressable.has_attribute?(:primary_address)
-        addressable.update_attribute(:primary_address,
-                                     addressable.address_widget)
+        addressable.update_attribute(:primary_address, addressable.address_widget)
       end
     end
   end

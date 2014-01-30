@@ -59,8 +59,8 @@ module Gaku
     end
 
     def ensure_first_is_primary
-      if contactable.respond_to? :contacts
-        self.primary = true if contacts.blank?
+      if contactable.respond_to?(:contacts) && contacts.blank?
+        self.primary = true
       end
     end
 
@@ -70,8 +70,7 @@ module Gaku
 
     def update_primary_contact_field
       if contactable.has_attribute? :primary_contact
-        contactable.update_attribute(:primary_contact,
-                                     contactable.contact_widget)
+        contactable.update_attribute(:primary_contact, contactable.contact_widget)
       end
     end
 

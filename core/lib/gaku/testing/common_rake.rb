@@ -1,6 +1,4 @@
-unless defined?(Gaku::InstallGenerator)
-  require 'generators/gaku/install/install_generator'
-end
+require 'generators/gaku/install/install_generator' unless defined?(Gaku::InstallGenerator)
 
 desc 'Generates a dummy app for testing'
 namespace :common do

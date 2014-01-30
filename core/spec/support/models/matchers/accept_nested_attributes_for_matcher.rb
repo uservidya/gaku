@@ -3,8 +3,7 @@
   RSpec::Matchers.define :accept_nested_attributes_for do |association|
     match do |model|
       @model = model
-      @nested_att_present =
-        model.respond_to?("#{association}_attributes=".to_sym)
+      @nested_att_present = model.respond_to?("#{association}_attributes=".to_sym)
       if @nested_att_present && @reject
         model.send("#{association}_attributes=".to_sym, [@reject])
         @reject_success = model.send("#{association}").empty?
@@ -13,24 +12,19 @@
         model.send("#{association}_attributes=".to_sym, [@accept])
         @accept_success = ! (model.send("#{association}").empty?)
       end
-      @nested_att_present &&
-        (@reject.nil? || @reject_success) && (@accept.nil? || @accept_success)
+      @nested_att_present && (@reject.nil? || @reject_success) && (@accept.nil? || @accept_success)
     end
 
     failure_message_for_should do
       messages = []
       unless @nested_att_present
-        messages << "expected #{
-                     @model.class} to accept nested attributes for #{
-                     association}"
+        messages << "expected #{@model.class} to accept nested attributes for #{association}"
       end
       unless @reject_success
-        messages << "expected #{@model.class} to reject values #{
-                     @reject.inspect} for association #{association}"
+        messages << "expected #{@model.class} to reject values #{@reject.inspect} for association #{association}"
       end
       unless @accept_success
-        messages << "expected #{@model.class} to accept values #{
-                     @accept.inspect} for association #{association}"
+        messages << "expected #{@model.class} to accept values #{@accept.inspect} for association #{association}"
       end
       messages.join(', ')
     end

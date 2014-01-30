@@ -4,12 +4,14 @@ development:
   database: gaku_development
   username: postgres
   min_messages: warning
+  host: localhost
 test:
   host: localhost
   adapter: postgresql
   database: gaku_test
   username: postgres
   min_messages: warning
+  host: localhost
 production:
   adapter: postgresql
   database: gaku_production
