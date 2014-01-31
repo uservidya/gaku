@@ -1,6 +1,5 @@
 module Gaku
   class Admin::Schools::ProgramsController < Admin::BaseController
-
     respond_to :js,
                only: %i( new create destroy edit update show_program_levels show_program_specialties show_program_syllabuses )
 

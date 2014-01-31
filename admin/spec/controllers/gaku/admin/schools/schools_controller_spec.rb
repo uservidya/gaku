@@ -108,7 +108,8 @@ describe Gaku::Admin::SchoolsController do
 
         context 'with invalid attributes' do
           before do
-            gaku_patch :update, id: master_school, school: attributes_for(:invalid_school, name: '')
+            gaku_patch :update,
+                       id: master_school, school: attributes_for(:invalid_school, name: '')
           end
 
           it { should respond_with 200 }
