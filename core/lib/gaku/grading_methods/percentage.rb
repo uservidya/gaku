@@ -1,9 +1,8 @@
 class  Gaku::GradingMethods::Percentage < Gaku::GradingMethods::BaseMethod
-  def initialize(exam, students)
-    super
-  end
 
-  def grade
+  private
+
+  def grade_exam
     @results = Hash.new { |hash, key| hash[key] = {} }
     @students.each do |student|
       @results[@exam.id][student.id] = nil
