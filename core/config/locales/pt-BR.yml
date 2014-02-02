@@ -380,6 +380,7 @@ pt-BR:
       unlocked: 
     username: 
   edit: 
+  eg: 
   email: 
   empty: 
   enroll_to_class: 
@@ -546,6 +547,7 @@ pt-BR:
   grading_method:
     add: 
     add_argument: 
+    add_criteria: 
     arguments: 
     choose: 
     criteria: 
@@ -562,6 +564,7 @@ pt-BR:
     plural: 
     ratio: 
     remove_argument: 
+    remove_criteria: 
     save: 
     score: 
     singular: 

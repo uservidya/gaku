@@ -382,6 +382,7 @@ bg:
       unlocked: Вашият акаунт е отключен успешно. В момента сте в системата.
     username: Потребителско Име
   edit: Редактиране
+  eg: 
   email: Поща
   empty: 
   enroll_to_class: Записване в клас
@@ -550,6 +551,7 @@ bg:
   grading_method:
     add: 
     add_argument: 
+    add_criteria: 
     arguments: 
     choose: 
     criteria: 
@@ -566,6 +568,7 @@ bg:
     plural: 
     ratio: 
     remove_argument: 
+    remove_criteria: 
     save: Запази
     score: 
     singular: 

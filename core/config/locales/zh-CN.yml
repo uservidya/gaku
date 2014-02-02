@@ -380,6 +380,7 @@ zh-CN:
       unlocked: 
     username: 
   edit: 
+  eg: 
   email: 
   empty: 
   enroll_to_class: 
@@ -546,6 +547,7 @@ zh-CN:
   grading_method:
     add: 
     add_argument: 
+    add_criteria: 
     arguments: 
     choose: 
     criteria: 
@@ -562,6 +564,7 @@ zh-CN:
     plural: 
     ratio: 
     remove_argument: 
+    remove_criteria: 
     save: 
     score: 
     singular: 
