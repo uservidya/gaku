@@ -4,6 +4,7 @@ module Gaku
     # check_authorization
 
     rescue_from CanCan::AccessDenied do |exception|
+      session[:previous_url] = request.fullpath unless request.fullpath =~ /\/users/
       redirect_to root_url, alert: exception.message
     end
 
