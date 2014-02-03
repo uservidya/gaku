@@ -1,21 +1,33 @@
 .row
-  .col-sm-8.col-lg-9
-    .row
-      .col-sm-6
-        = f.text_field :surname_reading, label: surname_reading_label
-      .col-sm-6
-        = f.text_field :name_reading, label: name_reading_label
-    .row
-      .col-sm-6
-        = f.text_field :surname, label: surname_label
-      .col-sm-6
-        = f.text_field :name, label: name_label
-  .col-sm-4.col-lg-3
-    /.form-group.text-center
-    .form-group
-      label.control-label = t(:picture)
-      .controls
-        = render 'gaku/shared/picture', resource: person
+  - if can_edit?
+    .col-sm-8.col-lg-9
+      .row
+        .col-sm-6
+          = f.text_field :surname_reading, label: surname_reading_label
+        .col-sm-6
+          = f.text_field :name_reading, label: name_reading_label
+      .row
+        .col-sm-6
+          = f.text_field :surname, label: surname_label
+        .col-sm-6
+          = f.text_field :name, label: name_label
+    .col-sm-4.col-lg-3
+      .form-group
+        label.control-label = t(:picture)
+        .controls
+          = render 'gaku/shared/picture', resource: person, f: f
+  - else
+    .col-sm-12
+      .row
+        .col-sm-6
+          = f.text_field :surname_reading, label: surname_reading_label
+        .col-sm-6
+          = f.text_field :name_reading, label: name_reading_label
+      .row
+        .col-sm-6
+          = f.text_field :surname, label: surname_label
+        .col-sm-6
+          = f.text_field :name, label: name_label
 .row
   .col-sm-6
     = f.text_field :birth_date, class: "datepicker", label: t(:birth_date)

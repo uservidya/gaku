@@ -176,6 +176,8 @@ zh-CN:
     save: 
     show: 
     singular: 
+    with_semester: 
+    without_semester: 
   class_group_course_enrollment:
     save: 
     singular: 
@@ -378,6 +380,7 @@ zh-CN:
       unlocked: 
     username: 
   edit: 
+  eg: 
   email: 
   empty: 
   enroll_to_class: 
@@ -544,8 +547,10 @@ zh-CN:
   grading_method:
     add: 
     add_argument: 
+    add_criteria: 
     arguments: 
     choose: 
+    criteria: 
     curved: 
     description: 
     edit: 
@@ -559,6 +564,7 @@ zh-CN:
     plural: 
     ratio: 
     remove_argument: 
+    remove_criteria: 
     save: 
     score: 
     singular: 
@@ -865,10 +871,22 @@ zh-CN:
   show: 
   simple_grade:
     add: 
+    award_date: 
     edit: 
     grade: 
     index: 
     list: 
+    plural: 
+    save: 
+    score: 
+    singular: 
+  simple_grade_type:
+    add: 
+    edit: 
+    list: 
+    max_score: 
+    name: 
+    passing_score: 
     plural: 
     save: 
     singular: 
