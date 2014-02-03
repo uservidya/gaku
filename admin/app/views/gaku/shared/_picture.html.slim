@@ -11,10 +11,19 @@
               = render 'gaku/shared/upload_picture', resource: resource, f: f
   coffee:
     $(document).ready ->
+      pf = null
+      $('#thumb-picture').attr 'data-content', $("#popover-upload-picture")[0].innerHTML
       $('#thumb-picture').popover
         placement: 'bottom'
         html: true
-        content: $("#popover-upload-picture")[0].innerHTML
+      $('#thumb-picture').on 'show.bs.popover', ->
+        if pf
+          console.log 111
+      $('#thumb-picture').on 'hide.bs.popover', ->
+        pf = $('#thumb-picture').data('bs.popover').tip().find(".popover-content > .row")
+        $("#popover-upload-picture").empty()
+        $("#popover-upload-picture").append pf
+        $('#thumb-picture').attr 'data-content', $("#popover-upload-picture")[0].innerHTML
 
 
 - else
