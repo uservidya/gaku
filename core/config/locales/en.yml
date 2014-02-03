@@ -160,8 +160,6 @@ en:
     user: Changed by
   class: Class
   class_group:
-    with_semester: With Semester
-    without_semester: Without Semester
     add: Add Class Group
     already_enrolled: Already enrolled to the class group!
     choose: Choose Class Group
@@ -178,6 +176,8 @@ en:
     save: Save Class Group
     show: Show
     singular: Class Group
+    with_semester: With Semester
+    without_semester: Without Semester
   class_group_course_enrollment:
     save: Save Course to Class Group
     singular: Course
@@ -382,6 +382,7 @@ en:
       unlocked: Your account was successfully unlocked. You are now signed in.
     username: Username
   edit: Edit
+  eg: eg
   email: Email
   empty: Empty
   enroll_to_class: Enroll to class
@@ -550,8 +551,10 @@ en:
   grading_method:
     add: Add Grading Method
     add_argument: Add Argument
+    add_criteria: Add Criteria
     arguments: Arguments
     choose: Choose Grading Method
+    criteria: Criteria
     curved: Curved
     description: Description
     edit: Edit Grading Method
@@ -565,6 +568,7 @@ en:
     plural: Grading Methods
     ratio: Ratio
     remove_argument: Remove Argument
+    remove_criteria: Remove Criteria
     save: Save Grading Method
     score: Score
     singular: Grading Method
@@ -871,15 +875,15 @@ en:
   show: Show
   simple_grade:
     add: Add Simple Grade
+    award_date: Award Date
     edit: Edit Simple Grade
     grade: Grade
     index: Simple Grade Index
     list: Simple Grades list
     plural: Simple Grades
     save: Save Simple Grade
-    singular: Simple Grade
     score: Score
-    award_date: Award Date
+    singular: Simple Grade
   simple_grade_type:
     add: Add Simple Grade Type
     edit: Edit Simple Grade Type
