@@ -8,7 +8,7 @@
         #upload-picture.d-none
           .row
             .col-sm-9.mt-s
-              = render 'gaku/shared/upload_picture', resource: resource
+              = render 'gaku/shared/upload_picture', resource: resource, f: f
   coffee:
     $(document).ready ->
       $('#thumb-picture').popover
