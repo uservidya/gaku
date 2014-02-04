@@ -12,15 +12,17 @@
   coffee:
     $(document).ready ->
       pf = null
-      $('#thumb-picture').attr 'data-content', $("#popover-upload-picture")[0].innerHTML
       $('#thumb-picture').popover
+        content: $("#popover-upload-picture")[0].innerHTML
         placement: 'bottom'
         html: true
       $('#thumb-picture').on 'shown.bs.popover', ->
         if pf
           $('#thumb-picture').data('bs.popover').tip().find("input[type=file]").parent().empty().append pf
+        else
+          $('#thumb-picture').data('bs.popover').tip().find("input[type=file]").change ->
+            pf = @
       $('#thumb-picture').on 'hide.bs.popover', ->
-        pf = $('#thumb-picture').data('bs.popover').tip().find("input[type=file]")
         $("#popover-upload-picture input[type=file]").parent().empty().append pf
 
 
