@@ -7,7 +7,7 @@
         = link_to_upload_image 'JavaScript:void(0);', method: :get, id: "upload-picture-link", style: "width: 280px"
         #upload-picture.d-none
           .row
-            .col-sm-9.mt-s
+            .col-sm-12.mt-s
               = render 'gaku/shared/upload_picture', resource: resource, f: f
   coffee:
     $(document).ready ->
@@ -16,14 +16,12 @@
       $('#thumb-picture').popover
         placement: 'bottom'
         html: true
-      $('#thumb-picture').on 'show.bs.popover', ->
+      $('#thumb-picture').on 'shown.bs.popover', ->
         if pf
-          console.log 111
+          $('#thumb-picture').data('bs.popover').tip().find("input[type=file]").parent().empty().append pf
       $('#thumb-picture').on 'hide.bs.popover', ->
-        pf = $('#thumb-picture').data('bs.popover').tip().find(".popover-content > .row")
-        $("#popover-upload-picture").empty()
-        $("#popover-upload-picture").append pf
-        $('#thumb-picture').attr 'data-content', $("#popover-upload-picture")[0].innerHTML
+        pf = $('#thumb-picture').data('bs.popover').tip().find("input[type=file]")
+        $("#popover-upload-picture input[type=file]").parent().empty().append pf
 
 
 - else

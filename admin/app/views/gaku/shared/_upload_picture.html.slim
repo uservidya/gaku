@@ -1,4 +1,4 @@
-= f.file_field :picture, class: "form-file mb-xs"
+= f.file_field :picture, class: "form-file mb-0"
 /= link_to_upload
 coffee:
-  $(".form-file").attr('size', 9)
+  $(".form-file").attr('size', 9).parent().parent().addClass('mb-0')
