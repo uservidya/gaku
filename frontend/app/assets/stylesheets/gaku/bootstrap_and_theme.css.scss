@@ -111,6 +111,12 @@
   cursor: pointer;
 }
 
+.panel-group {
+  .panel {
+    margin-bottom: 5px;
+  }
+}
+
 // theme main --------
 .btn-default,
 .btn-primary,
