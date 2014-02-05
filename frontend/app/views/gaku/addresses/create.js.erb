@@ -1,7 +1,9 @@
 showNotice("<%= render_flash %>");
 
-$('#<%= @polymorphic_resource_name.pluralize %>-index tbody').append('<%= j render("address", {address: @address, nested_resources: [
-  @nested_resources, @polymorphic_resource] }) %>');
+<!--
+$('#<%= @polymorphic_resource_name.pluralize %>-index tbody').append('<%= j render("address", {address: @address, nested_resources: [@nested_resources, @polymorphic_resource] }) %>');
+-->
+$('#panel-<%= @polymorphic_resource_name.pluralize %>').append('<%= j render("address_collapse", {address: @address, nested_resources: [@nested_resources, @polymorphic_resource] }) %>');
 
 $('#new-<%= @polymorphic_resource_name %>').slide();
 $('#new-<%= @polymorphic_resource_name %> form')[0].reset();
