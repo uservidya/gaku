@@ -18,12 +18,16 @@
         html: true
       $('#thumb-picture').on 'shown.bs.popover', ->
         if picture_input
+          console.log picture_input
           $(@).data('bs.popover').tip().find("input[type=file]").parent().empty().append picture_input
+          console.log picture_input
         else
           $(@).data('bs.popover').tip().find("input[type=file]").change ->
             picture_input = @
       $('#thumb-picture').on 'hide.bs.popover', ->
-        $("#popover-upload-picture input[type=file]").parent().empty().append picture_input
+        console.log picture_input
+        console.log $("#popover-upload-picture .form-group .controls")
+        $("#popover-upload-picture .form-group .controls").empty().append picture_input
 
 - else
   a.thumbnail.mb-0
