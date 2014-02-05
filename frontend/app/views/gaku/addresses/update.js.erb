@@ -1,5 +1,10 @@
 showNotice("<%= render_flash %>");
 
+<!--
 $('tr#address-<%= @address.id %>').html('<%= j render("fields", { address: @address, target: prepare_target([
   @nested_resources, @polymorphic_resource], @address) }) %>');
+-->
+
+$('#collapse-<%= @address.id %> table').html('<%= j render("fields_collapse", { address: @address, target: prepare_target([@nested_resources, @polymorphic_resource], @address) }) %>');
+
 $(".modal#edit-address-modal").modal("hide");

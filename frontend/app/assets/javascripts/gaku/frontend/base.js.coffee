@@ -46,9 +46,12 @@ class App
 
     $(document).on 'ajax:success', '.recovery-link', ->
       $(this).closest('tr').remove()
+      $(this).closest('.panel').remove()
 
     $(document).on 'ajax:success','.delete-link', (evt, data, status, xhr) ->
       $(this).closest('tr').remove()
+      $(this).closest('.panel').remove()
+      console.log('delete-link!!!')
 
     notice = $('#notice')
     if notice.children().length > 0

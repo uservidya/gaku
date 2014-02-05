@@ -21,21 +21,4 @@
           = render 'gaku/addresses/delete_link', target: target
     .panel-collapse.collapse id="collapse-#{address.id}" class="#{'in' if address.primary?}"
       table.table.table-condensed.mb-0
-        /tr
-          th =t(:'address.country')
-          td = address.country
-        tr
-          th =t(:'address.zipcode')
-          td = address.zipcode
-        tr
-          th =t(:'address.state.singular')
-          td = address.state
-        tr
-          th =t(:'address.city')
-          td = address.city
-        tr
-          th =t(:'address.address1')
-          td = address.address1
-        tr
-          th =t(:'address.address2')
-          td = address.address2
+        = render 'gaku/addresses/fields_collapse', address: address, target: target

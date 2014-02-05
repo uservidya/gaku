@@ -11,7 +11,7 @@ div id="#{@resource_name.pluralize}"
   .panel-group id="panel-#{@resource_name.pluralize}"
     = render partial: 'gaku/addresses/address_collapse', collection: nested_resources.last.addresses, as: :address, locals: {nested_resources: nested_resources}
   
-  = index_body do
+  /= index_body do
     = table_for "#{@resource_name.pluralize}-index" do
       thead
         tr
