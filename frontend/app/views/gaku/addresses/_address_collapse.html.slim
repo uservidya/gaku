@@ -19,8 +19,8 @@
 
           = ajax_link_to_edit [:edit, target].flatten
           = render 'gaku/addresses/delete_link', target: target
-    .panel-collapse.collapse id="collapse-#{address.id}"
-      table.table.mb-0
+    .panel-collapse.collapse id="collapse-#{address.id}" class="#{'in' if address.primary?}"
+      table.table.table-condensed.mb-0
         /tr
           th =t(:'address.country')
           td = address.country
