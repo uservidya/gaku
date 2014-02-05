@@ -1,9 +1,41 @@
-- unless address.nil?
-  .panel.panel-default.mb-xs
-    .panel-heading
-      h4.panel-title
-        a data-toggle="collapse" data-parent="#accordion" href="#collapse1"
-          Collapsible Group Item #1
-    #collapse1.panel-collapse.collapse.in
-      .panel-body
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+- target ||= prepare_target(nested_resources, address) if defined?(nested_resources)
+- unless address.nil? or address.new_record? or !address
+  .panel.mb-xs id="address-#{address.id}" class="#{address.primary ? 'panel-info' : 'panel-default'}"
+    .panel-heading.clearfix
+      h4.panel-title.pull-left
+        a data-toggle="collapse" data-parent="#accordion" href="#collapse-#{address.id}"
+          = address.title
+      - if can_edit?
+        .pull-right
+          - if can_edit?
+            - if address.primary?
+              = link_to ok_icon, [:make_primary] + target, method: :patch, remote: true, class: 'btn btn-xs btn-primary make-primary-address', data: { confirm: t('confirm') }, id: 'set_primary_link'
+            - else
+              = link_to ok_icon, [:make_primary] + target, remote: true, id: 'set_primary_link', class: 'btn btn-xs btn-default make-primary-address', method: :patch, data: {confirm: t('confirm')}
+          - else
+            - if address.primary?
+              span.btn.btn-xs.btn-primary
+                = primary_checkbox
+
+          = ajax_link_to_edit [:edit, target].flatten
+          = render 'gaku/addresses/delete_link', target: target
+    .panel-collapse.collapse id="collapse-#{address.id}"
+      table.table.mb-0
+        /tr
+          th =t(:'address.country')
+          td = address.country
+        tr
+          th =t(:'address.zipcode')
+          td = address.zipcode
+        tr
+          th =t(:'address.state.singular')
+          td = address.state
+        tr
+          th =t(:'address.city')
+          td = address.city
+        tr
+          th =t(:'address.address1')
+          td = address.address1
+        tr
+          th =t(:'address.address2')
+          td = address.address2

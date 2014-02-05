@@ -1,7 +1,14 @@
 $('#<%= @polymorphic_resource_name.pluralize %>-index tbody tr').each(function(){
-  $(this).children('td.primary_address').find('a').removeClass('btn-primary')
+  $(this).children('td.primary_address').find('a').removeClass('btn-primary').addClass('btn-default');
 });
-
 $("#address-<%= @address.id %>").children('td.primary_address')
                                                 .find('a')
                                                 .addClass('btn-primary');
+
+
+$("#panel-<%= @polymorphic_resource_name.pluralize %>").each(function(){
+  $(this).find(".panel-info").removeClass("panel-info").addClass("panel-default");
+  $(this).find(".panel-heading .btn-primary").removeClass("btn-primary").addClass("btn-default");
+});
+$("#address-<%= @address.id %>").removeClass("panel-default").addClass("panel-info")
+$("#address-<%= @address.id %> .panel-heading .btn-default").removeClass("btn-default").addClass("btn-primary")
