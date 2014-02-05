@@ -1,6 +1,7 @@
 # encoding: utf-8
 
-roles = %w(Admin ProgramManager Instructor Counselor Staff Principal VicePrincipal Student Guardian)
+roles = %w(Admin ProgramManager Instructor Counselor
+           Staff Principal VicePrincipal Student Guardian)
 
 say "Creating #{roles.size} roles ...".yellow
 

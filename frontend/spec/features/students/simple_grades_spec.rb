@@ -7,9 +7,11 @@ describe 'Student Simple Grades' do
 
   let(:student) { create(:student, name: 'John', surname: 'Doe') }
   let(:simple_grade_type) { create(:simple_grade_type) }
-  let(:simple_grade) { create(:simple_grade,
-                                student: student,
-                                simple_grade_type:simple_grade_type) }
+  let(:simple_grade) do
+    create(:simple_grade,
+           student: student,
+           simple_grade_type: simple_grade_type)
+  end
   let!(:el) { '#simple-grades' }
 
   context 'new', js: true do
@@ -23,7 +25,8 @@ describe 'Student Simple Grades' do
 
     it 'creates' do
       expect do
-        select simple_grade_type.name, from: 'simple_grade_simple_grade_type_id'
+        select simple_grade_type.name,
+               from: 'simple_grade_simple_grade_type_id'
         fill_in 'simple_grade_score', with: 123
         fill_in 'simple_grade_award_date', with: Date.today
         page.find('body').click

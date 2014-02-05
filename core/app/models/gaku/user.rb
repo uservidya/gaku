@@ -1,6 +1,5 @@
 module Gaku
   class User < ActiveRecord::Base
-
     has_many :user_roles
     has_many :roles, through: :user_roles
 
@@ -17,12 +16,16 @@ module Gaku
 
     roles_table_name = Role.table_name
 
-    scope :admin, -> { includes(:roles).where("#{roles_table_name}.name" => 'admin') }
+    scope :admin,
+          -> { includes(:roles).where("#{roles_table_name}.name" => 'admin') }
 
     def self.find_first_by_auth_conditions(warden_conditions)
       conditions = warden_conditions.dup
-      if login = conditions.delete(:login)
-        where(conditions).where(['lower(username) = :value OR lower(email) = :value', { value: login.downcase }]).first
+      login = conditions.delete(:login)
+      if login
+        where(conditions)
+          .where(['lower(username) = :value OR lower(email) = :value',
+                  { value: login.downcase }]).first
       else
         where(conditions).first
       end
@@ -33,7 +36,7 @@ module Gaku
     end
 
     def role?(role)
-      roles.detect {|p| p.name == role.to_s.camelize}
+      roles.find { |p| p.name == role.to_s.camelize }
     end
 
     private
@@ -45,6 +48,5 @@ module Gaku
         settings[:locale] = Preset.active.locale['language']
       end
     end
-
   end
 end

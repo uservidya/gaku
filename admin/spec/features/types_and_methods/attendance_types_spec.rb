@@ -8,8 +8,8 @@ describe 'Admin Attendance Types' do
   let(:attendance_type) { create(:attendance_type, name: 'metro') }
 
   context 'new', js: true do
-  	before do
-  	  visit gaku.admin_attendance_types_path
+    before do
+      visit gaku.admin_attendance_types_path
       click new_link
     end
 
@@ -21,7 +21,7 @@ describe 'Admin Attendance Types' do
         page.has_css? '#attendance_type_auto_credit'
         click submit
         flash_created?
-      end.to change(Gaku::AttendanceType, :count).by 1
+      end.to change(Gaku::AttendanceType, :count).by(1)
 
       has_content? 'new attendance type'
       count? 'Attendance Types list(1)'
@@ -49,15 +49,15 @@ describe 'Admin Attendance Types' do
         has_validations?
       end
 
-    	it 'edits' do
-    	  fill_in 'attendance_type_name', with: 'car'
-    	  click submit
+      it 'edits' do
+        fill_in 'attendance_type_name', with: 'car'
+        click submit
 
-    	  flash_updated?
-    	  has_content? 'car'
-    	  has_no_content? 'metro'
+        flash_updated?
+        has_content? 'car'
+        has_no_content? 'metro'
         expect(attendance_type.reload.name).to eq 'car'
-    	end
+      end
     end
 
     it 'deletes', js: true do

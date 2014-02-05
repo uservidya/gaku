@@ -18,7 +18,7 @@ describe 'Admin Roles' do
         fill_in 'role_name', with: 'master admin'
         click submit
         flash_created?
-      end.to change(Gaku::Role, :count).by 1
+      end.to change(Gaku::Role, :count).by(1)
 
       has_content? 'master admin'
       count? 'Roles list(2)'
@@ -72,7 +72,7 @@ describe 'Admin Roles' do
         within('#admin-roles-index tbody tr:nth-child(2)') { click delete_link }
         accept_alert
         flash_destroyed?
-      end.to change(Gaku::Role, :count).by -1
+      end.to change(Gaku::Role, :count).by(-1)
 
       count? 'Roles list(2)'
 

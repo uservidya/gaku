@@ -1,7 +1,6 @@
 module Gaku
   module Admin
     class BaseController < CoreController
-
       self.responder = AppResponder
       respond_to :html
 
@@ -37,7 +36,6 @@ module Gaku
         authorize! :admin, record
         authorize! params[:action].to_sym, record
       end
-
     end
   end
 end

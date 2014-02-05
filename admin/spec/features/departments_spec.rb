@@ -7,7 +7,6 @@ describe 'Admin Departments' do
 
   let(:department) { create(:department, name: 'Ruby') }
 
-
   context 'new', js: true do
     before do
       visit gaku.admin_departments_path
@@ -19,7 +18,7 @@ describe 'Admin Departments' do
         fill_in 'department_name', with: 'new department'
         click submit
         flash_created?
-      end.to change(Gaku::Department, :count).by 1
+      end.to change(Gaku::Department, :count).by(1)
 
       has_content? 'new department'
       count? 'Departments list(1)'

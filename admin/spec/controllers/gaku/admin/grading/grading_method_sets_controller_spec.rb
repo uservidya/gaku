@@ -28,7 +28,9 @@ describe Gaku::Admin::GradingMethodSetsController do
         end
 
         it { should respond_with 200 }
-        it('assigns @grading_method_sets') { expect(assigns(:grading_method_sets)).to eq [grading_method_set] }
+        it('assigns @grading_method_sets') do
+          expect(assigns(:grading_method_sets)).to eq [grading_method_set]
+        end
         it('assigns @count') { expect(assigns(:count)).to eq 1 }
         it('renders :index template') { template? :index }
       end
@@ -41,7 +43,9 @@ describe Gaku::Admin::GradingMethodSetsController do
         before { gaku_js_get :new }
 
         it { should respond_with 200 }
-        it('assigns @grading_method_set') { expect(assigns(:grading_method_set)).to be_a_new(Gaku::GradingMethodSet) }
+        it('assigns @grading_method_set') do
+          expect(assigns(:grading_method_set)).to be_a_new(Gaku::GradingMethodSet)
+        end
         it('renders the :new template') { template? :new }
       end
 
@@ -95,18 +99,25 @@ describe Gaku::Admin::GradingMethodSetsController do
         before { gaku_js_get :edit, id: grading_method_set }
 
         it { should respond_with 200 }
-        it('assigns @grading_method_set') { expect(assigns(:grading_method_set)).to eq grading_method_set }
+        it('assigns @grading_method_set') do
+          expect(assigns(:grading_method_set)).to eq grading_method_set
+        end
         it('renders the :edit template') { template? :edit }
       end
 
       describe 'PATCH #update' do
         context 'with valid attributes' do
           before do
-            gaku_js_patch :update, id: grading_method_set, grading_method_set: attributes_for(:grading_method_set, name: 'new method')
+            gaku_js_patch :update,
+                          id: grading_method_set,
+                          grading_method_set: attributes_for(:grading_method_set,
+                                                             name: 'new method')
           end
 
           it { should respond_with 200 }
-          it('assigns @grading_method_set') { expect(assigns(:grading_method_set)).to eq grading_method_set }
+          it('assigns @grading_method_set') do
+            expect(assigns(:grading_method_set)).to eq grading_method_set
+          end
           it('sets flash') { flash_updated? }
           it "changes grading_method_set's attributes" do
             grading_method_set.reload
@@ -116,11 +127,16 @@ describe Gaku::Admin::GradingMethodSetsController do
 
         context 'with invalid attributes' do
           before do
-            gaku_js_patch :update, id: grading_method_set, grading_method_set: attributes_for(:invalid_grading_method_set, name: '')
+            gaku_js_patch :update,
+                          id: grading_method_set,
+                          grading_method_set: attributes_for(:invalid_grading_method_set,
+                                                             name: '')
           end
 
           it { should respond_with 200 }
-          it('assigns @grading_method_set') { expect(assigns(:grading_method_set)).to eq grading_method_set }
+          it('assigns @grading_method_set') do
+            expect(assigns(:grading_method_set)).to eq grading_method_set
+          end
 
           it "does not change grading_method_set's attributes" do
             grading_method_set.reload

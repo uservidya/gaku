@@ -6,7 +6,7 @@ shared_examples 'new address' do
       click new_link
     end
 
-    it 'creates and shows', js:true do
+    it 'creates and shows', js: true do
       expect do
         fill_in 'address_title',    with: 'Primary address'
         select "#{country}",        from: 'country_dropdown'
@@ -25,7 +25,7 @@ shared_examples 'new address' do
       end
     end
 
-    it 'has validations', js:true do
+    it 'has validations', js: true do
       expect do
         click submit
         has_validations?
@@ -44,10 +44,10 @@ shared_examples_for 'edit address' do
     page.has_selector? modal
   end
 
-  it 'edits', js:true do
+  it 'edits', js: true do
     old_address = address.address1
 
-    fill_in 'address_address1', with:'The address new details'
+    fill_in 'address_address1', with: 'The address new details'
     click submit
 
     flash_updated?
@@ -56,8 +56,7 @@ shared_examples_for 'edit address' do
     has_no_content? old_address
   end
 
-
-  it 'errors without required fields', js:true do
+  it 'errors without required fields', js: true do
     fill_in 'address_address1',  with: ''
     fill_in 'address_city',      with: ''
 
@@ -96,7 +95,9 @@ shared_examples_for 'primary addresses' do
     expect(old_primary.primary).to eq true
     expect(old_secondary.primary).to eq false
 
-    within("#{table} tr#address-#{old_secondary.id}") { click_link 'set_primary_link' }
+    within("#{table} tr#address-#{old_secondary.id}") do
+      click_link 'set_primary_link'
+    end
 
     accept_alert
 
@@ -115,7 +116,7 @@ shared_examples_for 'primary addresses' do
     address_pri_tr = "#address-#{old_primary.id}"
     address_sec_tr = "#address-#{old_secondary.id}"
 
-    within("#{table} #{address_pri_tr}") { click '.delete-link'}
+    within("#{table} #{address_pri_tr}") { click '.delete-link' }
     accept_alert
 
     page.find("#{address_sec_tr} .primary_address a.btn-primary")
@@ -138,8 +139,7 @@ shared_examples_for 'dynamic state dropdown' do
       select "#{state.name}", from: 'address_state_id'
     end
 
-
-    it 'changes country without state',js: true do
+    it 'changes country without state', js: true do
       select "#{country_without_state}", from: 'country_dropdown'
       within('#state-dropdown') do
         expect(page).to have_css('select#address_state_id[disabled]')
@@ -151,12 +151,11 @@ shared_examples_for 'dynamic state dropdown' do
   context 'edit form' do
     before { click js_edit_link }
 
-    it 'changes country with state',js: true do
+    it 'changes country with state', js: true do
       select "#{country}", from: 'country_dropdown'
       within('#state-dropdown') { has_content? state.name }
       select "#{state.name}", from: 'address_state_id'
     end
-
 
     it 'changes country without state', js: true do
       select "#{country_without_state}", from: 'country_dropdown'
@@ -168,4 +167,3 @@ shared_examples_for 'dynamic state dropdown' do
   end
 
 end
-

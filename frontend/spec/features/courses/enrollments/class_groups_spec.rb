@@ -6,7 +6,9 @@ describe 'CourseEnrollment'  do
 
   let(:course) { create(:course) }
   let(:class_group) { create(:class_group, name: 'Math') }
-  let(:class_group_with_students) { create(:class_group, :with_students, name: 'Math') }
+  let(:class_group_with_students) do
+    create(:class_group, :with_students, name: 'Math')
+  end
 
   before :all do
     set_resource 'course-class-group'
@@ -47,7 +49,7 @@ describe 'CourseEnrollment'  do
     end
 
     it 'enrolls a class group' do
-        click new_link
+      click new_link
 
       expect do
         select 'Math', from: 'course_class_group_id'
@@ -59,7 +61,7 @@ describe 'CourseEnrollment'  do
         page.should have_content 'View Exams'
       end.to change(course.students, :count).by 2
 
-      # TODO show flash msgs for successfuly added students
+      # TODO: show flash msgs for successfuly added students
     end
 
     it 'errors if all students are already added' do

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'Admin School Years' do
 
-  let(:school_year) { create(:school_year)}
+  let(:school_year) { create(:school_year) }
 
   before { as :admin }
 
@@ -41,7 +41,6 @@ describe 'Admin School Years' do
         page.should_not have_content 'The Ending Date must come after the Starting Date'
         flash_created?
       end
-
 
       it 'has validations' do
         fill_in 'school_year_starting', with: ''
@@ -103,15 +102,11 @@ describe 'Admin School Years' do
         expect do
           ensure_delete_is_working
           flash_destroyed?
-        end.to change(Gaku::SchoolYear, :count).by -1
+        end.to change(Gaku::SchoolYear, :count).by(-1)
 
         within(count_div) { page.should_not have_content 'School Years list(1)' }
         within(count_div) { page.should have_content 'School Years list' }
-
-    end
-
-
+      end
     end
   end
-
 end

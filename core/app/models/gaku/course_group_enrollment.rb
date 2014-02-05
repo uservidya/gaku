@@ -11,6 +11,5 @@ module Gaku
                             scope: :course_group_id,
                             message: I18n.t(:'course_group.already_enrolled')
                           }
-
   end
 end

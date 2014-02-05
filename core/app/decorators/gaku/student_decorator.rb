@@ -38,9 +38,11 @@ module Gaku
     private
 
     def major_check(student_specialty)
-      student_specialty.major ? h.t(:'specialty.major') : h.t(:'specialty.minor')
+      if student_specialty.major
+        h.t(:'specialty.major')
+      else
+        h.t(:'specialty.minor')
+      end
     end
-
-
   end
 end

@@ -53,10 +53,10 @@ describe 'Student Guardians' do
         flash_updated?
 
         expect(find_field('guardian_name').value).to eq 'Edited guardian name'
-        expect(find_field('guardian_surname').value).to eq 'Edited guardian surname'
+        expect(find_field('guardian_surname').value)
+          .to eq 'Edited guardian surname'
       end
     end
-
 
     it 'soft deletes', js: true do
       expect do

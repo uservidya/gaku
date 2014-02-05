@@ -41,7 +41,9 @@ describe Gaku::Admin::GradingMethodsController do
         before { gaku_js_get :new }
 
         it { should respond_with 200 }
-        it('assigns @grading_method') { expect(assigns(:grading_method)).to be_a_new(Gaku::GradingMethod) }
+        it('assigns @grading_method') do
+          expect(assigns(:grading_method)).to be_a_new(Gaku::GradingMethod)
+        end
         it('renders the :new template') { template? :new }
       end
 
@@ -102,7 +104,9 @@ describe Gaku::Admin::GradingMethodsController do
       describe 'PATCH #update' do
         context 'with valid attributes' do
           before do
-            gaku_js_patch :update, id: grading_method, grading_method: attributes_for(:grading_method, name: 'new method')
+            gaku_js_patch :update,
+                          id: grading_method,
+                          grading_method: attributes_for(:grading_method, name: 'new method')
           end
 
           it { should respond_with 200 }
@@ -116,7 +120,9 @@ describe Gaku::Admin::GradingMethodsController do
 
         context 'with invalid attributes' do
           before do
-            gaku_js_patch :update, id: grading_method, grading_method: attributes_for(:invalid_grading_method, name: '')
+            gaku_js_patch :update,
+                          id: grading_method,
+                          grading_method: attributes_for(:invalid_grading_method, name: '')
           end
 
           it { should respond_with 200 }

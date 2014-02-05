@@ -13,13 +13,35 @@ describe 'Students', type: :feature do
   let(:enrollment_status_applicant) { create(:enrollment_status_applicant) }
   let(:enrollment_status_admitted) { create(:enrollment_status_admitted) }
   let(:enrollment_status) { create(:enrollment_status) }
-  let(:enrollment_status_transferred) { create(:enrollment_status, code: 'transferred', name: 'Transferred', active: true) }
-  let(:student) { create(:student, name: 'John', surname: 'Doe', enrollment_status_code: enrollment_status_admitted.code) }
-  let(:student2) { create(:student, name: 'Susumu', surname: 'Yokota', enrollment_status_code: enrollment_status_admitted.code) }
-  let(:student3) { create(:student, name: 'Johny', surname: 'Bravo', enrollment_status_code: enrollment_status_admitted.code) }
-  let(:student4) { create(:student, name: 'Felix', surname: 'Baumgartner', enrollment_status_code: enrollment_status_applicant.code) }
-  let(:student5) { create(:student, name: 'Mike', surname: 'Tyson', enrollment_status_code: enrollment_status_transferred.code) }
-
+  let(:enrollment_status_transferred) do
+    create(:enrollment_status,
+           code: 'transferred', name: 'Transferred', active: true)
+  end
+  let(:student) do
+    create(:student,
+           name: 'John', surname: 'Doe',
+           enrollment_status_code: enrollment_status_admitted.code)
+  end
+  let(:student2) do
+    create(:student,
+           name: 'Susumu', surname: 'Yokota',
+           enrollment_status_code: enrollment_status_admitted.code)
+  end
+  let(:student3) do
+    create(:student,
+           name: 'Johny', surname: 'Bravo',
+           enrollment_status_code: enrollment_status_admitted.code)
+  end
+  let(:student4) do
+    create(:student,
+           name: 'Felix', surname: 'Baumgartner',
+           enrollment_status_code: enrollment_status_applicant.code)
+  end
+  let(:student5) do
+    create(:student,
+           name: 'Mike', surname: 'Tyson',
+           enrollment_status_code: enrollment_status_transferred.code)
+  end
 
   context 'existing' do
     before do
@@ -35,7 +57,7 @@ describe 'Students', type: :feature do
     end
 
     it 'lists' do
-      #list show only students with active enrollment statuses
+      # list show only students with active enrollment statuses
       size_of(table_rows).should eq 5
       page.has_text? "#{student.name}"
       page.has_text? "#{student.surname}"
@@ -49,8 +71,8 @@ describe 'Students', type: :feature do
 
       within('#students-checked-div') do
         page.has_text? 'Chosen students(1)'
-        #within('.show-chosen-table') { page.has_text? 'Show'}
-        #click_link 'Show'
+        # within('.show-chosen-table') { page.has_text? 'Show'}
+        # click_link 'Show'
         wait_for_ajax
 
         page.has_selector? '#chosen-table'
@@ -113,7 +135,6 @@ describe 'Students', type: :feature do
       end
     end
 
-
     it 'deletes', js: true do
       visit gaku.edit_student_path(student2)
       student_count = Gaku::Student.count
@@ -123,9 +144,11 @@ describe 'Students', type: :feature do
         within(modal) { click_on 'Delete' }
         accept_alert
         flash_destroyed?
-      end.to change(Gaku::Student, :count).by -1
+      end.to change(Gaku::Student, :count).by(-1)
 
-      within(count_div) { page.should_not have_content 'Students list(#{student_count - 1})' }
+      within(count_div) do
+        page.should_not have_content 'Students list(#{student_count - 1})'
+      end
       current_path.should eq gaku.students_path
     end
 
@@ -134,7 +157,7 @@ describe 'Students', type: :feature do
   context 'new', js: true do
     before do
       class_group
-            #page.driver.debug
+            # page.driver.debug
       visit gaku.students_path
       click new_link
       expect(current_path).to eq gaku.new_student_path
@@ -149,8 +172,8 @@ describe 'Students', type: :feature do
           click_button 'submit-student-button'
           flash_created?
 
-        end.to change(Gaku::Student, :count).by 1
-      end.to change(Gaku::ClassGroupEnrollment, :count).by 1
+        end.to change(Gaku::Student, :count).by(1)
+      end.to change(Gaku::ClassGroupEnrollment, :count).by(1)
 
       expect(current_path).to eq gaku.edit_student_path(Gaku::Student.last)
 
@@ -164,7 +187,7 @@ describe 'Students', type: :feature do
         fill_in 'student_surname', with: 'Doe'
         click_button 'submit-student-button'
         flash_created?
-      end.to change(Gaku::Student, :count).by 1
+      end.to change(Gaku::Student, :count).by(1)
       expect(current_path).to eq gaku.edit_student_path(Gaku::Student.last)
 
       page.has_text? 'John'
@@ -178,12 +201,19 @@ describe 'Students', type: :feature do
     context 'there is existing student' do
 
       it 'prefills enrollment_status, admitted and class_group with last student ones' do
-        student = create(:student, enrollment_status_code: enrollment_status_applicant.code, admitted: '2013-01-19')
-        create(:class_group_enrollment, class_group: class_group, student: student)
+        student = create(
+          :student,
+          enrollment_status_code: enrollment_status_applicant.code,
+          admitted: '2013-01-19')
+        create(:class_group_enrollment,
+               class_group: class_group, student: student)
         visit gaku.new_student_path
-        expect(find('#student_enrollment_status_code').value).to eq 'applicant'
+        expect(find('#student_enrollment_status_code').value)
+          .to eq 'applicant'
         expect(find('#student_admitted').value).to eq '2013-01-19'
-        expect(find('#student_class_group_enrollments_attributes_0_class_group_id').value).to eq class_group.id.to_s
+        expect(
+          find('#student_class_group_enrollments_attributes_0_class_group_id')
+          .value).to eq class_group.id.to_s
 
         fill_in 'student_name', with: 'John'
         fill_in 'student_surname', with: 'Doe'
@@ -191,9 +221,12 @@ describe 'Students', type: :feature do
         flash_created?
 
         expect(current_path).to eq gaku.edit_student_path(Gaku::Student.last)
-        expect(find('#student_enrollment_status_code').value).to eq 'applicant'
+        expect(find('#student_enrollment_status_code').value)
+          .to eq 'applicant'
         expect(find('#student_admitted').value).to eq '2013-01-19'
-        expect(find('#student_class_group_enrollments_attributes_0_class_group_id').value).to eq class_group.id.to_s
+        expect(
+          find('#student_class_group_enrollments_attributes_0_class_group_id')
+          .value).to eq class_group.id.to_s
 
         created_student = Gaku::Student.last
         expect(created_student.enrollment_status_code).to eq 'applicant'
@@ -201,7 +234,6 @@ describe 'Students', type: :feature do
         expect(created_student.class_groups.last).to eq class_group
       end
     end
-
 
     it 'prefills enrollment_status code' do
       expect(find('#student_enrollment_status_code').value).to eq 'enrolled'
@@ -211,7 +243,6 @@ describe 'Students', type: :feature do
       flash_created?
       expect(current_path).to eq gaku.edit_student_path(Gaku::Student.last)
       expect(find('#student_enrollment_status_code').value).to eq 'enrolled'
-
 
       created_student = Gaku::Student.last
       expect(created_student.enrollment_status_code).to eq 'enrolled'

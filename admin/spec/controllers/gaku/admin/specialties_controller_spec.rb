@@ -112,7 +112,8 @@ describe Gaku::Admin::SpecialtiesController do
       describe 'PATCH #update' do
         context 'with valid attributes' do
           before do
-            gaku_js_patch :update, id: specialty, specialty: attributes_for(:specialty, name: 'Ruby dev')
+            gaku_js_patch :update,
+                          id: specialty, specialty: attributes_for(:specialty, name: 'Ruby dev')
           end
 
           it { should respond_with 200 }
@@ -126,7 +127,8 @@ describe Gaku::Admin::SpecialtiesController do
 
         context 'with invalid attributes' do
           before do
-            gaku_js_patch :update, id: specialty, specialty: attributes_for(:invalid_specialty, name: '')
+            gaku_js_patch :update,
+                          id: specialty, specialty: attributes_for(:invalid_specialty, name: '')
           end
 
           it { should respond_with 200 }

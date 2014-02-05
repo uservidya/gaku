@@ -1,6 +1,5 @@
 module Gaku
   class StudentSpecialty < ActiveRecord::Base
-
     belongs_to :specialty
     belongs_to :student
 

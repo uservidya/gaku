@@ -46,15 +46,17 @@ module Gaku
     end
 
     def users_check
-      if User.count == 0
-        redirect_to set_up_admin_account_path
-      end
+      redirect_to set_up_admin_account_path if User.count == 0
     end
 
     def extract_locale_from_accept_language_header
       request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first
     end
 
+    def after_sign_in_path_for(resource_or_scope)
+      I18n.locale = current_user.settings[:locale] unless current_user.settings[:locale].blank?
+      super
+    end
 
     def after_sign_out_path_for(resource_or_scope)
       root_path

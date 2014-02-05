@@ -8,7 +8,9 @@ describe 'Syllabus Exams' do
   let(:exam) { create(:exam) }
   let(:exam) { create(:exam, name: 'Astronomy Exam') }
   let(:department) { create(:department) }
-  let(:syllabus) { create(:syllabus, name: 'Biology', code: 'bio', department: department) }
+  let(:syllabus) do
+    create(:syllabus, name: 'Biology', code: 'bio', department: department)
+  end
 
   let!(:count_div) { '.exams-count' }
 
@@ -61,12 +63,13 @@ describe 'Syllabus Exams' do
       it 'creates and shows', js: true  do
         within(tab_link) { has_no_content? 'Exams(1)' }
         expect do
-          #required
+          # required
           fill_in 'exam_name', with: 'Biology Exam'
-          fill_in 'exam_exam_portions_attributes_0_name' , with: 'Biology Exam Portion'
+          fill_in 'exam_exam_portions_attributes_0_name' ,
+                  with: 'Biology Exam Portion'
           click submit
           flash_created?
-        end.to change(syllabus.exams, :count).by 1
+        end.to change(syllabus.exams, :count).by(1)
 
         within(table) do
           has_content? department.name
@@ -117,10 +120,9 @@ describe 'Syllabus Exams' do
         expect do
           ensure_delete_is_working
           flash_destroyed?
-        end.to change(syllabus.exams, :count).by -1
+        end.to change(syllabus.exams, :count).by(-1)
 
-
-        within(table){ has_no_content? exam.name }
+        within(table) { has_no_content? exam.name }
         within(tab_link) { has_no_content? 'Exams(1)' }
       end
     end
@@ -145,17 +147,18 @@ describe 'Syllabus Exams' do
       visible? new_link
     end
 
-    it 'clicking on new-syllabus-exam-link hides add-existing-exam form', js: true do
-      click new_existing_exam_link
-      visible? existing_exam_form
+    it 'clicking on new-syllabus-exam-link hides add-existing-exam form',
+       js: true do
+         click new_existing_exam_link
+         visible? existing_exam_form
 
-      click new_link
-      visible? form
-      invisible? new_link
+         click new_link
+         visible? form
+         invisible? new_link
 
-      invisible? existing_exam_form
-      visible? new_existing_exam_link
-    end
+         invisible? existing_exam_form
+         visible? new_existing_exam_link
+       end
   end
 
 end

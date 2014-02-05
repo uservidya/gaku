@@ -12,7 +12,6 @@ require 'globalize'
 require 'draper'
 
 module Gaku
-
   module Core
   end
 
@@ -25,3 +24,5 @@ require 'gaku/core/version'
 require 'gaku/core/engine'
 require 'gaku/core/console_colors'
 require 'generators/gaku/dummy/dummy_generator'
+require 'gaku/grading_methods/base_method'
+require 'gaku/grading_methods/score'

@@ -2,8 +2,10 @@ require 'spec_helper'
 
 describe 'Admin School Years Semesters' do
 
-  let(:school_year) { create(:school_year, starting: Date.parse('2013-3-8'), ending: Date.parse('2014-11-8')) }
-  let(:semester) { create(:semester, school_year: school_year)}
+  let(:school_year) do
+    create(:school_year, starting: Date.parse('2013-3-8'), ending: Date.parse('2014-11-8'))
+  end
+  let(:semester) { create(:semester, school_year: school_year) }
 
   before { as :admin }
 
@@ -71,7 +73,6 @@ describe 'Admin School Years Semesters' do
       visit gaku.admin_school_year_path(school_year)
     end
 
-
     context 'edit', js: true do
       before do
         within(table) { click js_edit_link }
@@ -95,12 +96,12 @@ describe 'Admin School Years Semesters' do
           fill_in 'semester_starting', with: Date.parse('2013-3-8')
           fill_in 'semester_ending', with: Date.parse('2013-3-8')
           click submit
-          page.should have_content 'The Ending Date must come after the Starting Date' 
+          page.should have_content 'The Ending Date must come after the Starting Date'
 
           fill_in 'semester_starting', with: Date.parse('2013-3-8')
           fill_in 'semester_ending', with: Date.parse('2013-3-9')
           click submit
-          page.should_not have_content 'The Ending Date must come after the Starting Date' 
+          page.should_not have_content 'The Ending Date must come after the Starting Date'
           flash_updated?
         end
 
@@ -108,12 +109,12 @@ describe 'Admin School Years Semesters' do
           fill_in 'semester_starting', with: Date.parse('2013-3-7')
           fill_in 'semester_ending', with: Date.parse('2014-11-9')
           click submit
-          page.should have_content 'Should be between School Year starting and ending' 
+          page.should have_content 'Should be between School Year starting and ending'
 
           fill_in 'semester_starting', with: Date.parse('2013-3-8')
           fill_in 'semester_ending', with: Date.parse('2013-3-9')
           click submit
-          page.should_not have_content 'Should be between School Year starting and ending' 
+          page.should_not have_content 'Should be between School Year starting and ending'
           flash_updated?
         end
 
@@ -132,7 +133,7 @@ describe 'Admin School Years Semesters' do
       expect do
         ensure_delete_is_working
         flash_destroyed?
-      end.to change(Gaku::Semester, :count).by -1
+      end.to change(Gaku::Semester, :count).by(-1)
 
       within(count_div) { page.should_not have_content 'Semesters list(1)' }
       within(count_div) { page.should have_content 'Semesters list' }

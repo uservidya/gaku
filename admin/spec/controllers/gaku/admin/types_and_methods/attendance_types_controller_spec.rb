@@ -23,7 +23,7 @@ describe Gaku::Admin::AttendanceTypesController do
     context 'json' do
 
       let(:attributes) do
-       %i( name color_code counted_absent disable_credit credit_rate auto_credit created_at updated_at )
+        %i( name color_code counted_absent disable_credit credit_rate auto_credit created_at updated_at )
       end
 
       describe 'GET #index' do
@@ -50,7 +50,9 @@ describe Gaku::Admin::AttendanceTypesController do
         end
 
         it { should respond_with 200 }
-        it('assigns @attendance_types') { expect(assigns(:attendance_types)).to eq [attendance_type] }
+        it('assigns @attendance_types') do
+          expect(assigns(:attendance_types)).to eq [attendance_type]
+        end
         it('assigns @count') { expect(assigns(:count)).to eq 1 }
         it('renders :index template') { template? :index }
       end
@@ -63,7 +65,9 @@ describe Gaku::Admin::AttendanceTypesController do
         before { gaku_js_get :new }
 
         it { should respond_with 200 }
-        it('assigns @attendance_type') { expect(assigns(:attendance_type)).to be_a_new(Gaku::AttendanceType) }
+        it('assigns @attendance_type') do
+          expect(assigns(:attendance_type)).to be_a_new(Gaku::AttendanceType)
+        end
         it('renders the :new template') { template? :new }
       end
 
@@ -124,11 +128,15 @@ describe Gaku::Admin::AttendanceTypesController do
       describe 'PATCH #update' do
         context 'with valid attributes' do
           before do
-            gaku_js_patch :update, id: attendance_type, attendance_type: attributes_for(:attendance_type, name: 'new type')
+            gaku_js_patch :update,
+                          id: attendance_type,
+                          attendance_type: attributes_for(:attendance_type, name: 'new type')
           end
 
           it { should respond_with 200 }
-          it('assigns @attendance_type') { expect(assigns(:attendance_type)).to eq attendance_type }
+          it('assigns @attendance_type') do
+            expect(assigns(:attendance_type)).to eq attendance_type
+          end
           it('sets flash') { flash_updated? }
           it "changes attendance_type's attributes" do
             attendance_type.reload
@@ -138,11 +146,15 @@ describe Gaku::Admin::AttendanceTypesController do
 
         context 'with invalid attributes' do
           before do
-            gaku_js_patch :update, id: attendance_type, attendance_type: attributes_for(:invalid_attendance_type, name: '')
+            gaku_js_patch :update,
+                          id: attendance_type,
+                          attendance_type: attributes_for(:invalid_attendance_type, name: '')
           end
 
           it { should respond_with 200 }
-          it('assigns @attendance_type') { expect(assigns(:attendance_type)).to eq attendance_type }
+          it('assigns @attendance_type') do
+            expect(assigns(:attendance_type)).to eq attendance_type
+          end
 
           it "does not change attendance_type's attributes" do
             attendance_type.reload

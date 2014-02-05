@@ -24,9 +24,8 @@ module Gaku
     def refresh_positions
       items = grading_method_set.grading_method_set_items
       items.pluck(:id).each_with_index do |id, index|
-        items.update_all( { position: index }, { id: id } )
+        items.update_all({ position: index }, { id: id })
       end
     end
-
   end
 end

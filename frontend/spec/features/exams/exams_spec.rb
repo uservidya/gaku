@@ -6,7 +6,6 @@ describe 'Exams' do
   let(:exam2) { create(:exam) }
   let(:department) { create(:department) }
 
-
   before(:all) { set_resource 'exam' }
   before { as :admin }
 
@@ -31,7 +30,7 @@ describe 'Exams' do
 
         click submit
         flash_created?
-      end.to change(Gaku::Exam, :count).by 1
+      end.to change(Gaku::Exam, :count).by(1)
 
       within(table) { has_content? department.name }
       count? 'Exams list(1)'
@@ -89,7 +88,7 @@ describe 'Exams' do
         within(modal) { click_on 'Delete' }
         accept_alert
         flash_destroyed?
-      end.to change(Gaku::Exam, :count).by -1
+      end.to change(Gaku::Exam, :count).by(-1)
 
       expect(current_path).to eq gaku.exams_path
       count? 'Exams list(1)'

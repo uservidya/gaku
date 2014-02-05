@@ -8,7 +8,10 @@ describe 'CourseEnrollment'  do
   let(:enrollment_status_admitted) { create(:enrollment_status_admitted) }
   let(:enrollment_status) { create(:enrollment_status) }
   let(:course) { create(:course) }
-  let(:student1) { create(:student, name: 'John', surname: 'Doe', enrollment_status_code: enrollment_status_admitted.code) }
+  let(:student1) do
+    create(:student, name: 'John', surname: 'Doe',
+                     enrollment_status_code: enrollment_status_admitted.code)
+  end
 
   before :all do
     set_resource 'course-student'
@@ -41,7 +44,7 @@ describe 'CourseEnrollment'  do
         end
         invisible? '#student-modal'
         within(table) { page.has_content? "#{student1.name}" }
-      end.to change(Gaku::CourseEnrollment, :count).by 1
+      end.to change(Gaku::CourseEnrollment, :count).by(1)
 
       within(table) do
         page.should have_content('Doe John')
@@ -49,10 +52,12 @@ describe 'CourseEnrollment'  do
         page.should have_content('View Exams')
       end
 
-      size_of(table_rows).should == 2 #one for head
+      size_of(table_rows).should eq 2 # one for head
       within(count_div) { page.should have_content('Students list(1)') }
-      within('#new-course-enrollment-tab-link') { page.should have_content('Students(1)') }
-      page.should have_content('Successfully enrolled');
+      within('#new-course-enrollment-tab-link') do
+        page.should have_content('Students(1)')
+      end
+      page.should have_content('Successfully enrolled')
     end
 
     it 'enrolls student only once'  do

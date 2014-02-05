@@ -49,7 +49,8 @@ describe 'Courses' do
 
     context 'from edit view' do
       before do
-        within("#semester-#{course_with_semesters.semesters.first.id}-courses-index") do
+        within("#semester-#{
+                course_with_semesters.semesters.first.id}-courses-index") do
           click edit_link
         end
       end
@@ -101,7 +102,6 @@ describe 'Courses' do
       end
 
       within(count_div) { page.should_not have_content('Courses list(1)') }
-
 
     end
   end

@@ -41,7 +41,9 @@ describe Gaku::Admin::ContactTypesController do
         before { gaku_js_get :new }
 
         it { should respond_with 200 }
-        it('assigns @contact_type') { expect(assigns(:contact_type)).to be_a_new(Gaku::ContactType) }
+        it('assigns @contact_type') do
+          expect(assigns(:contact_type)).to be_a_new(Gaku::ContactType)
+        end
         it('renders the :new template') { template? :new }
       end
 
@@ -102,7 +104,9 @@ describe Gaku::Admin::ContactTypesController do
       describe 'PATCH #update' do
         context 'with valid attributes' do
           before do
-            gaku_js_patch :update, id: contact_type, contact_type: attributes_for(:contact_type, name: 'mobifon')
+            gaku_js_patch :update,
+                          id: contact_type,
+                          contact_type: attributes_for(:contact_type, name: 'mobifon')
           end
 
           it { should respond_with 200 }
@@ -116,7 +120,9 @@ describe Gaku::Admin::ContactTypesController do
 
         context 'with invalid attributes' do
           before do
-            gaku_js_patch :update, id: contact_type, contact_type: attributes_for(:invalid_contact_type, name: '')
+            gaku_js_patch :update,
+                          id: contact_type,
+                          contact_type: attributes_for(:invalid_contact_type, name: '')
           end
 
           it { should respond_with 200 }

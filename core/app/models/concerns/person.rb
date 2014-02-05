@@ -18,12 +18,8 @@ module Person
     end
 
     ransacker :age do
-      Arel::Nodes::SqlLiteral.new(
-        "DATE_PART('year', AGE(NOW(), birth_date))"
-      )
+      Arel::Nodes::SqlLiteral.new("DATE_PART('year', AGE(NOW(), birth_date))")
     end
 
   end
-
 end
-

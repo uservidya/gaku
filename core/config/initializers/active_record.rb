@@ -1,4 +1,3 @@
-
 class ActiveRecord::Associations::HasManyThroughAssociation
   def insert_record(record, validate = true, raise = false)
     ensure_not_nested
@@ -12,7 +11,7 @@ class ActiveRecord::Associations::HasManyThroughAssociation
     end
 
     save_through_record(record)
-    #update_counter(1)
+    # update_counter(1)
     record
   end
 
@@ -36,6 +35,6 @@ class ActiveRecord::Associations::HasManyThroughAssociation
       update_counter(-count, through_reflection)
     end
 
-    #update_counter(-count)
+    # update_counter(-count)
   end
 end

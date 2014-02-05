@@ -4,7 +4,9 @@ describe 'Extracurricular Activities' do
 
   before { as :admin }
 
-  let(:extracurricular_activity) { create(:extracurricular_activity, name: 'Tennis') }
+  let(:extracurricular_activity) do
+    create(:extracurricular_activity, name: 'Tennis')
+  end
 
   before :all do
     set_resource 'extracurricular-activity'
@@ -21,10 +23,12 @@ describe 'Extracurricular Activities' do
         fill_in 'extracurricular_activity_name', with: 'Tennis'
         click submit
         flash_created?
-      end.to change(Gaku::ExtracurricularActivity, :count).by 1
+      end.to change(Gaku::ExtracurricularActivity, :count).by(1)
 
       page.should have_content 'Tennis'
-      within(count_div) { page.should have_content 'Extracurricular Activities list(1)' }
+      within(count_div) do
+        page.should have_content 'Extracurricular Activities list(1)'
+      end
     end
 
     it { has_validations? }
@@ -40,7 +44,8 @@ describe 'Extracurricular Activities' do
 
       context 'from edit view', js: true do
         before do
-          visit gaku.edit_extracurricular_activity_path(extracurricular_activity)
+          visit gaku.edit_extracurricular_activity_path(
+                       extracurricular_activity)
         end
 
         it 'edits' do
@@ -48,8 +53,8 @@ describe 'Extracurricular Activities' do
           click submit
           flash_updated?
 
-          expect(find_field('extracurricular_activity_name').value).to eq 'Paintball'
-
+          expect(find_field('extracurricular_activity_name').value)
+            .to eq 'Paintball'
 
           extracurricular_activity.reload
           expect(extracurricular_activity.name).to eq 'Paintball'

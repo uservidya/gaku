@@ -15,8 +15,7 @@ require 'gaku/testing/flash_helpers'
 require 'gaku/testing/auth_helpers'
 require 'gaku/core/url_helpers'
 
-
-#require 'gaku/testing/support/features'
+# require 'gaku/testing/support/features'
 
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
@@ -35,7 +34,6 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
-
 
   config.use_transactional_fixtures = false
   config.infer_base_class_for_anonymous_controllers = false

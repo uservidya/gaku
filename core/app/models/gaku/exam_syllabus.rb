@@ -1,6 +1,5 @@
 module Gaku
   class ExamSyllabus < ActiveRecord::Base
-
     belongs_to :syllabus, counter_cache: :exams_count
     belongs_to :exam
 
@@ -12,6 +11,5 @@ module Gaku
                             scope: :exam_id,
                             message: I18n.t(:'exam.already_added')
                           }
-
   end
 end

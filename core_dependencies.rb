@@ -7,6 +7,11 @@ group :test do
   gem 'shoulda-matchers',         '~> 2.4.0'
   gem 'simplecov'
   gem 'coveralls', require: false
+
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'guard-bundler'
+  gem 'guard-rubocop'
 end
 
 gemspec

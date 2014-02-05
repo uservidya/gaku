@@ -1,13 +1,11 @@
 module Gaku
   module Migrations
-
     def self.included(base)
       ActiveRecord::ConnectionAdapters::Table.send :include, TableDefinition
       ActiveRecord::ConnectionAdapters::TableDefinition.send :include, TableDefinition
     end
 
     module TableDefinition
-
       def person_fields
         column :name, :string
         column :surname, :string
@@ -24,7 +22,6 @@ module Gaku
           column("#{field}_count", :integer, default: 0)
         end
       end
-
     end
   end
 end

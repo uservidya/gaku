@@ -26,7 +26,7 @@ describe 'ClassGroups' do
         fill_in 'class_group_homeroom', with: 'room#7'
         click submit
         flash_created?
-      end.to change(Gaku::ClassGroup, :count).by 1
+      end.to change(Gaku::ClassGroup, :count).by(1)
 
       click '#class-groups-without-semester-tab-link'
 
@@ -61,12 +61,14 @@ describe 'ClassGroups' do
           click submit
           flash_updated?
 
-          expect(find_field('class_group_name').value).to eq 'Really awesome class group'
+          expect(find_field('class_group_name').value)
+            .to eq 'Really awesome class group'
           expect(find_field('class_group_grade').value).to eq '2'
           expect(find_field('class_group_homeroom').value).to eq 'B2'
 
           class_group_with_semesters.reload
-          expect(class_group_with_semesters.name).to eq 'Really awesome class group'
+          expect(class_group_with_semesters.name)
+            .to eq 'Really awesome class group'
           expect(class_group_with_semesters.grade).to eq 2
           expect(class_group_with_semesters.homeroom).to eq 'B2'
         end
@@ -79,18 +81,18 @@ describe 'ClassGroups' do
 
     end
 
-     it 'deletes' do
-        visit gaku.edit_class_group_path(class_group)
+    it 'deletes' do
+      visit gaku.edit_class_group_path(class_group)
 
-        expect do
-          click modal_delete_link
-          within(modal) { click_on 'Delete' }
-          accept_alert
-          flash_destroyed?
-        end.to change(Gaku::ClassGroup, :count).by -1
+      expect do
+        click modal_delete_link
+        within(modal) { click_on 'Delete' }
+        accept_alert
+        flash_destroyed?
+      end.to change(Gaku::ClassGroup, :count).by(-1)
 
-        current_path.should eq gaku.class_groups_path
-      end
+      current_path.should eq gaku.class_groups_path
+    end
 
   end
 end

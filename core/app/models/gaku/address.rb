@@ -9,7 +9,6 @@ module Gaku
     scope :teachers,  -> { where(addressable_type: 'Gaku::Teacher') }
     scope :guardians, -> { where(addressable_type: 'Gaku::Guardian') }
 
-
     validates :address1, :country, :city, presence: true
 
     accepts_nested_attributes_for :country
@@ -74,8 +73,8 @@ module Gaku
     end
 
     def ensure_first_primary
-      if addressable.respond_to?(:addresses)
-        self.primary = true if addressable.addresses.blank?
+      if addressable.respond_to?(:addresses) && addressable.addresses.blank?
+        self.primary = true
       end
     end
 
@@ -84,6 +83,5 @@ module Gaku
         addressable.update_attribute(:primary_address, addressable.address_widget)
       end
     end
-
   end
 end

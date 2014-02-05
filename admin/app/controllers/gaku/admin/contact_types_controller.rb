@@ -1,7 +1,6 @@
 module Gaku
   class Admin::ContactTypesController < Admin::BaseController
-
-    #load_and_authorize_resource class: ContactType
+    # load_and_authorize_resource class: ContactType
 
     respond_to :js,   only: %i( new create edit update destroy )
     respond_to :html, only: :index
@@ -49,7 +48,5 @@ module Gaku
     def contact_type_params
       params.require(:contact_type).permit(:name)
     end
-
-
   end
 end

@@ -5,10 +5,24 @@ describe 'ClassGroup Semesters' do
   before { as :admin }
 
   let(:class_group) { create(:class_group) }
-  let(:school_year) { create(:school_year, starting: Date.parse('2013-1-1'), ending: Date.parse('2013-12-30')) }
-  let(:semester) { create(:semester, school_year: school_year, starting: Date.parse('2013-1-1'), ending: Date.parse('2013-6-1')  )}
-  let(:semester2) { create(:semester, school_year: school_year, starting: Date.parse('2013-6-1'), ending: Date.parse('2013-12-30')  )}
-  let(:semester_class_group) { create(:semester_class_group, semester: semester, class_group: class_group)}
+  let(:school_year) do
+    create(:school_year, starting: Date.parse('2013-1-1'),
+                         ending: Date.parse('2013-12-30'))
+  end
+  let(:semester) do
+    create(:semester, school_year: school_year,
+                      starting: Date.parse('2013-1-1'),
+                      ending: Date.parse('2013-6-1'))
+  end
+  let(:semester2) do
+    create(:semester, school_year: school_year,
+                      starting: Date.parse('2013-6-1'),
+                      ending: Date.parse('2013-12-30'))
+  end
+  let(:semester_class_group) do
+    create(:semester_class_group, semester: semester,
+                                  class_group: class_group)
+  end
 
   before :all do
     set_resource 'class-group-semester-class-group'
@@ -28,12 +42,15 @@ describe 'ClassGroup Semesters' do
 
     it 'creates and shows' do
       expect do
-        select "#{semester.starting} / #{semester.ending}", from: 'semester_class_group_semester_id'
+        select "#{semester.starting} / #{semester.ending}",
+               from: 'semester_class_group_semester_id'
         click submit
         flash_created?
       end.to change(Gaku::SemesterClassGroup, :count).by(1)
 
-      within(table) { page.should have_content "#{semester.starting} / #{semester.ending}" }
+      within(table) do
+        page.should have_content "#{semester.starting} / #{semester.ending}"
+      end
       within(tab_link) { page.should have_content 'Semesters(1)' }
 
     end
@@ -45,7 +62,8 @@ describe 'ClassGroup Semesters' do
     it 'uniqness scope validations'  do
       semester_class_group
       expect do
-        select "#{semester.starting} / #{semester.ending}", from: 'semester_class_group_semester_id'
+        select "#{semester.starting} / #{semester.ending}",
+               from: 'semester_class_group_semester_id'
         click submit
       end.to change(Gaku::SemesterClassGroup, :count).by(0)
       page.should have_content('Semester already added to Class Group')
@@ -69,26 +87,38 @@ describe 'ClassGroup Semesters' do
       end
 
       it 'edits' do
-        select "#{semester2.starting} / #{semester2.ending}", from: 'semester_class_group_semester_id'
+        select "#{semester2.starting} / #{semester2.ending}",
+               from: 'semester_class_group_semester_id'
         click submit
 
         flash_updated?
-        within(table) { page.should have_content "#{semester2.starting} / #{semester2.ending}" }
-        within(table) { page.should_not have_content "#{semester.starting} / #{semester.ending}" }
+        within(table) do
+          page.should have_content "#{semester2.starting} / #{
+                                    semester2.ending}"
+        end
+        within(table) do
+          page.should_not have_content "#{semester.starting} / #{
+                                        semester.ending}"
+        end
       end
 
     end
 
     it 'delete', js: true do
-      within(table)     { page.should have_content "#{semester.starting} / #{semester.ending}" }
+      within(table) do
+        page.should have_content "#{semester.starting} / #{semester.ending}"
+      end
       within(tab_link)  { page.should have_content 'Semesters(1)' }
 
       expect do
         ensure_delete_is_working
         flash_destroyed?
-      end.to change(Gaku::SemesterClassGroup,:count).by -1
+      end.to change(Gaku::SemesterClassGroup, :count).by(-1)
 
-      within(table)     { page.should_not have_content "#{semester.starting} / #{semester.ending}" }
+      within(table) do
+        page.should_not have_content "#{semester.starting} / #{
+                                      semester.ending}"
+      end
       within(tab_link) { page.should_not have_content 'Semesters(1)' }
       within(tab_link) { page.should have_content 'Semesters' }
     end

@@ -21,14 +21,14 @@ describe 'CourseGroups' do
         fill_in 'course_group_name', with: 'MathCourses2012'
         click submit
         flash_created?
-      end.to change(Gaku::CourseGroup, :count).by 1
+      end.to change(Gaku::CourseGroup, :count).by(1)
 
       within(count_div) { page.should have_content('Course Groups List(1)') }
-      within (table) { page.should have_content 'MathCourses2012' }
+      within(table) { page.should have_content 'MathCourses2012' }
 
     end
 
-    it {has_validations?}
+    it { has_validations? }
   end
 
   context 'existing' do
@@ -70,7 +70,5 @@ describe 'CourseGroups' do
       flash_destroyed?
       current_path.should eq gaku.course_groups_path
     end
-
-
   end
 end

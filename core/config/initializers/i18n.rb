@@ -1,8 +1,10 @@
 module I18n
   module Backend
     class Simple
-      # Monkey-patch-in localization debugging.. ( see: http://www.unixgods.org/~tilo/Rails/which_l10n_strings_is_rails_trying_to_lookup.html )
-      # Enable with ENV['I18N_DEBUG']=1 on the command line in server startup, or ./config/environments/*.rb file.
+      # Monkey-patch-in localization debugging.. ( see: http://www.unixgods.
+      # org/~tilo/Rails/which_l10n_strings_is_rails_trying_to_lookup.html )
+      # Enable with ENV['I18N_DEBUG']=1 on the command line in server startup,
+      # or ./config/environments/*.rb file.
       #
       def lookup(locale, key, scope = [], options = {})
         init_translations unless initialized?

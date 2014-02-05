@@ -1,6 +1,5 @@
 module Gaku
   class SemesterCourse < ActiveRecord::Base
-
     belongs_to :semester
     belongs_to :course
 
@@ -16,6 +15,5 @@ module Gaku
     def self.group_by_semester
       all.includes([:semester, :course]).group_by(&:semester_id)
     end
-
   end
 end

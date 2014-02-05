@@ -1,6 +1,5 @@
 module Gaku
   class Campus < ActiveRecord::Base
-
     include Contacts, Picture
 
     belongs_to :school
@@ -13,6 +12,5 @@ module Gaku
     def to_s
       name
     end
-
   end
 end

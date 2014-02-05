@@ -9,10 +9,11 @@ describe Gaku::Template do
     it { should have_attached_file :file }
     it do
       should validate_attachment_content_type(:file)
-        .allowing('text/plain',
-                  'application/vnd.ms-excel',
-                  'application/vnd.oasis.opendocument.spreadsheet',
-                  'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+        .allowing(
+          'text/plain',
+          'application/vnd.ms-excel',
+          'application/vnd.oasis.opendocument.spreadsheet',
+          'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
     end
   end
 

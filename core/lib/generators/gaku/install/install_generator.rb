@@ -5,9 +5,9 @@ require 'bundler/cli'
 
 module Gaku
   class InstallGenerator < Rails::Generators::Base
-
     class_option :migrate, type: :boolean, default: true, banner: 'Run Gaku migrations'
-    class_option :seed, type: :boolean, default: true, banner: 'load seed data (migrations must be run)'
+    class_option :seed, type: :boolean, default: true,
+                        banner: 'load seed data (migrations must be run)'
     class_option :auto_accept, type: :boolean
     class_option :lib_name, type: :string, default: 'gaku'
     class_option :env, type: :string, default: 'development'
@@ -25,9 +25,7 @@ module Gaku
       @run_migrations = options[:migrate]
       @load_seed_data = options[:seed]
 
-      unless @run_migrations
-         @load_seed_data = false
-      end
+      @load_seed_data = false unless @run_migrations
     end
 
     def remove_unneeded_files
@@ -43,18 +41,18 @@ module Gaku
       end
 
       if defined? Gaku::Frontend || Rails.env.test?
-        template "app/assets/javascripts/gaku/frontend/all.js"
-        template "app/assets/stylesheets/gaku/frontend/all.css"
+        template 'app/assets/javascripts/gaku/frontend/all.js'
+        template 'app/assets/stylesheets/gaku/frontend/all.css'
       end
 
       if defined? Gaku::Admin || Rails.env.test?
-        template "app/assets/javascripts/gaku/admin/all.js"
-        template "app/assets/stylesheets/gaku/admin/all.css"
+        template 'app/assets/javascripts/gaku/admin/all.js'
+        template 'app/assets/stylesheets/gaku/admin/all.css'
       end
 
       if defined? Gaku::Archive || Rails.env.test?
-        template "app/assets/javascripts/gaku/archive/all.js"
-        template "app/assets/stylesheets/gaku/archive/all.css"
+        template 'app/assets/javascripts/gaku/archive/all.js'
+        template 'app/assets/stylesheets/gaku/archive/all.css'
       end
     end
 
@@ -62,24 +60,26 @@ module Gaku
       empty_directory 'app/overrides'
     end
 
-
     def configure_application
       application <<-APP
 
     config.to_prepare do
       # Load application's model / class injectors
-      Dir.glob(File.join(File.dirname(__FILE__), "../app/**/*_injector*.rb")) do |c|
+      Dir.glob(File.join(File.dirname(__FILE__),
+               "../app/**/*_injector*.rb")) do |c|
         Rails.configuration.cache_classes ? require(c) : load(c)
       end
 
       # Load application's view overrides
-      Dir.glob(File.join(File.dirname(__FILE__), "../app/overrides/*.rb")) do |c|
+      Dir.glob(File.join(File.dirname(__FILE__),
+               "../app/overrides/*.rb")) do |c|
         Rails.configuration.cache_classes ? require(c) : load(c)
       end
     end
       APP
 
-      append_file 'config/environment.rb', "\nActiveRecord::Base.include_root_in_json = true\n"
+      append_file 'config/environment.rb',
+                  "\nActiveRecord::Base.include_root_in_json = true\n"
     end
 
     def include_seed_data
@@ -117,7 +117,7 @@ Gaku::Core::Engine.load_seed if defined?(Gaku::Core)
     def populate_seed_data
       if @load_seed_data
         say_status :loading,  'seed data'
-        cmd = lambda { rake "db:seed", env: @env }
+        cmd = -> { rake 'db:seed', env: @env }
         cmd.call
       else
         say_status :skipping, 'seed data (you can always run rake db:seed)'
@@ -125,10 +125,12 @@ Gaku::Core::Engine.load_seed if defined?(Gaku::Core)
     end
 
     def notify_about_routes
-      if File.readlines(File.join('config', 'routes.rb')).grep(/mount Gaku::Core::Engine/).any?
-        say_status :skipping, "route Gaku::Core::Engine already present."
+      if File.readlines(File.join('config', 'routes.rb'))
+          .grep(/mount Gaku::Core::Engine/).any?
+        say_status :skipping, 'route Gaku::Core::Engine already present.'
       else
-        insert_into_file File.join('config', 'routes.rb'), after: "Application.routes.draw do\n" do
+        insert_into_file File.join('config', 'routes.rb'),
+                         after: "Application.routes.draw do\n" do
           %Q{ mount Gaku::Core::Engine, at: '/' }
         end
 
@@ -149,6 +151,5 @@ Gaku::Core::Engine.load_seed if defined?(Gaku::Core)
         puts 'Enjoy!'
       end
     end
-
   end
 end

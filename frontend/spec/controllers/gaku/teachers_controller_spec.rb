@@ -41,7 +41,9 @@ describe Gaku::TeachersController do
       describe 'PATCH #update' do
         context 'with valid attributes' do
           before do
-            gaku_patch :update, id: teacher, teacher: attributes_for(:teacher, name: 'mobifon')
+            gaku_patch :update,
+                       id: teacher,
+                       teacher: attributes_for(:teacher, name: 'mobifon')
           end
 
           it { should respond_with 302 }
@@ -55,7 +57,9 @@ describe Gaku::TeachersController do
 
         context 'with invalid attributes' do
           before do
-            gaku_patch :update, id: teacher, teacher: attributes_for(:invalid_teacher, name: '')
+            gaku_patch :update,
+                       id: teacher,
+                       teacher: attributes_for(:invalid_teacher, name: '')
           end
 
           it { should respond_with 200 }
@@ -68,7 +72,6 @@ describe Gaku::TeachersController do
         end
       end
 
-
     end
 
     context 'js' do
@@ -77,7 +80,9 @@ describe Gaku::TeachersController do
         before { gaku_js_get :new }
 
         it { should respond_with 200 }
-        it('assigns @teacher') { expect(assigns(:teacher)).to be_a_new(Gaku::Teacher) }
+        it('assigns @teacher') do
+          expect(assigns(:teacher)).to be_a_new(Gaku::Teacher)
+        end
         it('renders the :new template') { template? :new }
       end
 

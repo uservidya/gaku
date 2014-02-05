@@ -1,12 +1,10 @@
 module Gaku
   class Admin::Schools::CampusesController < Admin::BaseController
-
     respond_to :js,   only: %i( new create destroy )
     respond_to :html, only: %i( edit update show )
 
     before_action :set_campus,  only: %i( edit show update destroy )
     before_action :set_school
-
 
     def destroy
       @campus.destroy
@@ -67,6 +65,5 @@ module Gaku
     def set_count
       @count = @school.campuses.count
     end
-
   end
 end

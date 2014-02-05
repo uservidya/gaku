@@ -36,13 +36,13 @@ describe Gaku::ClassGroup do
       it 'increments notes_count' do
         expect do
           class_group.notes << note
-        end.to change { class_group.reload.notes_count }.by 1
+        end.to change { class_group.reload.notes_count }.by(1)
       end
 
       it 'decrements notes_count' do
         expect do
           class_group_with_note.notes.last.destroy
-        end.to change { class_group_with_note.reload.notes_count }.by -1
+        end.to change { class_group_with_note.reload.notes_count }.by(-1)
       end
     end
   end

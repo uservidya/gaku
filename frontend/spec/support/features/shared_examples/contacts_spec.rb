@@ -16,7 +16,7 @@ shared_examples_for 'new contact' do
         fill_in 'contact_details', with: 'The contact details'
         click submit
         flash_created?
-      end.to change(@resource.contacts, :count).by 1
+      end.to change(@resource.contacts, :count).by(1)
 
       has_content? 'The contact data'
       has_content? 'The contact details'
@@ -51,7 +51,7 @@ shared_examples_for 'edit contact' do
     has_no_content? old_contact
   end
 
-  it 'errors without required fields', js:true do
+  it 'errors without required fields', js: true do
     fill_in 'contact_data',  with: ''
     has_validations?
   end
@@ -64,9 +64,7 @@ shared_examples_for 'delete contact' do
     contact_field = @resource.contacts.first.data
 
     count? 'Contacts list(1)'
-    if page.has_css?(tab_link)
-      within(tab_link)  { has_content? 'Contacts(1)' }
-    end
+    within(tab_link) { has_content? 'Contacts(1)' } if page.has_css?(tab_link)
     has_content? contact_field
 
     expect do
@@ -92,7 +90,9 @@ shared_examples_for 'primary contacts' do
     expect(old_primary.primary).to eq true
     expect(old_secondary.primary).to eq false
 
-    within("#{table} tr#contact-#{old_secondary.id}") { click_link 'set-primary-link' }
+    within("#{table} tr#contact-#{old_secondary.id}") do
+      click_link 'set-primary-link'
+    end
     accept_alert
 
     within("#{table} tr#contact-#{old_secondary.id}") do

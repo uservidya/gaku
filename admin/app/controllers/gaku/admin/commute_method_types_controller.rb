@@ -1,7 +1,6 @@
 module Gaku
   class Admin::CommuteMethodTypesController < Admin::BaseController
-
-    #load_and_authorize_resource class: CommuteMethodType
+    # load_and_authorize_resource class: CommuteMethodType
 
     respond_to :js,   only: %i( new create edit update destroy )
     respond_to :html, only: :index
@@ -49,6 +48,5 @@ module Gaku
     def commute_method_type_params
       params.require(:commute_method_type).permit(:name)
     end
-
   end
 end

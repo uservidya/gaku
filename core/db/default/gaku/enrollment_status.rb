@@ -20,9 +20,9 @@ statuses = [
   { code: 'suspended', name: 'Suspended', name_ja: '退学', active: false },
   { code: 'expelled', name: 'Expelled', name_ja: '停学', active: false },
   { code: 'dropped_out', name: 'Dropped Out', name_ja: '自主退学', active: false },
-  { code: 'terminal_leave', name: 'Terminal Leave',  name_ja: '除籍', active: false },
+  { code: 'terminal_leave', name: 'Terminal Leave', name_ja: '除籍', active: false },
   { code: 'on_leave', name: 'On Leave', name_ja: '一時自主退学', active: false },
-  { code: 'extended_absence', name: 'Extended Absence',  name_ja: '長期自主退学', active: false },
+  { code: 'extended_absence', name: 'Extended Absence', name_ja: '長期自主退学', active: false },
   { code: 'deleted', name: 'Deleted',  name_ja: '削除' , active: false }
 ]
 

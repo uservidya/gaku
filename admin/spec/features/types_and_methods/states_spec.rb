@@ -5,13 +5,13 @@ describe 'Admin States' do
   before { as :admin }
   before(:all) { set_resource 'admin-state' }
 
-  let!(:country) { create(:country, name: 'Japan', iso: 'JP')}
+  let!(:country) { create(:country, name: 'Japan', iso: 'JP') }
   let(:state) { create(:state, name: 'Tokyo ', country: country) }
-  let(:country2) { create(:country, name: 'Bulgaria', iso: 'BG')}
+  let(:country2) { create(:country, name: 'Bulgaria', iso: 'BG') }
   let!(:country_table) { "#admin-#{country.iso.downcase}-states-index" }
-  let(:preset) { create(:preset, address: {country: 'JP'}) }
+  let(:preset) { create(:preset, address: { country: 'JP' }) }
 
-  context 'new', js:true do
+  context 'new', js: true do
     before do
       state; country2
       visit gaku.admin_states_path

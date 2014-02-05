@@ -14,7 +14,6 @@ FactoryGirl.define do
     end
   end
 
-
   trait :with_address do
     after(:create) do |resource|
       create(:address, addressable: resource)

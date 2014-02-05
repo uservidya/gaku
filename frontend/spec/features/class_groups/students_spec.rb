@@ -7,8 +7,13 @@ describe 'ClassGroup Students' do
   let(:enrollment_status_applicant) { create(:enrollment_status_applicant) }
   let(:enrollment_status_admitted) { create(:enrollment_status_admitted) }
   let(:enrollment_status) { create(:enrollment_status) }
-  let(:class_group) { create(:class_group, grade: '1', name: 'Biology', homeroom: 'A1') }
-  let(:student1) { create(:student, name: 'Susumu', surname: 'Yokota', enrollment_status_code: enrollment_status_admitted.code) }
+  let(:class_group) do
+    create(:class_group, grade: '1', name: 'Biology', homeroom: 'A1')
+  end
+  let(:student1) do
+    create(:student, name: 'Susumu', surname: 'Yokota',
+                     enrollment_status_code: enrollment_status_admitted.code)
+  end
 
   before :all do
     set_resource 'class-group-student'
@@ -55,10 +60,12 @@ describe 'ClassGroup Students' do
         end
         invisible? '#student-modal'
         within(table) { page.has_content? "#{student1.name}" }
-      end.to change(Gaku::ClassGroupEnrollment,:count).by 1
+      end.to change(Gaku::ClassGroupEnrollment, :count).by(1)
 
       page.should have_content "#{student1} : Successfully enrolled!"
-      within('#class-group-enrollments-tab-link'){ page.should have_content('1') }
+      within('#class-group-enrollments-tab-link') do
+        page.should have_content('1')
+      end
     end
   end
 
@@ -66,7 +73,9 @@ describe 'ClassGroup Students' do
     before do
       class_group.students << student1
       visit gaku.edit_class_group_path(class_group)
-      within('#class-group-enrollments-tab-link'){ page.should have_content('1') }
+      within('#class-group-enrollments-tab-link') do
+        page.should have_content('1')
+      end
       Gaku::ClassGroupEnrollment.count.should eq 1
     end
 
@@ -83,7 +92,9 @@ describe 'ClassGroup Students' do
 
       ensure_delete_is_working
 
-      within('#class-group-enrollments-tab-link') { page.should_not have_content('1') }
+      within('#class-group-enrollments-tab-link') do
+        page.should_not have_content('1')
+      end
     end
   end
 

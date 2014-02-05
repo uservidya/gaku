@@ -1,6 +1,5 @@
 module Gaku
   class Contact < ActiveRecord::Base
-
     belongs_to :contact_type
     belongs_to :contactable, polymorphic: true, counter_cache: true
 
@@ -60,8 +59,8 @@ module Gaku
     end
 
     def ensure_first_is_primary
-      if contactable.respond_to? :contacts
-        self.primary = true if contacts.blank?
+      if contactable.respond_to?(:contacts) && contacts.blank?
+        self.primary = true
       end
     end
 
@@ -78,7 +77,5 @@ module Gaku
     def contacts
       contactable.contacts
     end
-
   end
 end
-

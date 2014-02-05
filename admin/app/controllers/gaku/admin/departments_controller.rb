@@ -1,7 +1,6 @@
 module Gaku
   class Admin::DepartmentsController < Admin::BaseController
-
-    #load_and_authorize_resource class: Department
+    # load_and_authorize_resource class: Department
 
     respond_to :js,   only: %i( new create edit update destroy )
     respond_to :html, only: :index
@@ -49,7 +48,5 @@ module Gaku
     def department_params
       params.require(:department).permit(:name)
     end
-
-
   end
 end

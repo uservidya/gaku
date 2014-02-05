@@ -10,7 +10,10 @@ describe 'Admin Program' do
   let!(:syllabus) { create(:syllabus, name: 'Ruby Ninja Championship') }
   let!(:specialty) { create(:specialty, name: 'Ruby throw exception') }
 
-  let(:program) { create(:program, :with_program_level, :with_program_syllabus, :with_program_specialty, school: school) }
+  let(:program) do
+    create(:program, :with_program_level, :with_program_syllabus,
+           :with_program_specialty, school: school)
+  end
 
   before :all do
     set_resource 'admin-school-program'
@@ -90,7 +93,6 @@ describe 'Admin Program' do
 
         within(table) { page.should have_content 'Rails Samurai' }
 
-
         %w(level syllabus specialty).each do |resource|
           click ".program-#{resource.pluralize}-list"
           within("#show-program-#{resource.pluralize}-modal") do
@@ -110,7 +112,7 @@ describe 'Admin Program' do
       expect do
         ensure_delete_is_working
         flash_destroyed?
-      end.to change(Gaku::Program, :count).by -1
+      end.to change(Gaku::Program, :count).by(-1)
 
       within(count_div) { page.should_not have_content 'Programs list(1)' }
       page.should_not have_content program.name

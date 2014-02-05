@@ -23,7 +23,7 @@ describe 'Exam Portion Attachments' do
         attach_file 'attachment_asset', picture_path
         click submit
         flash_created?
-      end.to change(Gaku::Attachment, :count).by 1
+      end.to change(Gaku::Attachment, :count).by(1)
 
       has_content? 'Attachment name'
       has_content? 'Attachment description'
@@ -72,7 +72,7 @@ describe 'Exam Portion Attachments' do
       expect do
         ensure_delete_is_working
         flash_destroyed?
-      end.to change(Gaku::Attachment, :count).by -1
+      end.to change(Gaku::Attachment, :count).by(-1)
 
       within(count_div) { page.should have_content 'Attachments list' }
       page.should_not have_content("#{attachment.name}")
@@ -87,7 +87,6 @@ describe 'Exam Portion Attachments' do
         end
         flash_destroyed?
       end
-
 
       it 'deletes attachment from index table' do
         visit gaku.exam_exam_portion_path(exam, exam_portion)

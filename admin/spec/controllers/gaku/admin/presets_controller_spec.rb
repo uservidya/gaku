@@ -33,7 +33,6 @@ describe Gaku::Admin::PresetsController do
         it('renders :index template') { template? :index }
       end
 
-
       describe 'GET #edit' do
         before { gaku_get :edit, id: preset }
 
@@ -62,7 +61,6 @@ describe Gaku::Admin::PresetsController do
       end
 
     end
-
 
   end
 end

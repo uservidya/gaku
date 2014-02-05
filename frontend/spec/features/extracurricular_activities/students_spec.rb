@@ -13,9 +13,16 @@ describe 'ExtracurricularActivity Students' do
   let(:enrollment_status_admitted) { create(:enrollment_status_admitted) }
   let(:enrollment_status) { create(:enrollment_status) }
   let(:extracurricular_activity) { create(:extracurricular_activity) }
-  let(:student1) { create(:student, name: 'Susumu', surname: 'Yokota', enrollment_status_code: enrollment_status_admitted.code) }
-  let(:student2) { create(:student, enrollment_status_code: enrollment_status_admitted.code) }
-  let(:student3) { create(:student, enrollment_status_code: enrollment_status_admitted.code) }
+  let(:student1) do
+    create(:student, name: 'Susumu', surname: 'Yokota',
+                     enrollment_status_code: enrollment_status_admitted.code)
+  end
+  let(:student2) do
+    create(:student, enrollment_status_code: enrollment_status_admitted.code)
+  end
+  let(:student3) do
+    create(:student, enrollment_status_code: enrollment_status_admitted.code)
+  end
 
   before do
     extracurricular_activity
@@ -57,11 +64,15 @@ describe 'ExtracurricularActivity Students' do
         end
         invisible? '#student-modal'
         within(table) { page.has_content? "#{student1.name}" }
-      end.to change(Gaku::ExtracurricularActivityEnrollment,:count).by 1
+      end.to change(Gaku::ExtracurricularActivityEnrollment, :count).by(1)
 
       page.should have_content "#{student1} : Successfully enrolled!"
-      within('.extracurricular-activity-enrollments-count') { page.should have_content '1' }
-      within('#extracurricular-activity-enrollments-tab-link') { page.should have_content '1' }
+      within('.extracurricular-activity-enrollments-count') do
+        page.should have_content '1'
+      end
+      within('#extracurricular-activity-enrollments-tab-link') do
+        page.should have_content '1'
+      end
     end
 
     it 'adds more than one student' do
@@ -73,7 +84,7 @@ describe 'ExtracurricularActivity Students' do
         visible? '#students-checked-div'
         within('#students-checked-div') do
           page.should have_content 'Chosen students'
-          #click_link 'Show'
+          # click_link 'Show'
           visible? '#chosen-table'
           page.should have_content "#{student1.name}"
           page.should have_content "#{student2.name}"
@@ -87,25 +98,32 @@ describe 'ExtracurricularActivity Students' do
           page.should have_content "#{student2.name}"
           page.should have_content "#{student3.name}"
         end
-      end.to change(Gaku::ExtracurricularActivityEnrollment,:count).by 3
+      end.to change(Gaku::ExtracurricularActivityEnrollment, :count).by(3)
 
       page.should have_content "#{student1} : Successfully enrolled!"
       page.should have_content "#{student2} : Successfully enrolled!"
       page.should have_content "#{student3} : Successfully enrolled!"
-      within('.extracurricular-activity-enrollments-count') { page.should have_content '3' }
-      within('#extracurricular-activity-enrollments-tab-link') { page.should have_content '3' }
+      within('.extracurricular-activity-enrollments-count') do
+        page.should have_content '3'
+      end
+      within('#extracurricular-activity-enrollments-tab-link') do
+        page.should have_content '3'
+      end
 
     end
 
   end
 
-
   context 'existing student' do
     before do
       extracurricular_activity.students << student1
       visit gaku.edit_extracurricular_activity_path(extracurricular_activity)
-      within('.extracurricular-activity-enrollments-count') { page.should have_content '1' }
-      within('#extracurricular-activity-enrollments-tab-link') { page.should have_content '1' }
+      within('.extracurricular-activity-enrollments-count') do
+        page.should have_content '1'
+      end
+      within('#extracurricular-activity-enrollments-tab-link') do
+        page.should have_content '1'
+      end
       Gaku::ExtracurricularActivityEnrollment.count.should eq 1
     end
 
@@ -122,8 +140,12 @@ describe 'ExtracurricularActivity Students' do
 
       ensure_delete_is_working
 
-      within('.extracurricular-activity-enrollments-count') { page.should_not have_content('1') }
-      within('#extracurricular-activity-enrollments-tab-link') { page.should_not have_content('1') }
+      within('.extracurricular-activity-enrollments-count') do
+        page.should_not have_content('1')
+      end
+      within('#extracurricular-activity-enrollments-tab-link') do
+        page.should_not have_content('1')
+      end
     end
   end
 
@@ -156,7 +178,8 @@ describe 'ExtracurricularActivity Students' do
       within(table) { page.has_content? "#{student1.name}" }
 
       invisible? '#student-modal'
-      page.should have_content "#{student1} : Student Already enrolled to the extracurricular activity!"
+      page.should have_content "#{
+        student1} : Student Already enrolled to the extracurricular activity!"
     end
   end
 

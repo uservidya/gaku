@@ -16,15 +16,13 @@ shared_examples_for 'new contact' do
         fill_in 'contact_details', with: 'The contact details'
         click submit
         flash_created?
-      end.to change(@resource.contacts, :count).by 1
+      end.to change(@resource.contacts, :count).by(1)
 
       has_content? 'The contact data'
       has_content? 'The contact details'
 
       count? 'Contacts list(1)'
-      if page.has_css?(tab_link)
-        within(tab_link)  { has_content? 'Contacts(1)' }
-      end
+      within(tab_link)  { has_content? 'Contacts(1)' } if page.has_css?(tab_link)
     end
   end
 
@@ -51,7 +49,7 @@ shared_examples_for 'edit contact' do
     has_no_content? old_contact
   end
 
-  it 'errors without required fields', js:true do
+  it 'errors without required fields', js: true do
     fill_in 'contact_data',  with: ''
     has_validations?
   end
@@ -64,9 +62,7 @@ shared_examples_for 'delete contact' do
     contact_field = @resource.contacts.first.data
 
     count? 'Contacts list(1)'
-    if page.has_css?(tab_link)
-      within(tab_link)  { has_content? 'Contacts(1)' }
-    end
+    within(tab_link)  { has_content? 'Contacts(1)' } if page.has_css?(tab_link)
     has_content? contact_field
 
     expect do
@@ -75,9 +71,7 @@ shared_examples_for 'delete contact' do
     end.to change(@resource.contacts, :count).by(-1)
 
     within(count_div) { has_no_content? 'Contacts list(1)' }
-    if page.has_css?(tab_link)
-      within(tab_link)  { has_no_content? 'Contacts(1)' }
-    end
+    within(tab_link)  { has_no_content? 'Contacts(1)' } if page.has_css?(tab_link)
     has_no_content? contact_field
   end
 

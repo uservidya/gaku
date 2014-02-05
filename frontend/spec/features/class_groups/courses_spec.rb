@@ -4,7 +4,10 @@ describe 'ClassGroup Courses' do
 
   before { as :admin }
 
-  let(:class_group) { create(:class_group, grade: '1', name: 'Not so awesome class group', homeroom: 'A1') }
+  let(:class_group) do
+    create(:class_group, grade: '1',
+                         name: 'Not so awesome class group', homeroom: 'A1')
+  end
   let(:course) { create(:course, code: 'Math2012') }
 
   before :all do

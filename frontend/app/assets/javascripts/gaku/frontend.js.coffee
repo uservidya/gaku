@@ -15,13 +15,14 @@
 #= require bootstrap/tab
 #= require bootstrap/dropdown
 #= require bootstrap/modal
+#= require bootstrap/tooltip
+
+#= require bootstrap-datepicker/core
+#= require bootstrap-datepicker/locales/bootstrap-datepicker.ja
 
 #= require nprogress
 #= require nprogress-turbolinks
 #= require nprogress-ajax
-
-#= require bootstrap-datepicker/core
-#= require bootstrap-datepicker/locales/bootstrap-datepicker.ja
 
 #= require underscore
 #= require moment
@@ -37,6 +38,9 @@
 
 #= require_tree .
 
-NProgress.configure
-  showSpinner: false
-  ease: 'ease-in-out'
+jQuery ->
+  NProgress.configure
+    showSpinner: false
+    ease: 'ease-in-out'
+
+  $('[data-toggle="tooltip"]').tooltip()

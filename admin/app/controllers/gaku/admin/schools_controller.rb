@@ -1,6 +1,5 @@
 module Gaku
   class Admin::SchoolsController < Admin::BaseController
-
     respond_to :js,   only: %i( new create destroy )
     respond_to :html, only: %i( index edit edit_master update update_master show show_master )
 
@@ -64,7 +63,8 @@ module Gaku
     end
 
     def attributes
-      [:name, :primary, :slogan, :description, :founded, :principal, :vice_principal, :grades, :code, { levels_attributes: [ :name, :'_destroy', :id ] }, :picture ]
+      [:name, :primary, :slogan, :description, :founded, :principal, :vice_principal,
+       :grades, :code, { levels_attributes: [:name, :'_destroy', :id] }, :picture]
     end
 
     def set_school
@@ -78,7 +78,5 @@ module Gaku
     def set_master_school
       @school = School.primary
     end
-
   end
-
 end

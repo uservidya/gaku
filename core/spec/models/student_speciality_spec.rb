@@ -10,7 +10,10 @@ describe Gaku::StudentSpecialty do
   describe 'validations' do
     it { should validate_presence_of :student_id }
     it { should validate_presence_of :specialty_id }
-    it { should validate_uniqueness_of(:student_id).scoped_to(:specialty_id).with_message(/Specialty already added!/) }
+    it do
+      should validate_uniqueness_of(:student_id).scoped_to(:specialty_id)
+               .with_message(/Specialty already added!/)
+    end
   end
 
 end

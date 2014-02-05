@@ -30,13 +30,13 @@ FactoryGirl.define  do
 
   trait :admitted do
     deleted false
-    #admitted false
+    # admitted false
     association :enrollment_status, factory: :enrollment_status_admitted
   end
 
   trait :applicant do
     deleted false
-    #admitted false
+    # admitted false
     association :enrollment_status, factory: :enrollment_status_applicant
   end
 

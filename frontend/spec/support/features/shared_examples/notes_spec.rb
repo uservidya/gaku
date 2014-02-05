@@ -19,9 +19,7 @@ shared_examples_for 'new note' do
       has_content? 'The note title'
       has_content? 'The note content'
       count? 'Notes list(1)'
-      if page.has_css?(tab_link)
-        within(tab_link)  { has_content? 'Notes(1)' }
-      end
+      within(tab_link) { has_content? 'Notes(1)' } if page.has_css?(tab_link)
     end
 
     it 'has validations', js: true do
@@ -40,7 +38,7 @@ shared_examples_for 'edit note' do
     visible? modal
   end
 
-  it 'edits', js:true do
+  it 'edits', js: true do
     old_note = note.title
     fill_in 'note_title',   with: 'Edited note title'
     fill_in 'note_content', with: 'Edited note content'
@@ -53,7 +51,7 @@ shared_examples_for 'edit note' do
     expect(@resource.notes.first.reload.title).to eq 'Edited note title'
   end
 
-  it 'errors without required fields', js:true do
+  it 'errors without required fields', js: true do
     fill_in 'note_title', with: ''
     has_validations?
   end
@@ -73,9 +71,7 @@ shared_examples_for 'delete note' do
     end.to change(@resource.notes, :count).by(-1)
 
     within(count_div) { has_no_content? 'Notes list(1)' }
-    if page.has_css?(tab_link)
-      within(tab_link)  { has_no_content? 'Notes(1)' }
-    end
+    within(tab_link) { has_no_content? 'Notes(1)' } if page.has_css?(tab_link)
     has_no_content? note_field
   end
 

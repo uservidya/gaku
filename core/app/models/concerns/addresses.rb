@@ -9,9 +9,7 @@ module Addresses
     end
 
     def address_widget
-      "#{get_primary_address.city}, " +
-        "#{get_primary_address.address1}" if get_primary_address
+      "#{get_primary_address.city}, #{get_primary_address.address1}" if get_primary_address
     end
   end
-
 end

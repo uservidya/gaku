@@ -21,7 +21,7 @@ describe 'Admin Grading Method Sets' do
         page.has_css? '#grading_method_set_rank_order'
         click submit
         flash_created?
-      end.to change(Gaku::GradingMethodSet, :count).by 1
+      end.to change(Gaku::GradingMethodSet, :count).by(1)
 
       has_content? 'Bulgarian'
       count? 'Grading Method Sets list(1)'
@@ -66,7 +66,6 @@ describe 'Admin Grading Method Sets' do
         ensure_delete_is_working
         flash_destroyed?
       end.to change(Gaku::GradingMethodSet, :count).by(-1)
-
 
       has_no_content? grading_method_set.name
     end

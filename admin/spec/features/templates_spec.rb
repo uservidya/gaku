@@ -27,7 +27,7 @@ describe 'Admin Templates' do
 
         click submit
         flash_created?
-      end.to change(Gaku::Template, :count).by 1
+      end.to change(Gaku::Template, :count).by(1)
 
       expect(page).to have_content 'New Template'
       within(count_div) { expect(page).to have_content 'Templates list(1)' }
@@ -74,7 +74,6 @@ describe 'Admin Templates' do
 
         expect(current_path).to eq gaku.admin_templates_path
       end
-
 
       it 'has file validations' do
         fill_in 'template_name', with: 'New Template'

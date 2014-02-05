@@ -100,7 +100,6 @@ describe Gaku::Student do
     end
   end
 
-
   context 'counter_cache' do
 
     let!(:student) { create(:student) }

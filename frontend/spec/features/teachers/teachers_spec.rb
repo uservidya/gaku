@@ -20,7 +20,7 @@ describe 'Teachers' do
         fill_in 'teacher_surname', with: 'Doe'
         click_button 'submit-teacher-button'
         flash_created?
-      end.to change(Gaku::Teacher, :count).by 1
+      end.to change(Gaku::Teacher, :count).by(1)
 
       has_content? 'John'
       count? 'Teachers list(1)'
@@ -70,10 +70,12 @@ describe 'Teachers' do
         within(modal) { click_on 'Delete' }
         accept_alert
         flash_destroyed?
-      end.to change(Gaku::Teacher, :count).by -1
+      end.to change(Gaku::Teacher, :count).by(-1)
 
       page.should_not have_content "#{teacher2.name}"
-      within(count_div) { page.should_not have_content 'Teachers list(#{teacher_count - 1})' }
+      within(count_div) do
+        page.should_not have_content 'Teachers list(#{teacher_count - 1})'
+      end
       current_path.should eq gaku.teachers_path
     end
 

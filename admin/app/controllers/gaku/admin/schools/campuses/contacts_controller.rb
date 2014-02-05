@@ -1,6 +1,5 @@
 module Gaku
   class Admin::Schools::Campuses::ContactsController < Admin::BaseController
-
     respond_to :js
 
     before_action :set_contact_types,    only: %i( new edit )
@@ -30,13 +29,12 @@ module Gaku
     end
 
     def destroy
-      if @contact.destroy
-        @campus.contacts.first.try(:make_primary) if @contact.primary?
+      if @contact.destroy && @contact.primary?
+        @campus.contacts.first.try(:make_primary)
       end
       set_count
       respond_with @contact
     end
-
 
     def make_primary
       @contact.make_primary
@@ -72,6 +70,5 @@ module Gaku
     def set_count
       @count = @campus.reload.contacts_count
     end
-
   end
 end

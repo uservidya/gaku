@@ -28,7 +28,9 @@ describe Gaku::Admin::CommuteMethodTypesController do
         end
 
         it { should respond_with 200 }
-        it('assigns @commute_method_types') { expect(assigns(:commute_method_types)).to eq [commute_method_type] }
+        it('assigns @commute_method_types') do
+          expect(assigns(:commute_method_types)).to eq [commute_method_type]
+        end
         it('assigns @count') { expect(assigns(:count)).to eq 1 }
         it('renders :index template') { template? :index }
       end
@@ -41,7 +43,9 @@ describe Gaku::Admin::CommuteMethodTypesController do
         before { gaku_js_get :new }
 
         it { should respond_with 200 }
-        it('assigns @commute_method_type') { expect(assigns(:commute_method_type)).to be_a_new(Gaku::CommuteMethodType) }
+        it('assigns @commute_method_type') do
+          expect(assigns(:commute_method_type)).to be_a_new(Gaku::CommuteMethodType)
+        end
         it('renders the :new template') { template? :new }
       end
 
@@ -95,18 +99,25 @@ describe Gaku::Admin::CommuteMethodTypesController do
         before { gaku_js_get :edit, id: commute_method_type }
 
         it { should respond_with 200 }
-        it('assigns @commute_method_type') { expect(assigns(:commute_method_type)).to eq commute_method_type }
+        it('assigns @commute_method_type') do
+          expect(assigns(:commute_method_type)).to eq commute_method_type
+        end
         it('renders the :edit template') { template? :edit }
       end
 
       describe 'PATCH #update' do
         context 'with valid attributes' do
           before do
-            gaku_js_patch :update, id: commute_method_type, commute_method_type: attributes_for(:commute_method_type, name: 'new method')
+            gaku_js_patch :update,
+                          id: commute_method_type,
+                          commute_method_type: attributes_for(:commute_method_type,
+                                                              name: 'new method')
           end
 
           it { should respond_with 200 }
-          it('assigns @commute_method_type') { expect(assigns(:commute_method_type)).to eq commute_method_type }
+          it('assigns @commute_method_type') do
+            expect(assigns(:commute_method_type)).to eq commute_method_type
+          end
           it('sets flash') { flash_updated? }
           it "changes commute_method_type's attributes" do
             commute_method_type.reload
@@ -116,11 +127,16 @@ describe Gaku::Admin::CommuteMethodTypesController do
 
         context 'with invalid attributes' do
           before do
-            gaku_js_patch :update, id: commute_method_type, commute_method_type: attributes_for(:invalid_commute_method_type, name: '')
+            gaku_js_patch :update,
+                          id: commute_method_type,
+                          commute_method_type: attributes_for(:invalid_commute_method_type,
+                                                              name: '')
           end
 
           it { should respond_with 200 }
-          it('assigns @commute_method_type') { expect(assigns(:commute_method_type)).to eq commute_method_type }
+          it('assigns @commute_method_type') do
+            expect(assigns(:commute_method_type)).to eq commute_method_type
+          end
 
           it "does not change commute_method_type's attributes" do
             commute_method_type.reload

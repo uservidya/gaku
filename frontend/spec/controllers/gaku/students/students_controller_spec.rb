@@ -4,15 +4,25 @@ describe Gaku::StudentsController do
 
   let!(:admin) { create(:admin_user) }
   let!(:enrollment_status) { create(:enrollment_status_admitted) }
-  let(:student) { create(:student, enrollment_status_code: enrollment_status.code) }
-  let(:valid_attributes) { {name: 'Marta', surname: 'Kostova'} }
-  let(:invalid_attributes) { {name: ''} }
+  let(:student) do
+    create(:student, enrollment_status_code: enrollment_status.code)
+  end
+  let(:valid_attributes) { { name: 'Marta', surname: 'Kostova' } }
+  let(:invalid_attributes) { { name: '' } }
 
   context 'search' do
     describe 'name' do
 
-      let!(:student1) { create(:student, name: 'Rei', surname: 'Kagetsuki', enrollment_status_code: enrollment_status.code, birth_date: Date.new(1950,9,1)) }
-      let!(:student2) { create(:student, name: 'Vassil', surname: 'Kalkov', enrollment_status_code: enrollment_status.code, birth_date: Date.new(2013,10,5)) }
+      let!(:student1) do
+        create(:student, name: 'Rei', surname: 'Kagetsuki',
+                enrollment_status_code: enrollment_status.code,
+                birth_date: Date.new(1950, 9, 1))
+      end
+      let!(:student2) do
+        create(:student, name: 'Vassil', surname: 'Kalkov',
+                enrollment_status_code: enrollment_status.code,
+                birth_date: Date.new(2013, 10, 5))
+      end
 
       it 'searches by name' do
         gaku_js_get :search, q: { name_cont: 'Re' }
@@ -29,14 +39,14 @@ describe Gaku::StudentsController do
       end
 
       it 'searches by birth_date_gteq' do
-        gaku_js_get :search, q: { birth_date_gteq: Date.new(2000,1,1) }
+        gaku_js_get :search, q: { birth_date_gteq: Date.new(2000, 1, 1) }
 
         expect(assigns(:students)).to eq [student2]
         expect(assigns(:students).size).to eq 1
       end
 
       it 'searches by birth_date_lteq' do
-        gaku_js_get :search, q: { birth_date_lteq: Date.new(2000,1,1) }
+        gaku_js_get :search, q: { birth_date_lteq: Date.new(2000, 1, 1) }
 
         expect(assigns(:students)).to eq [student1]
         expect(assigns(:students).size).to eq 1
@@ -63,8 +73,14 @@ describe Gaku::StudentsController do
     describe 'academic' do
       context 'graduated' do
 
-        let!(:student1) { create(:student, name: 'Rei', surname: 'Kagetsuki', graduated: Date.new(1983,9,1)) }
-        let!(:student2) { create(:student, name: 'Vassil', surname: 'Kalkov', graduated: Date.new(2000,10,5)) }
+        let!(:student1) do
+          create(:student, name: 'Rei', surname: 'Kagetsuki',
+                           graduated: Date.new(1983,9,1))
+        end
+        let!(:student2) do
+          create(:student, name: 'Vassil', surname: 'Kalkov',
+                           graduated: Date.new(2000,10,5))
+        end
 
         before do
           student1
@@ -72,13 +88,13 @@ describe Gaku::StudentsController do
         end
 
         it 'searches by graduated_gteq' do
-          gaku_js_get :search, q: { graduated_gteq: Date.new(2000,1,1) }
+          gaku_js_get :search, q: { graduated_gteq: Date.new(2000, 1, 1) }
           expect(assigns(:students)).to eq [student2]
           expect(assigns(:students).size).to eq 1
         end
 
         it 'searches by graduated_lteq' do
-          gaku_js_get :search, q: { graduated_lteq: Date.new(2000,1,1) }
+          gaku_js_get :search, q: { graduated_lteq: Date.new(2000, 1, 1) }
 
           expect(assigns(:students)).to eq [student1]
           expect(assigns(:students).size).to eq 1
@@ -87,8 +103,14 @@ describe Gaku::StudentsController do
 
       context 'admitted' do
 
-        let!(:student1) { create(:student, name: 'Rei', surname: 'Kagetsuki', admitted: Date.new(1983,9,1)) }
-        let!(:student2) { create(:student, name: 'Vassil', surname: 'Kalkov', admitted: Date.new(2000,10,5)) }
+        let!(:student1) do
+          create(:student, name: 'Rei', surname: 'Kagetsuki',
+                           admitted: Date.new(1983,9,1))
+        end
+        let!(:student2) do
+          create(:student, name: 'Vassil', surname: 'Kalkov',
+                           admitted: Date.new(2000,10,5))
+        end
 
         before do
           student1
@@ -96,13 +118,13 @@ describe Gaku::StudentsController do
         end
 
         it 'searches by admitted_gteq' do
-          gaku_js_get :search, q: { admitted_gteq: Date.new(2000,1,1) }
+          gaku_js_get :search, q: { admitted_gteq: Date.new(2000, 1, 1) }
           expect(assigns(:students)).to eq [student2]
           expect(assigns(:students).size).to eq 1
         end
 
         it 'searches by admitted_lteq' do
-          gaku_js_get :search, q: { admitted_lteq: Date.new(2000,1,1) }
+          gaku_js_get :search, q: { admitted_lteq: Date.new(2000, 1, 1) }
 
           expect(assigns(:students)).to eq [student1]
           expect(assigns(:students).size).to eq 1
@@ -111,9 +133,14 @@ describe Gaku::StudentsController do
 
 
       context 'specialty' do
-        let(:student) { create(:student, name: 'Vassil', surname: 'Kalkov', enrollment_status_code: enrollment_status.code) }
+        let(:student) do
+          create(:student, name: 'Vassil', surname: 'Kalkov',
+                           enrollment_status_code: enrollment_status.code)
+        end
         let(:specialty) { create(:specialty, name: 'Clojure') }
-        let(:student_specialty) { create(:student_specialty, student: student, specialty: specialty) }
+        let(:student_specialty) do
+          create(:student_specialty, student: student, specialty: specialty)
+        end
 
         it 'searches by specialty' do
           student_specialty
@@ -127,14 +154,29 @@ describe Gaku::StudentsController do
     end
 
     describe 'address' do
-      let(:student1) { create(:student, name: 'Rei', surname: 'Kagetsuki', enrollment_status_code: enrollment_status.code) }
-      let(:student2) { create(:student, name: 'Vassil', surname: 'Kalkov', enrollment_status_code: enrollment_status.code) }
+      let(:student1) do
+        create(:student, name: 'Rei', surname: 'Kagetsuki',
+                         enrollment_status_code: enrollment_status.code)
+      end
+      let(:student2) do
+        create(:student, name: 'Vassil', surname: 'Kalkov',
+                         enrollment_status_code: enrollment_status.code)
+      end
       let(:country1) { create(:country, name: 'Japan') }
       let(:country2) { create(:country, name: 'Bulgaria') }
       let(:state1) { create(:state, name: 'Aici', country: country1) }
       let(:state2) { create(:state, name: 'Varna', country: country2) }
-      let!(:address1) { create(:address, title: 'GTR', address1: 'Toyota str.', address2: 'gt86 str.', city: 'Nagoya', zipcode: '5000', state: state1, country: country1, addressable: student1) }
-      let!(:address2) { create(:address, title: 'S2000', address1: 'Subaru str.', address2: 'wrx str.', city: 'Varna', zipcode: '9004', state: state2, country: country2, addressable: student2) }
+      let!(:address1) do
+        create(:address, title: 'GTR', address1: 'Toyota str.',
+                         address2: 'gt86 str.', city: 'Nagoya',
+                         zipcode: '5000', state: state1,
+                         country: country1, addressable: student1)
+      end
+      let!(:address2) do
+        create(:address, title: 'S2000', address1: 'Subaru str.',
+                         address2: 'wrx str.', city: 'Varna', zipcode: '9004',
+                         state: state2, country: country2, addressable: student2)
+      end
 
       before do
         student1.addresses.reload
@@ -212,11 +254,21 @@ describe Gaku::StudentsController do
 
       it { should respond_with 200 }
       it('renders :new template') { template? :new }
-      it('assigns @student') { expect(assigns(:student)).to be_a_new(Gaku::Student) }
-      it('assigns @class_groups') { expect(assigns(:class_groups)).to_not be_nil }
-      it('assigns @enrollment_statuses') { expect(assigns(:enrollment_statuses)).to_not be_nil }
-      it('assigns @scholarship_statuses') { expect(assigns(:scholarship_statuses)).to_not be_nil }
-      it('assigns @commute_method_types') { expect(assigns(:commute_method_types)).to_not be_nil }
+      it('assigns @student') do
+        expect(assigns(:student)).to be_a_new(Gaku::Student)
+      end
+      it('assigns @class_groups') do
+        expect(assigns(:class_groups)).to_not be_nil
+      end
+      it('assigns @enrollment_statuses') do
+        expect(assigns(:enrollment_statuses)).to_not be_nil
+      end
+      it('assigns @scholarship_statuses') do
+        expect(assigns(:scholarship_statuses)).to_not be_nil
+      end
+      it('assigns @commute_method_types') do
+        expect(assigns(:commute_method_types)).to_not be_nil
+      end
     end
 
     describe 'POST #create' do
@@ -239,7 +291,7 @@ describe Gaku::StudentsController do
         let(:html_post) { gaku_post :create, student: invalid_attributes }
 
         it 'does not save' do
-          expect{ html_post }.to_not change(Gaku::Student, :count).by(1)
+          expect(html_post).to_not change(Gaku::Student, :count).by(1)
         end
 
         it 'renders :new template' do
@@ -255,10 +307,18 @@ describe Gaku::StudentsController do
       it { should respond_with 200 }
       it('renders :new template') { template? :edit }
       it('assigns @student') { expect(assigns(:student)).to eq student }
-      it('assigns @class_groups') { expect(assigns(:class_groups)).to_not be_nil }
-      it('assigns @enrollment_statuses') { expect(assigns(:enrollment_statuses)).to_not be_nil }
-      it('assigns @scholarship_statuses') { expect(assigns(:scholarship_statuses)).to_not be_nil }
-      it('assigns @commute_method_types') { expect(assigns(:commute_method_types)).to_not be_nil }
+      it('assigns @class_groups') do
+        expect(assigns(:class_groups)).to_not be_nil
+      end
+      it('assigns @enrollment_statuses') do
+        expect(assigns(:enrollment_statuses)).to_not be_nil
+      end
+      it('assigns @scholarship_statuses') do
+        expect(assigns(:scholarship_statuses)).to_not be_nil
+      end
+      it('assigns @commute_method_types') do
+        expect(assigns(:commute_method_types)).to_not be_nil
+      end
     end
 
     describe 'PATCH #update' do
@@ -270,7 +330,9 @@ describe Gaku::StudentsController do
 
       context 'valid attributes' do
         it "changes student's attributes" do
-          gaku_patch :update, id: student, student: attributes_for(:student, name: 'Kostova Marta')
+          gaku_patch :update,
+                     id: student,
+                     student: attributes_for(:student, name: 'Kostova Marta')
           student.reload
           student.name.should eq('Kostova Marta')
 
@@ -291,7 +353,9 @@ describe Gaku::StudentsController do
 
       it { should respond_with 200 }
       it('assigns @students') { expect(assigns(:students)).to eq [student] }
-      it('assigns @class_groups') { expect(assigns(:class_groups)).to_not be_nil }
+      it('assigns @class_groups') do
+        expect(assigns(:class_groups)).to_not be_nil
+      end
       it('assigns @courses') { expect(assigns(:courses)).to_not be_nil }
       it('renders :chosen template') { template? :chosen }
     end
@@ -305,7 +369,9 @@ describe Gaku::StudentsController do
       it { should respond_with 200 }
       it('assigns @students') { expect(assigns(:students)).to eq [student] }
       it('assigns @countries') { expect(assigns(:countries)).to_not be_nil }
-      it('assigns @enrollment_statuses') { expect(assigns(:enrollment_statuses)).to_not be_nil }
+      it('assigns @enrollment_statuses') do
+        expect(assigns(:enrollment_statuses)).to_not be_nil
+      end
       it('renders :advanced_search template') { template? :advanced_search }
     end
 
@@ -314,11 +380,21 @@ describe Gaku::StudentsController do
 
       it { should respond_with 200 }
       it('renders :new template') { template? :new }
-      it('assigns @student') { expect(assigns(:student)).to be_a_new(Gaku::Student) }
-      it('assigns @class_groups') { expect(assigns(:class_groups)).to_not be_nil }
-      it('assigns @enrollment_statuses') { expect(assigns(:enrollment_statuses)).to_not be_nil }
-      it('assigns @scholarship_statuses') { expect(assigns(:scholarship_statuses)).to_not be_nil }
-      it('assigns @commute_method_types') { expect(assigns(:commute_method_types)).to_not be_nil }
+      it('assigns @student') do
+        expect(assigns(:student)).to be_a_new(Gaku::Student)
+      end
+      it('assigns @class_groups') do
+        expect(assigns(:class_groups)).to_not be_nil
+      end
+      it('assigns @enrollment_statuses') do
+        expect(assigns(:enrollment_statuses)).to_not be_nil
+      end
+      it('assigns @scholarship_statuses') do
+        expect(assigns(:scholarship_statuses)).to_not be_nil
+      end
+      it('assigns @commute_method_types') do
+        expect(assigns(:commute_method_types)).to_not be_nil
+      end
     end
 
     describe 'DELETE #destroy' do
@@ -326,7 +402,7 @@ describe Gaku::StudentsController do
         student
         expect do
           gaku_js_delete :destroy, id: student
-        end.to change(Gaku::Student, :count).by -1
+        end.to change(Gaku::Student, :count).by(-1)
       end
     end
 

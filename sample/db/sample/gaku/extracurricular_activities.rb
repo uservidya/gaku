@@ -1,4 +1,5 @@
-els = %w( Tennis Football Basketball Handball Climbing Running Swimming Rugby PingPong Chess Fitness )
+els = %w(Tennis Football Basketball Handball Climbing
+         Running Swimming Rugby PingPong Chess Fitness)
 
 say "Creating #{els.size} extracurricular activities ...".yellow
 
