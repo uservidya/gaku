@@ -9,7 +9,6 @@ ready = ->
     grading: ->
       source = new EventSource '/realtime/exam_portion_scores'
       source.addEventListener 'update.examPortionScore', (event)->
-        console.log event.data
         json = $.parseJSON(event.data)
 
         form = $("#edit_exam_portion_score_#{json.exam_portion_score.id}")
