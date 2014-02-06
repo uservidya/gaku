@@ -1,6 +1,14 @@
 @import "bootstrap";
 @import "bootstrap/glyphicons";
 
+@font-face {
+  font-family: 'ipamjm';
+  src: url(/assets/gaku/frontend/ipamjm.ttf);
+}
+.font-test {
+  font-family: 'ipamjm';
+}
+
 // for submenu --------
 .dropdown-submenu {
   position: relative;
