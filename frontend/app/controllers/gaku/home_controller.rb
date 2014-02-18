@@ -8,11 +8,6 @@ module Gaku
     before_action :_reload_libs if Rails.env.development?
 
     def index
-      if Rails.env.development?
-        @exam = Gaku::Exam.find(25)
-        @students = Gaku::Course.find(5).students
-        @results = grading_method(:score).new(@exam, @students)
-      end
       redirect_to new_user_session_path unless user_signed_in?
     end
 
